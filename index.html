@@ -949,6 +949,129 @@
     }
     .exp-feat-arrow:hover { background: var(--accent); }
 
+    /* ===== EXPERIENCE MODAL ===== */
+    .exp-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(17,17,16,.45);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s cubic-bezier(.16,1,.3,1);
+    }
+    .exp-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .exp-modal {
+      width: min(560px, 100%);
+      height: 100vh;
+      background: var(--card);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform .4s cubic-bezier(.16,1,.3,1);
+      overflow: hidden;
+    }
+    .exp-modal-overlay.open .exp-modal {
+      transform: translateX(0);
+    }
+
+    .exp-modal-header {
+      padding: 32px 36px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+    .exp-modal-header-left { display: flex; flex-direction: column; gap: 6px; }
+    .exp-modal-company {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--text);
+    }
+    .exp-modal-role {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+    .exp-modal-date {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+    .exp-modal-close {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--text-muted);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .2s, color .2s;
+    }
+    .exp-modal-close:hover { background: var(--text); color: var(--bg); }
+
+    .exp-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px 36px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .exp-modal-desc {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+
+    .exp-modal-skills-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+    .exp-modal-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .exp-modal-skill {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 40px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    @media (max-width: 600px) {
+      .exp-modal { width: 100%; }
+      .exp-modal-header { padding: 24px 20px 20px; }
+      .exp-modal-body { padding: 24px 20px 40px; }
+    }
+
     /* ===== EDUCATION ===== */
     #education { padding: var(--pad) 0; background: var(--card); scroll-margin-top: var(--nav-h); }
 
@@ -1910,7 +2033,7 @@
             <div class="exp-feat-img" style="background:#C8D0D4;overflow:hidden;"><img src="works/freelance-2.png" alt="Freelance project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">End-to-end product design for SaaS platforms and AI-driven tools, combining HCI research with AI-enhanced workflows to deliver intelligent, human-centered digital experiences.</p>
-          <a href="#cta" class="exp-feat-arrow">↗</a>
+          <button class="exp-feat-arrow" data-modal="freelance">↗</button>
         </div>
       </div>
 
@@ -1933,7 +2056,7 @@
             <div class="exp-feat-img" style="background:#DDD9D9;overflow:hidden;"><img src="works/Startteb-1.png" alt="Startteb" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Led user experience design across multiple digital products, collaborating closely with cross-functional teams to deliver user-centered solutions that drive measurable engagement and business outcomes.</p>
-          <a href="#cta" class="exp-feat-arrow">↗</a>
+          <button class="exp-feat-arrow" data-modal="feux">↗</button>
         </div>
       </div>
 
@@ -1956,7 +2079,7 @@
             <div class="exp-feat-img" style="background:#D4D8D4;overflow:hidden;"><img src="works/markastok-2.png" alt="Markastok project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Designed and refined user interfaces for e-commerce platforms, focusing on conversion-optimized layouts and consistent visual systems across web and mobile touchpoints.</p>
-          <a href="#cta" class="exp-feat-arrow">↗</a>
+          <button class="exp-feat-arrow" data-modal="markastok">↗</button>
         </div>
       </div>
 
@@ -1979,7 +2102,7 @@
             <div class="exp-feat-img" style="background:#C8D0D4;overflow:hidden;"><img src="works/artiki-2.png" alt="Artı İki project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Created and maintained UI designs for web and digital products in a fast-paced agency environment, iterating on interfaces based on client feedback and user insights.</p>
-          <a href="#cta" class="exp-feat-arrow">↗</a>
+          <button class="exp-feat-arrow" data-modal="artiki">↗</button>
         </div>
       </div>
 
@@ -2002,7 +2125,7 @@
             <div class="exp-feat-img" style="background:#D4D8D4;overflow:hidden;"><img src="works/uludag-2.png" alt="Uludağ Koleji project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Supported the design team with visual communications, print materials, and brand assets — building foundational skills in typography, layout, and visual identity during an early-career internship.</p>
-          <a href="#cta" class="exp-feat-arrow">↗</a>
+          <button class="exp-feat-arrow" data-modal="uludag-koleji">↗</button>
         </div>
       </div>
 
@@ -2040,12 +2163,10 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#E0DDD9;"></div>
-            <div class="exp-feat-img" style="background:#C8D0D4;"></div>
-            <div class="exp-feat-img" style="background:#D4D0CC;"></div>
+            <div class="exp-feat-img" style="background:#E0DDD9;overflow:hidden;"><img src="edu-btu.jpg" alt="BTU Campus" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           </div>
           <p class="exp-feat-desc">Advanced research in usability engineering, interaction design patterns, and AI-human collaboration. Thesis focused on cognitive load reduction in complex digital interfaces.</p>
-          <a href="#" class="exp-feat-arrow">↗</a>
+          <button class="exp-feat-arrow" data-modal="btu">↗</button>
         </div>
       </div>
 
@@ -2063,12 +2184,10 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#D9DDD9;"></div>
-            <div class="exp-feat-img" style="background:#DDD9D9;"></div>
-            <div class="exp-feat-img" style="background:#D9D9DD;"></div>
+            <div class="exp-feat-img" style="background:#D9DDD9;overflow:hidden;"><img src="edu-uludag.jpg" alt="Uludağ University" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           </div>
           <p class="exp-feat-desc">Four-year program covering typography, visual identity, print and digital media design. Graduated with a focus on brand communication and UI/UX foundations.</p>
-          <a href="#" class="exp-feat-arrow">↗</a>
+          <button class="exp-feat-arrow" data-modal="uludag-uni">↗</button>
         </div>
       </div>
 
@@ -2203,9 +2322,9 @@
         <a href="#blog">Blog</a>
         <a href="#cta">Contact</a>
       </nav>
-      <p class="footer-copy">&copy; 2025 Mert. All rights reserved.</p>
+      <p class="footer-copy">&copy; 2026 Mert. All rights reserved.</p>
       <div class="socials">
-        <a href="#" class="soc" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/halil-mert-2533b1199/" target="_blank" rel="noopener" class="soc" aria-label="LinkedIn">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M20.447 20.452H16.89v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a1.979 1.979 0 01-1.977-1.977 1.979 1.979 0 011.977-1.977 1.979 1.979 0 011.977 1.977 1.979 1.979 0 01-1.977 1.977zm1.959 13.019H3.379V9h3.917v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
@@ -2215,7 +2334,7 @@
             <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
           </svg>
         </a>
-        <a href="#" class="soc" aria-label="Dribbble">
+        <a href="https://dribbble.com/meart" target="_blank" rel="noopener" class="soc" aria-label="Dribbble">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4.01-.815zm-11.62-2.073c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.041 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.176zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.485 0-.962.04-1.4.112zm10.884 2.52c-.218.29-1.935 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.386z"/>
           </svg>
@@ -2227,6 +2346,27 @@
 </footer>
 
 <!-- ========================= JS ========================= -->
+<!-- ========================= EXPERIENCE MODAL ========================= -->
+<div class="exp-modal-overlay" id="expModalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="exp-modal" id="expModal">
+    <div class="exp-modal-header">
+      <div class="exp-modal-header-left">
+        <span class="exp-modal-company" id="modalCompany"></span>
+        <span class="exp-modal-role" id="modalRole"></span>
+        <span class="exp-modal-date" id="modalDate"></span>
+      </div>
+      <button class="exp-modal-close" id="expModalClose" aria-label="Close">✕</button>
+    </div>
+    <div class="exp-modal-body">
+      <p class="exp-modal-desc" id="modalDesc"></p>
+      <div>
+        <p class="exp-modal-skills-label">Skills</p>
+        <div class="exp-modal-skills" id="modalSkills"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 
   // ---- Works strip scroll ----
@@ -2659,6 +2799,96 @@
         window.scrollTo({ top, behavior: 'smooth' });
       }
     });
+  });
+
+  /* ===== EXPERIENCE MODAL ===== */
+  const EXP_DATA = {
+    freelance: {
+      company: 'Freelance — Bursa, Turkey (Remote)',
+      role: 'Product Designer · Self-employed',
+      date: 'Apr 2025 – Present',
+      desc: 'Designed and delivered end-to-end web and mobile projects for clients, advancing UX practices through user research, wireframing, and interaction design. Enhanced workflows and product quality by integrating AI-powered tools such as Cursor and Claude into the design and development process. Built full-stack projects independently, combining design expertise with technical implementation. Developed a solid understanding of Python fundamentals and actively expanded knowledge in machine learning concepts, bridging the gap between intelligent systems and human-centered design.',
+      skills: ['User Experience Design','Product Development','Product Design','User-Centered Design','User Interaction','Mobile Applications','Agile Methodologies','Mobile App Development','Research Skills','Project Management','Computer Science','Information Architecture','Graphic Design Principles','Human-Computer Interaction','AI for Design','Visual Language','Python','Pandas','Machine Learning Algorithms','AI-Powered Design','Prompt Engineering','Claude AI'],
+    },
+    feux: {
+      company: 'Feux — İstanbul, Turkey (Remote)',
+      role: 'User Experience Designer · Full-time',
+      date: 'Mar 2022 – Apr 2025',
+      desc: 'Led and participated in the end-to-end design process including kickoff, research & analysis. Collaborated with cross-functional teams, conducted usability evaluations, and ensured responsive design standards before deployment.',
+      skills: ['User Experience Design','UX Research','User-Centered Design','Agile Methodologies','Figma','Research Skills','Analytical Skills','Computer Science','Bridging','Graphic Design Principles','User Interface Design','Human-Computer Interaction','AI for Design','Visual Language'],
+    },
+    markastok: {
+      company: 'Markastok.com & Exxeselection.com — Bursa',
+      role: 'User Interface Designer · Full-time, On-site',
+      date: 'Sep 2021 – Mar 2022',
+      desc: 'Supported the design team in refining user flows and layout structure.',
+      skills: ['Web Design','Figma','Research Skills','Graphic Design Principles','Human-Computer Interaction'],
+    },
+    artiki: {
+      company: 'ARTI İKİ İnternet Bilişim Teknoloji — Bursa',
+      role: 'User Interface Designer · Full-time, On-site',
+      date: 'May 2020 – Jun 2021',
+      desc: 'Conducted stakeholder meetings and content analysis. Built wireframes and user journeys. Designed responsive UI components and design system. Supported front-end team during CMS integration and testing.',
+      skills: ['User Experience Design','Figma','Research Skills','Graphic Design Principles','Human-Computer Interaction'],
+    },
+    btu: {
+      company: 'Bursa Technical University (BTU)',
+      role: "Master's in Human-Computer Interaction",
+      date: '2021 – 2023',
+      desc: 'Completed a master\'s degree in Human-Computer Interaction. My studies focused on AI-powered interface design, human-AI interaction, and the usability of intelligent systems. Conducted research integrating user-centered design principles with artificial intelligence technologies.\n\nSpecialization: Human-AI Interaction\nActivities: Computer Engineering Society, IEEE Student Branch',
+      skills: ['Artificial Intelligence','Human-Computer Interaction','User Experience Design','Intelligent Systems'],
+    },
+    'uludag-uni': {
+      company: 'Uludağ University',
+      role: "Bachelor's in Graphic Design — Visual Communication",
+      date: '2016 – 2020',
+      desc: 'Studied graphic design with a focus on visual communication, typography, and digital media. Gained foundational knowledge in user interface design and design thinking principles.\n\nSpecialization: Graphic Design & Visual Communication\nActivities: Design workshops, creative projects, visual arts activities',
+      skills: ['Research Skills','Graphic Design Principles','User Interface Design','Human-Computer Interaction','User Experience','Figma','Proactive Design Thinking','Communication Design','Adobe Creative Suite'],
+    },
+    'uludag-koleji': {
+      company: 'ULUDAĞ KOLEJİ — Bursa',
+      role: 'Graphic Designer · Internship, On-site',
+      date: 'Nov 2019 – May 2020',
+      desc: 'Assisted in creating visual materials including brochures, banners, and social media content. Developed skills in typography, layout design, and brand consistency. Collaborated with the design team on various print and digital projects.',
+      skills: ['Research Skills','Graphic Design Principles','Human-Computer Interaction','Visual Language'],
+    },
+  };
+
+  const expOverlay  = document.getElementById('expModalOverlay');
+  const expModalClose = document.getElementById('expModalClose');
+
+  function openModal(key) {
+    const d = EXP_DATA[key];
+    if (!d) return;
+    document.getElementById('modalCompany').textContent = d.company;
+    document.getElementById('modalRole').textContent    = d.role;
+    document.getElementById('modalDate').textContent    = d.date;
+    document.getElementById('modalDesc').innerHTML = d.desc.replace(/\n/g, '<br>');
+    const skillsEl = document.getElementById('modalSkills');
+    skillsEl.innerHTML = d.skills.map(s => `<span class="exp-modal-skill">${s}</span>`).join('');
+    expOverlay.classList.add('open');
+    expOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    expOverlay.classList.remove('open');
+    expOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-modal]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(btn.dataset.modal));
+  });
+
+  expModalClose.addEventListener('click', closeModal);
+
+  expOverlay.addEventListener('click', e => {
+    if (e.target === expOverlay) closeModal();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
   });
 </script>
 
