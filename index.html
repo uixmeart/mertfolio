@@ -15,15 +15,15 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:           #F5F5F3;
-      --bg-dark:      #111110;
-      --text:         #111110;
-      --text-muted:   #6B6B6A;
-      --accent:       #3D3D3B;
-      --accent-rgb:   61,61,59;
-      --accent-light: rgba(61,61,59,0.08);
-      --border:       rgba(17,17,16,0.11);
-      --card:         #FFFFFF;
+      --bg:           #0a0a0f;
+      --bg-dark:      #111118;
+      --text:         #f0f0f0;
+      --text-muted:   #8a8a8a;
+      --accent:       #c0c0c0;
+      --accent-rgb:   192,192,192;
+      --accent-light: rgba(255,255,255,0.06);
+      --border:       rgba(255,255,255,0.1);
+      --card:         #141419;
       --font:         'Archivo', sans-serif;
       --nav-h:        72px;
       --pad:          clamp(64px, 8vw, 120px);
@@ -77,7 +77,7 @@
       font-weight: 600;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: #B1F093;
       margin-bottom: 14px;
     }
 
@@ -89,8 +89,42 @@
       color: var(--text);
     }
 
+    /* Unified section header — label+title left, desc+link right */
+    .sec-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+    .sec-header > div:last-child {
+      padding-top: calc(12px * 1.65 + 14px);
+    }
+    .sec-header-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .sec-header-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 2px;
+      transition: color .2s, border-color .2s;
+    }
+    .sec-header-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    @media (max-width: 860px) {
+      .sec-header { grid-template-columns: 1fr; gap: 20px; }
+    }
+
     .ph {
-      background: #E3E3E1;
+      background: #1e1e24;
       border-radius: var(--r-lg);
       display: flex;
       align-items: center;
@@ -104,15 +138,15 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: var(--text);
-      color: var(--bg);
+      background: #B1F093;
+      color: #0a0a0f;
       padding: 13px 26px;
       border-radius: 40px;
       font-size: 14px;
       font-weight: 600;
-      transition: background .22s, transform .22s;
+      transition: background .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
     }
-    .btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+    .btn-primary:hover { background: #A2FF80; transform: translateY(-3px) scale(1.03); box-shadow: 0 8px 24px rgba(177,240,147,.2); }
 
     .btn-outline {
       display: inline-flex;
@@ -145,7 +179,7 @@
       inset: 0 0 auto 0;
       height: var(--nav-h);
       z-index: 999;
-      background: rgba(245,245,243,.88);
+      background: rgba(10,10,15,.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid transparent;
@@ -193,23 +227,19 @@
     .nav-links a:hover::after { width: 100%; }
 
     .nav-cta {
-      background: var(--text) !important;
-      color: var(--bg) !important;
+      background: #B1F093 !important;
+      color: #0a0a0f !important;
       padding: 9px 20px !important;
       border-radius: 40px !important;
       font-size: 13px !important;
       font-weight: 600 !important;
-      transition: box-shadow .3s, background .2s, transform .2s !important;
-      box-shadow: 0 0 0 rgba(0,0,0,0) !important;
+      transition: background .3s, transform .2s, box-shadow .3s !important;
     }
     .nav-cta::after { display: none !important; }
     .nav-cta:hover {
-      background: var(--text) !important;
-      color: var(--bg) !important;
-      box-shadow:
-        0 0 12px rgba(0,0,0,0.35),
-        0 0 32px rgba(0,0,0,0.2),
-        0 0 64px rgba(0,0,0,0.12) !important;
+      background: #A2FF80 !important;
+      color: #0a0a0f !important;
+      box-shadow: 0 8px 24px rgba(177,240,147,.25) !important;
       transform: translateY(-1px) !important;
     }
 
@@ -268,357 +298,664 @@
       min-height: 100vh;
       padding-top: var(--nav-h);
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       position: relative;
       overflow: hidden;
-      background: #ffffff;
+      background: #0a0a14;
     }
-
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('hero-showcase.png') center center / cover no-repeat;
+      z-index: 0;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(10,10,20,0.85) 0%, rgba(10,10,20,0.3) 40%, transparent 70%),
+        linear-gradient(to right, rgba(10,10,20,0.5) 0%, transparent 50%);
+      z-index: 1;
+    }
 
     .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      padding: 60px 0 80px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 0 60px;
+      min-height: calc(100vh - var(--nav-h));
     }
 
-    .hero-avail {
-      display: inline-flex;
+    .hero-top {
+      display: flex;
       align-items: center;
-      gap: 8px;
-      background: var(--accent-light);
-      color: var(--accent);
-      border-radius: 40px;
-      padding: 6px 16px;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .04em;
-      margin-bottom: 28px;
+      gap: 14px;
+      margin-bottom: 32px;
     }
-    .pulse-dot {
-      width: 7px; height: 7px;
+
+    .hero-avatars {
+      display: flex;
+    }
+    .hero-avatars img {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s infinite;
+      border: 2px solid rgba(255,255,255,0.3);
+      object-fit: cover;
+      margin-left: -10px;
     }
-    @keyframes pulse {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: .5; transform: scale(.8); }
+    .hero-avatars img:first-child { margin-left: 0; }
+
+    .hero-inspired {
+      color: rgba(255,255,255,0.85);
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .hero-inspired strong {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .hero-name {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .hero-name-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: .02em;
+    }
+    .hero-name-divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(255,255,255,0.3);
+    }
+    .hero-name-title {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: .02em;
     }
 
     .hero-headline {
-      margin-bottom: 26px;
+      margin-bottom: 24px;
       line-height: 1;
-    }
-
-    .sig-svg {
-      width: 100%;
-      height: auto;
-      overflow: visible;
-      display: block;
     }
 
     .hero-hello {
-      font-family: 'DM Sans', sans-serif;
-      font-size: clamp(72px, 11vw, 140px);
-      font-weight: 200;
-      letter-spacing: -4px;
-      line-height: 1.1;
-      color: var(--text);
-      margin-bottom: 26px;
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 400;
+      letter-spacing: -3px;
+      line-height: 1.05;
+      color: #ffffff;
     }
-    .hero-hello em { color: var(--accent); font-style: normal; font-weight: 200; }
 
     .hero-sub {
-      font-size: clamp(15px, 1.8vw, 17px);
-      color: var(--text-muted);
+      font-size: clamp(15px, 1.5vw, 17px);
+      color: rgba(255,255,255,0.65);
       line-height: 1.65;
-      max-width: 420px;
-      margin-bottom: 44px;
+      max-width: 480px;
+      margin-bottom: 40px;
     }
-    .hero-sub strong { color: var(--text); font-weight: 600; }
 
-    .hero-stats {
+    .hero-bottom {
       display: flex;
-      gap: 0;
-      margin-bottom: 48px;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
     }
-    .stat { display: flex; flex-direction: column; padding-right: 36px; }
-    .stat + .stat {
-      padding-left: 36px;
-      border-left: 1px solid var(--border);
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #B1F093;
+      color: #0a0a0f;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
+      white-space: nowrap;
     }
-    .stat-num {
-      font-size: clamp(40px, 5.5vw, 58px);
-      font-weight: 200;
-      letter-spacing: -.04em;
-      line-height: 1;
+    .hero-cta:hover {
+      background: #A2FF80;
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 30px rgba(177,240,147,.35);
     }
-    .stat-num {
+    .hero-cta svg { width: 16px; height: 16px; }
+
+    .hero-slider {
       display: flex;
       align-items: center;
-    }
-    .stat-plus {
-      font-size: .7em;
-      font-weight: 300;
-      color: var(--text-muted);
-      margin-right: 4px;
-      line-height: 1;
-    }
-    .stat-lbl {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    .hero-actions {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    /* Hero right */
-    .hero-right {
-      position: relative;
-      height: 560px;
-      background: transparent;
-      border-radius: var(--r-xl);
-      overflow: visible;
-    }
-
-    .hero-video {
-      width: 80%;
-      height: 90%;
-      border-radius: 0;
-      object-fit: contain;
-      display: block;
+      gap: 16px;
       position: absolute;
-      bottom: 0;
+      bottom: 60px;
       left: 50%;
       transform: translateX(-50%);
-      mix-blend-mode: multiply;
-      background: transparent;
+      z-index: 2;
     }
-
-    .hero-img-ph {
-      width: 100%;
-      height: 100%;
-      border-radius: var(--r-xl);
-      background: linear-gradient(145deg, #E8E8E6, #D4D4D1);
-      position: relative;
-      overflow: hidden;
+    .hero-slider-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.3);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #ABABAA;
-      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      transition: border-color .2s, color .2s;
+      background: transparent;
     }
-    .hero-img-ph::before {
-      content: '';
+    .hero-slider-btn:hover { border-color: #fff; color: #fff; }
+    .hero-slider-btn svg { width: 16px; height: 16px; }
+
+    .hero-slider-track {
+      width: 160px;
+      height: 2px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 2px;
+      position: relative;
+    }
+    .hero-slider-progress {
       position: absolute;
-      top: -40%; right: -40%;
-      width: 80%; height: 80%;
-      background: radial-gradient(circle, rgba(var(--accent-rgb),.12) 0%, transparent 70%);
+      top: 0; left: 0;
+      width: 60%;
+      height: 100%;
+      background: #fff;
+      border-radius: 2px;
     }
 
-    .hero-chip {
-      position: absolute;
-      bottom: 28px;
-      left: -20px;
-      background: white;
-      border-radius: 18px;
-      padding: 14px 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,.13);
-      display: flex;
-      align-items: center;
+    .hero-desc {
+      max-width: 340px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+      text-align: right;
+    }
+
+    /* Navbar is always on dark bg now */
+    .navbar.hero-dark {
+      background: rgba(10,10,15,0.5);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
       gap: 12px;
       min-width: 220px;
     }
 
     /* Floating skill pills — Figma cursor style */
-    .skill-pill {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      pointer-events: none;
-      user-select: none;
+    .scroll-down { display: none; }
+
+    /* ===== MANIFESTO ===== */
+    #manifesto {
+      padding: 120px 0;
+      background: var(--bg);
     }
-    .skill-pill .sp-cursor {
-      width: 16px;
-      height: 16px;
-      margin-bottom: -2px;
-      margin-left: 2px;
-      flex-shrink: 0;
+
+    .manifesto-quote {
+      padding: 0 0 32px;
+      text-align: left;
     }
-    .skill-pill .sp-label {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 0 12px 12px 12px;
-      padding: 6px 14px;
-      font-size: 12px;
+    .manifesto-quote p {
+      font-size: clamp(22px, 3.5vw, 40px);
       font-weight: 600;
-      color: white;
-      white-space: nowrap;
-      letter-spacing: .01em;
+      letter-spacing: -.01em;
+      line-height: 1.25;
+      color: var(--text);
+      text-transform: uppercase;
+      text-indent: 120px;
     }
 
-    @keyframes floatA {
-      0%, 100% { transform: translateY(0px);   }
-      50%       { transform: translateY(-10px); }
-    }
-    @keyframes floatB {
-      0%, 100% { transform: translateY(0px);  }
-      50%       { transform: translateY(8px);  }
-    }
-    @keyframes floatC {
-      0%, 100% { transform: translateY(0px);   }
-      50%       { transform: translateY(-7px);  }
-    }
-    @keyframes floatD {
-      0%, 100% { transform: translateY(0px);  }
-      50%       { transform: translateY(9px);  }
-    }
-
-    .sp1 { top:  3%;  left: 44%;  animation: floatA 4.2s ease-in-out infinite; }
-    .sp2 { top: 10%;  left: -6%;  animation: floatB 3.8s ease-in-out infinite 0.4s; }
-    .sp3 { top: 18%;  left: 76%;  animation: floatC 5.1s ease-in-out infinite 1.0s; }
-    .sp4 { top: 32%;  left:  8%;  animation: floatD 3.5s ease-in-out infinite 0.2s; }
-    .sp5 { top: 42%;  left: 72%;  animation: floatA 4.7s ease-in-out infinite 1.3s; }
-    .sp6 { top: 58%;  left: -8%;  animation: floatB 4.3s ease-in-out infinite 0.7s; }
-    .sp7 { top: 65%;  left: 82%;  animation: floatC 3.9s ease-in-out infinite 0.9s; }
-    .sp8 { top: 78%;  left: 20%;  animation: floatD 5.3s ease-in-out infinite 0.3s; }
-    .sp9 { top: 86%;  left: 62%;  animation: floatA 4.0s ease-in-out infinite 1.6s; }
-    .chip-icon {
-      width: 42px; height: 42px;
-      border-radius: 12px;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-    .chip-text strong {
-      display: block;
+    .manifesto-body h3 {
       font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .manifesto-body p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .manifesto-sig {
+      margin-top: 24px;
+      font-family: 'Urbanist', sans-serif;
+      font-size: 24px;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+    }
+    @media (max-width: 600px) {
+      .manifesto-quote { padding: 0 0 24px; }
+      #manifesto { padding: 60px 0; }
+    }
+
+    /* ===== PROCESS ===== */
+    #process {
+      padding: 120px 0;
+      background: var(--bg);
+    }
+
+    .process-header {
+      text-align: left;
+      margin-bottom: 60px;
+    }
+
+    .process-header h2 {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .process-header h2 em {
+      font-style: italic;
+      color: #B1F093;
       font-weight: 700;
     }
-    .chip-text span {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
 
-    .scroll-down {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-muted);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 50px;
-      background: linear-gradient(to bottom, var(--text-muted), transparent);
-      animation: scrollLine 2s ease infinite;
-    }
-    @keyframes scrollLine {
-      0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
-      40%  { transform: scaleY(1); opacity: 1; }
-      80%  { transform: scaleY(1); opacity: 0; }
-      100% { transform: scaleY(0); opacity: 0; }
-    }
-
-    /* ===== ABOUT ===== */
-    #about { padding: var(--pad) 0; }
-
-    .about-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
-    }
-
-    .about-bio {
-      font-size: 16px;
-      line-height: 1.8;
-      color: var(--text-muted);
-      margin: 20px 0 36px;
-    }
-    .about-bio strong { color: var(--text); font-weight: 500; }
-
-    .value-list { display: flex; flex-direction: column; gap: 16px; }
-
-    .value-card {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 20px;
-      transition: border-color .25s, box-shadow .25s;
-    }
-    .value-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 8px 32px rgba(var(--accent-rgb),.08);
-    }
-    .vc-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      flex-shrink: 0;
-    }
-    .vc-body h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
-    .vc-body p  { font-size: 13px; color: var(--text-muted); line-height: 1.55; }
-
-    /* About right */
-    .about-big-num {
-      font-size: clamp(72px, 10vw, 108px);
-      font-weight: 300;
-      letter-spacing: -.05em;
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .about-big-num em { color: var(--accent); font-style: normal; }
-
-    .about-num-desc {
+    .process-header p {
+      margin-top: 18px;
       font-size: 15px;
       color: var(--text-muted);
       line-height: 1.65;
-      max-width: 260px;
-      margin-bottom: 36px;
+      max-width: 460px;
     }
 
-    .about-avatar {
-      width: 100%;
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .process-card {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 40px 28px;
+      text-align: center;
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: transform .45s cubic-bezier(.25,.46,.45,.94), box-shadow .45s cubic-bezier(.25,.46,.45,.94), border-color .3s;
+    }
+    .process-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 24px 56px rgba(0,0,0,.1), 0 0 0 1px rgba(177,240,147,.15);
+      border-color: rgba(177,240,147,.3);
+    }
+
+    .process-card h3 {
+      font-size: clamp(20px, 2vw, 24px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: auto;
+    }
+
+    .process-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-top: 24px;
+    }
+
+    /* Hover decoration — green abstract shape */
+    .process-card::before {
+      content: '';
+      position: absolute;
+      bottom: -60px;
+      left: -40px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(177,240,147,0.35) 0%, rgba(177,240,147,0.08) 50%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity .5s, transform .5s cubic-bezier(.25,.46,.45,.94);
+      transform: scale(.6);
+      pointer-events: none;
+    }
+    .process-card:hover::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    @media (max-width: 1024px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .process-grid { grid-template-columns: 1fr; }
+      #process { padding: 60px 0; }
+    }
+
+    /* ===== TESTIMONIALS SHOWCASE ===== */
+    #testimonials-showcase {
+      padding: 120px 0;
+      background: var(--bg);
+      overflow: hidden;
+    }
+
+    .tsc-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .tsc-header h2 {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    .tsc-track-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    .tsc-track-wrapper::before,
+    .tsc-track-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .tsc-track-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg), transparent);
+    }
+    .tsc-track-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg), transparent);
+    }
+
+    .tsc-track {
+      display: flex;
+      gap: 20px;
+      animation: tscScroll 30s linear infinite;
+      width: max-content;
+    }
+    .tsc-track:hover { animation-play-state: paused; }
+
+    @keyframes tscScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .tsc-card {
+      flex-shrink: 0;
+      width: 340px;
+      background: var(--card);
+      border-radius: 20px;
+      padding: 36px 30px 32px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 260px;
+      transition: transform .5s cubic-bezier(.25,.46,.45,.94), box-shadow .5s cubic-bezier(.25,.46,.45,.94), border-color .3s;
+    }
+    .tsc-card:hover {
+      transform: translateY(-6px) scale(1.015);
+      box-shadow: 0 20px 52px rgba(0,0,0,.1);
+      border-color: rgba(177,240,147,.25);
+    }
+
+    .tsc-quote {
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .tsc-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .tsc-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2a2a30, #1e1e24);
+      flex-shrink: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
       justify-content: center;
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+    .tsc-name {
+      font-family: 'Urbanist', sans-serif;
+      font-size: 16px;
+      font-weight: 300;
+      color: #B1F093;
+      font-style: italic;
+    }
+    .tsc-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .tsc-trust {
+      text-align: center;
+      margin-top: 64px;
+    }
+    .tsc-trust p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .tsc-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .tsc-logos span {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-muted);
+      opacity: .45;
+      letter-spacing: -.02em;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 600px) {
+      #testimonials-showcase { padding: 64px 0 48px; }
+      .tsc-card { width: 280px; padding: 28px 22px 24px; }
+      .tsc-logos { gap: 28px; }
+      .tsc-logos span { font-size: 15px; }
+    }
+
+    /* ===== ABOUT ===== */
+    #about { padding: 120px 0; background: var(--card); }
+
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    /* About left — image with floating badges */
+    .about-img-wrap {
       position: relative;
     }
-    .about-avatar img {
+    .about-img-wrap img {
       width: 100%;
-      max-width: 340px;
-      height: auto;
-      display: block;
-      mix-blend-mode: multiply;
       border-radius: 24px;
-      position: relative;
-      z-index: 1;
+      display: block;
+      object-fit: cover;
+      aspect-ratio: 3 / 4;
+      transition: transform .6s cubic-bezier(.25,.46,.45,.94);
+    }
+    .about-img-wrap:hover img {
+      transform: scale(1.03);
+    }
+
+    .about-badge {
+      position: absolute;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 14px 20px;
+      box-shadow: 0 12px 40px rgba(0,0,0,.1);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      z-index: 2;
+    }
+    .about-badge-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(177,240,147,0.15);
+      color: #B1F093;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .about-badge-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .about-badge-text span {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .about-badge-top {
+      top: 20px;
+      left: -20px;
+      animation: badgeFloat 3.5s ease-in-out infinite;
+    }
+    .about-badge-bottom {
+      bottom: 30px;
+      right: -20px;
+      animation: badgeFloat 4s ease-in-out infinite .5s;
+    }
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    /* About right — content */
+    .about-title {
+      font-size: clamp(30px, 4.5vw, 44px);
+      font-weight: 400;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .about-title em {
+      font-style: normal;
+      color: #B1F093;
+    }
+
+    .about-bio {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .about-bio strong { color: var(--text); font-weight: 600; }
+
+    .about-stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+      margin-bottom: 36px;
+    }
+    .about-stat {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+    }
+    .about-stat-num {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .about-stat-lbl {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .about-footer {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .about-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #B1F093;
+      color: #0a0a0f;
+      padding: 14px 28px;
+      border-radius: 40px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
+    }
+    .about-cta:hover {
+      background: #A2FF80;
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 30px rgba(177,240,147,.35);
+    }
+
+    .about-signature {
+      display: flex;
+      flex-direction: column;
+    }
+    .about-signature strong {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .about-signature span {
+      font-size: 12px;
+      color: var(--text-muted);
     }
 
     /* ===== WORKS STRIP ===== */
@@ -626,7 +963,7 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      padding: calc(var(--pad) / 2) 0 40px;
+      padding: 0 0 40px;
     }
     .works-strip {
       width: 100%;
@@ -634,9 +971,9 @@
       overflow-y: visible;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      padding-bottom: 0;
+      padding-bottom: 120px;
       background: var(--bg);
-      margin-top: -2px; /* flush with about section */
+      margin-top: 0;
     }
     .works-strip::-webkit-scrollbar { display: none; }
 
@@ -687,7 +1024,7 @@
     .work-thumb {
       width: 100%;
       height: 280px;
-      background: #E0DDD9;
+      background: #1a1a20;
       border-radius: 16px;
     }
 
@@ -736,7 +1073,7 @@
     .work-for strong { font-weight: 500; color: var(--text); }
 
     /* ===== PORTFOLIO ===== */
-    #portfolio { scroll-margin-top: var(--nav-h); }
+    #portfolio { scroll-margin-top: var(--nav-h); padding-top: 120px; }
 
     .section-head {
       display: flex;
@@ -779,7 +1116,7 @@
 
     .proj-thumb {
       aspect-ratio: 4/3;
-      background: #E3E3E1;
+      background: #1e1e24;
       position: relative;
       display: flex;
       align-items: center;
@@ -804,7 +1141,7 @@
       z-index: 2;
       width: 40px; height: 40px;
       border-radius: 50%;
-      background: white;
+      background: var(--card);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -824,15 +1161,15 @@
     .proj-title { font-size: 16px; font-weight: 700; margin-top: 8px; letter-spacing: -.01em; }
 
     /* thumb color variants */
-    .c1 { background: #E0DDD9; }
-    .c2 { background: #D9DDE0; }
-    .c3 { background: #DDE0D9; }
-    .c4 { background: #E0D9DD; }
-    .c5 { background: #DDD9E0; }
-    .c6 { background: #D9E0DD; }
+    .c1 { background: #1a1a20; }
+    .c2 { background: #1c1c24; }
+    .c3 { background: #1e1e26; }
+    .c4 { background: #1d1a22; }
+    .c5 { background: #1c1a24; }
+    .c6 { background: #1a1e22; }
 
     /* ===== EXPERIENCE ===== */
-    #experience { padding: calc(var(--pad) * 2) 0 var(--pad); }
+    #experience { padding: 120px 0; }
 
     .exp-header {
       display: grid;
@@ -840,6 +1177,9 @@
       gap: 60px;
       align-items: start;
       margin-bottom: 56px;
+    }
+    .exp-header > div:last-child {
+      padding-top: calc(12px * 1.65 + 14px);
     }
 
     .exp-intro {
@@ -854,13 +1194,15 @@
       align-items: center;
       gap: 8px;
       font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      border-bottom: 1px solid var(--text);
-      padding-bottom: 2px;
-      transition: color .2s, border-color .2s;
+      font-weight: 600;
+      background: #B1F093;
+      color: #0a0a0f;
+      padding: 10px 22px;
+      border-radius: 40px;
+      border: none;
+      transition: background .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
     }
-    .exp-cta-btn:hover { color: var(--accent); border-color: var(--accent); }
+    .exp-cta-btn:hover { background: #A2FF80; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(177,240,147,.2); }
 
     .exp-row {
       display: block;
@@ -928,7 +1270,7 @@
     .exp-feat-img {
       width: 150px; height: 100px;
       border-radius: 12px;
-      background: #E0DDD9;
+      background: #1a1a20;
       flex-shrink: 0;
     }
 
@@ -1073,7 +1415,7 @@
     }
 
     /* ===== EDUCATION ===== */
-    #education { padding: var(--pad) 0; background: var(--card); scroll-margin-top: var(--nav-h); }
+    #education { padding: 120px 0; background: var(--card); scroll-margin-top: var(--nav-h); }
 
     .edu-grid {
       display: grid;
@@ -1111,7 +1453,7 @@
       font-size: 12px;
       font-weight: 500;
       color: var(--text-muted);
-      background: white;
+      background: var(--card);
       border: 1px solid var(--border);
       padding: 3px 12px;
       border-radius: 20px;
@@ -1119,26 +1461,23 @@
 
     /* ===== CTA BANNER ===== */
     #cta {
-      background: var(--bg-dark);
-      padding: clamp(72px, 9vw, 110px) 0;
+      padding: 120px 0;
       position: relative;
       overflow: hidden;
     }
     #cta::before {
       content: '';
       position: absolute;
-      top: -120px; right: -80px;
-      width: 480px; height: 480px;
-      background: radial-gradient(circle, rgba(var(--accent-rgb),.18) 0%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      background: url('cta-bg.jpg') center center / cover no-repeat;
+      z-index: 0;
     }
     #cta::after {
       content: '';
       position: absolute;
-      bottom: -100px; left: -80px;
-      width: 360px; height: 360px;
-      background: radial-gradient(circle, rgba(var(--accent-rgb),.08) 0%, transparent 70%);
-      pointer-events: none;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1;
     }
 
     .cta-inner {
@@ -1146,7 +1485,7 @@
       max-width: 680px;
       margin: 0 auto;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
     .cta-inner .section-label { color: rgba(var(--accent-rgb), 1); margin-bottom: 22px; }
     .cta-inner .section-label::before { background: var(--accent); }
@@ -1170,25 +1509,23 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: white;
-      color: var(--text);
+      background: #B1F093;
+      color: #0a0a0f;
       padding: 16px 36px;
       border-radius: 40px;
       font-size: 15px;
       font-weight: 600;
       border: none;
-      transition: box-shadow .18s ease, transform .18s ease;
-      box-shadow: 0 0 0 rgba(255,255,255,0);
+      transition: background .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
     }
     .btn-cta:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        0 0 12px rgba(255,255,255,0.55),
-        0 0 28px rgba(255,255,255,0.25);
+      background: #A2FF80;
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 8px 30px rgba(177,240,147,.35);
     }
 
     /* ===== BLOG ===== */
-    #blog { padding: var(--pad) 0; }
+    #blog { padding: 120px 0; }
 
     .blog-grid {
       display: grid;
@@ -1210,7 +1547,7 @@
 
     .blog-thumb {
       aspect-ratio: 16/9;
-      background: #E3E3E1;
+      background: #1e1e24;
       border-radius: 16px;
       position: relative;
       overflow: hidden;
@@ -1249,6 +1586,242 @@
       font-size: 13px;
       color: var(--text-muted);
       line-height: 1.65;
+    }
+
+    /* ===== UX BREAKDOWNS ===== */
+    #ux-breakdowns { padding: 120px 0; }
+    #ab-tests { padding: 120px 0; }
+
+    .uxb-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .uxb-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform .45s cubic-bezier(.25,.46,.45,.94), box-shadow .45s cubic-bezier(.25,.46,.45,.94), border-color .3s;
+    }
+    .uxb-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 52px rgba(0,0,0,.15);
+      border-color: rgba(177,240,147,.2);
+    }
+
+    .uxb-thumb {
+      aspect-ratio: 16/9;
+      background: #1a1a22;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      position: relative;
+    }
+    .uxb-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s cubic-bezier(.25,.46,.45,.94);
+    }
+    .uxb-card:hover .uxb-thumb img { transform: scale(1.04); }
+
+    /* ===== UXB MODAL ===== */
+    .uxb-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(10,10,15,.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s cubic-bezier(.16,1,.3,1);
+    }
+    .uxb-modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .uxb-modal {
+      width: min(900px, 92vw);
+      max-height: 90vh;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transform: scale(.95) translateY(20px);
+      transition: transform .4s cubic-bezier(.16,1,.3,1);
+    }
+    .uxb-modal-overlay.open .uxb-modal {
+      transform: scale(1) translateY(0);
+    }
+    .uxb-modal-header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .uxb-modal-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .uxb-modal-header-left .uxb-tag { margin-bottom: 0; }
+    .uxb-modal-header-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -.02em;
+    }
+    .uxb-modal-close {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--text-muted);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .2s, color .2s;
+    }
+    .uxb-modal-close:hover { background: var(--text); color: var(--bg); }
+    .uxb-modal-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .uxb-modal-intro {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+    .uxb-modal-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+    .uxb-modal-section.reverse { direction: rtl; }
+    .uxb-modal-section.reverse > * { direction: ltr; }
+    .uxb-modal-section-img {
+      border-radius: 16px;
+      overflow: hidden;
+      background: #111;
+      border: 1px solid var(--border);
+    }
+    .uxb-modal-section-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .uxb-modal-section-text h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+    .uxb-modal-section-text p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .uxb-modal-section-text .uxb-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #B1F093;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .uxb-modal-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 8px;
+    }
+    .uxb-modal-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: #B1F093;
+      color: #0a0a0f;
+      border-radius: 60px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .uxb-modal-cta a:hover { background: #A2FF80; }
+
+    @media (max-width: 600px) {
+      .uxb-modal { width: 100%; max-height: 100vh; border-radius: 0; }
+      .uxb-modal-header { padding: 20px; }
+      .uxb-modal-body { padding: 20px; gap: 28px; }
+      .uxb-modal-section { grid-template-columns: 1fr; }
+      .uxb-modal-section.reverse { direction: ltr; }
+    }
+
+    .uxb-body {
+      padding: 28px 24px;
+    }
+    .uxb-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 4px 11px;
+      border-radius: 40px;
+      background: rgba(177,240,147,.1);
+      color: #B1F093;
+      margin-bottom: 12px;
+    }
+    .uxb-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .uxb-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .uxb-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: #B1F093;
+      transition: gap .2s;
+    }
+    .uxb-link:hover { gap: 10px; }
+
+    @media (max-width: 860px) {
+      .uxb-grid { grid-template-columns: 1fr; }
     }
 
     /* ===== BLOG MODAL ===== */
@@ -1394,7 +1967,7 @@
     footer {
       background: var(--bg-dark);
       color: white;
-      padding: 80px 0 36px;
+      padding: 120px 0 36px;
     }
 
     .footer-top {
@@ -1482,10 +2055,12 @@
     }
 
     @media (max-width: 860px) {
-      .hero-inner   { grid-template-columns: 1fr; }
-      .hero-right   { height: 380px; }
-      .hero-chip    { left: 0; bottom: 16px; }
+      .hero-bottom { flex-direction: column; align-items: flex-start; }
+      .hero-desc { text-align: left; }
+      .hero-slider { display: none; }
       .about-inner  { grid-template-columns: 1fr; gap: 48px; }
+      .about-badge-top { left: 10px; }
+      .about-badge-bottom { right: 10px; }
       .proj-grid    { grid-template-columns: repeat(2, 1fr); }
       .edu-grid     { grid-template-columns: 1fr; }
       .blog-grid    { grid-template-columns: repeat(2, 1fr); }
@@ -1498,8 +2073,7 @@
       .hamburger  { display: flex; }
       .proj-grid  { grid-template-columns: 1fr; }
       .blog-grid  { grid-template-columns: 1fr; }
-      .hero-stats { flex-direction: column; gap: 20px; }
-      .stat + .stat { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 20px; }
+      .hero-hello { font-size: 40px; letter-spacing: -1px; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .footer-nav { justify-content: center; }
     }
@@ -1640,7 +2214,7 @@
     .wm-desc p { margin-bottom: 14px; }
 
     .wm-focus {
-      background: white;
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: 18px;
       padding: 28px 32px;
@@ -1721,141 +2295,170 @@
   <div class="container">
     <div class="hero-inner">
 
-      <!-- Left -->
-      <div class="hero-left">
-        <div class="hero-headline" aria-label="Hello,">
-          <h1 class="hero-hello">Hello<em>,</em></h1>
+      <!-- Avatar group -->
+      <div class="hero-top reveal">
+        <div class="hero-avatars">
+          <img src="avatar.png" alt="User 1" />
+          <img src="avatar2.png" alt="User 2" />
+          <img src="avatar.png" alt="User 3" />
+          <img src="avatar2.png" alt="User 4" />
         </div>
-
-        <p class="hero-sub reveal d2">
-          I'm <strong>Mert</strong> — Product Designer &amp; HCI Specialist crafting
-          <strong>AI-enhanced workflows</strong> and human-centered digital experiences.
-        </p>
-
-        <div class="hero-stats reveal d3">
-          <div class="stat">
-            <span class="stat-num"><span class="stat-plus">+</span>200</span>
-            <span class="stat-lbl">Solved Problems</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num"><span class="stat-plus">+</span>6</span>
-            <span class="stat-lbl">Years Experience</span>
-          </div>
-        </div>
-
+        <span class="hero-inspired"><strong>2K</strong> Inspired by my designs</span>
       </div>
 
-      <!-- Right -->
-      <div class="hero-right reveal d2">
-        <video
-            class="hero-video"
-            src="hero.mp4"
-            autoplay
-            loop
-            muted
-            playsinline
-          ></video>
-        <div class="skill-pill sp1">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#6C63FF" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#6C63FF;">Figma</span>
-        </div>
+      <!-- Name & Title -->
+      <div class="hero-name reveal d1">
+        <span class="hero-name-label">Halil Mert</span>
+        <span class="hero-name-divider"></span>
+        <span class="hero-name-title">Product Designer</span>
+      </div>
 
-        <div class="skill-pill sp2">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#F59E0B" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#F59E0B;">UX Research</span>
-        </div>
+      <!-- Headline -->
+      <div class="hero-headline reveal d2">
+        <h1 class="hero-hello">Create, Inspire, Design.</h1>
+      </div>
 
-        <div class="skill-pill sp3">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#EC4899" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#EC4899;">HCI</span>
-        </div>
+      <!-- Subtitle -->
+      <p class="hero-sub reveal d3">
+        Helping brands and individuals bring their ideas to life through
+        creative design and thoughtful visuals.
+      </p>
 
-        <div class="skill-pill sp4">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#10B981" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#10B981;">AI-Enhanced UX</span>
-        </div>
+      <!-- Bottom row -->
+      <div class="hero-bottom reveal d4">
+        <a href="#cta" class="hero-cta">
+          Get updates
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
 
-        <div class="skill-pill sp5">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#3B82F6" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#3B82F6;">Design Systems</span>
-        </div>
-
-        <div class="skill-pill sp6">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#8B5CF6" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#8B5CF6;">Interaction Design</span>
-        </div>
-
-        <div class="skill-pill sp7">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#EF4444" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#EF4444;">Prototyping</span>
-        </div>
-
-        <div class="skill-pill sp8">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#0EA5E9" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#0EA5E9;">User Testing</span>
-        </div>
-
-        <div class="skill-pill sp9">
-          <svg class="sp-cursor" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2 2L7.5 14L9.5 9.5L14 7.5L2 2Z" fill="#D97706" stroke="white" stroke-width="1"/>
-          </svg>
-          <span class="sp-label" style="background:#D97706;">Framer</span>
-        </div>
+        <p class="hero-desc">
+          Offering expert guidance and creative solutions in branding, design, and
+          visual storytelling, backed by thoughtful strategy and impactful results.
+        </p>
       </div>
 
     </div>
   </div>
 
-  <div class="scroll-down" aria-hidden="true">
-    <span>Scroll Down</span>
-    <div class="scroll-line"></div>
+</section>
+
+<!-- ========================= MANIFESTO ========================= -->
+<section id="manifesto">
+  <div class="container">
+
+    <div class="manifesto-quote reveal">
+      <p>I'm problem solvers, visionaries, and passionate creators. This is where my best journey meets yours.</p>
+    </div>
+
+    <div class="manifesto-body reveal d1">
+      <p>To bring ideas to life through intentional design, clean code, and compelling digital experiences.</p>
+      <p>Whether it's a personal brand, startup, or something in between, my mission is to help tell your story in a way that feels real — and looks damn good while doing it. To inspire through creativity, lead with empathy, and create work that resonates — not just impresses.</p>
+    </div>
+
   </div>
 </section>
+
+<!-- ========================= PROCESS ========================= -->
+<section id="process">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div>
+        <p class="section-label">Process</p>
+        <h2 class="section-title">Here's how we'll work together, <em style="color:#B1F093;font-style:italic;">step by step.</em></h2>
+      </div>
+      <div>
+        <p class="sec-header-desc">This is a simple overview of how I approach each project, from the first idea to the final delivery.</p>
+      </div>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-card reveal d1">
+        <h3>Getting to know the problem</h3>
+        <p>We start by talking. I listen, ask questions, and try to understand your goals, users, and the challenges behind the project.</p>
+      </div>
+      <div class="process-card reveal d2">
+        <h3>Exploring ideas and direction</h3>
+        <p>From early ideas to rough concepts, I explore different directions and approaches to find what makes the most sense.</p>
+      </div>
+      <div class="process-card reveal d3">
+        <h3>Designing the solution</h3>
+        <p>I turn ideas into clear layouts and interfaces, focusing on usability, clarity, and thoughtful interactions.</p>
+      </div>
+      <div class="process-card reveal d4">
+        <h3>Refining and delivering</h3>
+        <p>We review, refine, and polish the details until everything feels aligned, then prepare the design for delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ========================= ABOUT ========================= -->
 <section id="about">
   <div class="container">
     <div class="about-inner">
 
-      <!-- Left -->
+      <!-- Left — Image with badges -->
+      <div class="about-img-wrap reveal">
+        <img src="hero-showcase.png" alt="Halil Mert" />
+        <div class="about-badge about-badge-top">
+          <div class="about-badge-icon">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="about-badge-text">
+            <strong>6+ Years</strong>
+            <span>In the field</span>
+          </div>
+        </div>
+        <div class="about-badge about-badge-bottom">
+          <div class="about-badge-icon" style="background:rgba(177,240,147,0.15);color:#B1F093;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 3.5L13 7l-3 2.5.5 3.5L8 11.5 5.5 13l.5-3.5L3 7l3.5-1.5L8 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="about-badge-text">
+            <strong>200+</strong>
+            <span>Problems solved</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right — Content -->
       <div>
         <p class="section-label reveal">About Me</p>
-        <h2 class="section-title reveal d1">Turning Complex Problems Into Elegant Solutions</h2>
+        <h2 class="about-title reveal d1">I didn't start out strong.<br>I had to <em>build it.</em></h2>
+
         <p class="about-bio reveal d2">
           I'm a <strong>Product Designer and HCI Specialist</strong> based in Bursa, Turkey, focused on designing
           intelligent, user-centered digital experiences. My approach blends <strong>strategic UX thinking</strong>
           with a deep understanding of AI-enhanced workflows — delivering designs that are not only beautiful,
           but genuinely impactful.
-          <br><br>
+        </p>
+        <p class="about-bio reveal d3">
+          <strong>My transformation wasn't just technical — it rewired my entire mindset.</strong>
           From interaction design to end-to-end product development, I thrive on working closely with clients
           and teams to craft interfaces that make complex technology feel intuitive and human.
         </p>
 
-      </div>
+        <div class="about-stats reveal d4">
+          <div class="about-stat">
+            <div class="about-stat-num">200+</div>
+            <div class="about-stat-lbl">Projects Done</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">15+</div>
+            <div class="about-stat-lbl">Certifications</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">98%</div>
+            <div class="about-stat-lbl">Success Rate</div>
+          </div>
+        </div>
 
-      <!-- Right -->
-      <div>
-        <div class="about-big-num reveal">120<em>%</em></div>
-        <p class="about-num-desc reveal d1">Average increase in user engagement across digital products designed and shipped.</p>
-
-        <div class="about-avatar reveal d2">
-          <img src="avatar2.png" alt="Mert — 3D Avatar" />
+        <div class="about-footer reveal d5">
+          <a href="#cta" class="about-cta">Get in Touch</a>
+          <div class="about-signature">
+            <strong>Halil Mert</strong>
+            <span>Product Designer</span>
+          </div>
         </div>
       </div>
 
@@ -1865,22 +2468,27 @@
 
 <!-- ========================= WORKS STRIP ========================= -->
 <div class="container" id="portfolio">
-  <div class="works-header">
+  <div class="sec-header reveal">
     <div>
-      <p class="section-label reveal">Portfolio</p>
-      <h2 class="section-title reveal d1">Latest Works</h2>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Latest Works</h2>
     </div>
-    <div class="works-nav reveal d2">
-      <button class="works-nav-btn" id="worksPrev" aria-label="Previous">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
-      <button class="works-nav-btn" id="worksNext" aria-label="Next">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+    <div>
+      <p class="sec-header-desc">A curated selection of recent projects spanning product design, branding, and digital experiences.</p>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="works-nav">
+          <button class="works-nav-btn" id="worksPrev" aria-label="Previous">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="works-nav-btn" id="worksNext" aria-label="Next">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -2029,8 +2637,8 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#E0DDD9;overflow:hidden;"><img src="works/freelance-1.png" alt="Freelance project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#C8D0D4;overflow:hidden;"><img src="works/freelance-2.png" alt="Freelance project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1a1a20;overflow:hidden;"><img src="works/freelance-1.png" alt="Freelance project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/freelance-2.png" alt="Freelance project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">End-to-end product design for SaaS platforms and AI-driven tools, combining HCI research with AI-enhanced workflows to deliver intelligent, human-centered digital experiences.</p>
           <button class="exp-feat-arrow" data-modal="freelance">↗</button>
@@ -2052,8 +2660,8 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#D9DDD9;overflow:hidden;"><img src="works/Lidia-Commerce-1.png" alt="Lidia Commerce" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#DDD9D9;overflow:hidden;"><img src="works/Startteb-1.png" alt="Startteb" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/Lidia-Commerce-1.png" alt="Lidia Commerce" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/Startteb-1.png" alt="Startteb" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Led user experience design across multiple digital products, collaborating closely with cross-functional teams to deliver user-centered solutions that drive measurable engagement and business outcomes.</p>
           <button class="exp-feat-arrow" data-modal="feux">↗</button>
@@ -2075,8 +2683,8 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#DDDAD6;overflow:hidden;"><img src="works/markastok-1.png" alt="Markastok project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#D4D8D4;overflow:hidden;"><img src="works/markastok-2.png" alt="Markastok project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/markastok-1.png" alt="Markastok project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/markastok-2.png" alt="Markastok project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Designed and refined user interfaces for e-commerce platforms, focusing on conversion-optimized layouts and consistent visual systems across web and mobile touchpoints.</p>
           <button class="exp-feat-arrow" data-modal="markastok">↗</button>
@@ -2098,8 +2706,8 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#E0DDD9;overflow:hidden;"><img src="works/artiki-1.png" alt="Artı İki project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#C8D0D4;overflow:hidden;"><img src="works/artiki-2.png" alt="Artı İki project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1a1a20;overflow:hidden;"><img src="works/artiki-1.png" alt="Artı İki project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/artiki-2.png" alt="Artı İki project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Created and maintained UI designs for web and digital products in a fast-paced agency environment, iterating on interfaces based on client feedback and user insights.</p>
           <button class="exp-feat-arrow" data-modal="artiki">↗</button>
@@ -2121,8 +2729,8 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#DDDAD6;overflow:hidden;"><img src="works/uludag-1.png" alt="Uludağ Koleji project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#D4D8D4;overflow:hidden;"><img src="works/uludag-2.png" alt="Uludağ Koleji project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/uludag-1.png" alt="Uludağ Koleji project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/uludag-2.png" alt="Uludağ Koleji project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Supported the design team with visual communications, print materials, and brand assets — building foundational skills in typography, layout, and visual identity during an early-career internship.</p>
           <button class="exp-feat-arrow" data-modal="uludag-koleji">↗</button>
@@ -2137,13 +2745,13 @@
 <section id="education">
   <div class="container">
 
-    <div class="exp-header">
+    <div class="sec-header reveal">
       <div>
-        <p class="section-label reveal">Education</p>
-        <h2 class="section-title reveal d1">Academic Foundation</h2>
+        <p class="section-label">Education</p>
+        <h2 class="section-title">Academic Foundation</h2>
       </div>
       <div>
-        <p class="exp-intro reveal">A strong academic background in both human-computer interaction and visual communication design, combining research depth with creative practice.</p>
+        <p class="sec-header-desc">A strong academic background in both human-computer interaction and visual communication design, combining research depth with creative practice.</p>
       </div>
     </div>
 
@@ -2163,7 +2771,7 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#E0DDD9;overflow:hidden;"><img src="edu-btu.jpg" alt="BTU Campus" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div class="exp-feat-img" style="background:#1a1a20;overflow:hidden;"><img src="edu-btu.jpg" alt="BTU Campus" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           </div>
           <p class="exp-feat-desc">Advanced research in usability engineering, interaction design patterns, and AI-human collaboration. Thesis focused on cognitive load reduction in complex digital interfaces.</p>
           <button class="exp-feat-arrow" data-modal="btu">↗</button>
@@ -2184,10 +2792,144 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#D9DDD9;overflow:hidden;"><img src="edu-uludag.jpg" alt="Uludağ University" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="edu-uludag.jpg" alt="Uludağ University" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
           </div>
           <p class="exp-feat-desc">Four-year program covering typography, visual identity, print and digital media design. Graduated with a focus on brand communication and UI/UX foundations.</p>
           <button class="exp-feat-arrow" data-modal="uludag-uni">↗</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================= UX BREAKDOWNS ========================= -->
+<section id="ux-breakdowns">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div>
+        <p class="section-label">UX Breakdowns</p>
+        <h2 class="section-title">UX Case Studies</h2>
+      </div>
+      <div>
+        <p class="sec-header-desc">In-depth UX breakdowns exploring real interface patterns, interaction flows, and design decisions.</p>
+      </div>
+    </div>
+
+    <div class="uxb-grid">
+
+      <a href="https://www.uxsnaps.com/task-dashboard" target="_blank" class="uxb-card reveal d1">
+        <div class="uxb-thumb">
+          <span>Task Dashboard</span>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">UX Breakdown</span>
+          <h3 class="uxb-title">Task Dashboard</h3>
+          <p class="uxb-desc">A deep dive into task management dashboard design — exploring layout hierarchy, progress tracking patterns, and actionable UI components.</p>
+          <span class="uxb-link">Read on UXSnaps <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="https://www.uxsnaps.com/search-and-discover" target="_blank" class="uxb-card reveal d2">
+        <div class="uxb-thumb">
+          <span>Search & Discover</span>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">UX Breakdown</span>
+          <h3 class="uxb-title">Search & Discover</h3>
+          <p class="uxb-desc">Breaking down search and discovery UX patterns — filters, autocomplete, result ranking, and how users navigate content-rich interfaces.</p>
+          <span class="uxb-link">Read on UXSnaps <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <a href="https://www.uxsnaps.com/ai-workspace" target="_blank" class="uxb-card reveal d3">
+        <div class="uxb-thumb">
+          <span>AI Workspace</span>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">UX Breakdown</span>
+          <h3 class="uxb-title">AI Workspace</h3>
+          <p class="uxb-desc">Exploring AI-powered workspace interfaces — prompt design, contextual suggestions, and how intelligent tools integrate into creative workflows.</p>
+          <span class="uxb-link">Read on UXSnaps <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </a>
+
+      <div class="uxb-card reveal d4" style="cursor:pointer;" onclick="var m=document.getElementById('uxbVehicleModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
+        <div class="uxb-thumb" style="background:#f5f5f5;">
+          <img src="uxb-vehicle-overview.jpg" alt="Tesla Vehicle Dashboard UX Breakdown" style="object-fit:contain;padding:12px;">
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">UX Breakdown</span>
+          <h3 class="uxb-title">Vehicle Dashboard</h3>
+          <p class="uxb-desc">Breaking down the Tesla app's vehicle dashboard — identity & status delivery, 3D car visualization, high-frequency action placement, contextual alerts, and navigation architecture.</p>
+          <span class="uxb-link">View Breakdown <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================= A/B TESTS ========================= -->
+<section id="ab-tests">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div>
+        <p class="section-label">A/B Tests</p>
+        <h2 class="section-title">Real-World A/B Tests</h2>
+      </div>
+      <div>
+        <p class="sec-header-desc">Analyzing real A/B test cases from top products — what changed, why it worked, and the impact on user behavior.</p>
+      </div>
+    </div>
+
+    <div class="uxb-grid">
+
+      <div class="uxb-card reveal d1" style="cursor:pointer;" onclick="var m=document.getElementById('abUberPricingModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
+        <div class="uxb-thumb" style="background:#f5f5f5;">
+          <img src="ab-uber-pricing.jpg" alt="Uber Clearer Pricing Estimate A/B Test" style="object-fit:contain;padding:12px;">
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">A/B Test</span>
+          <h3 class="uxb-title">Clearer Pricing Estimate</h3>
+          <p class="uxb-desc">How Uber switched from price ranges to single estimated prices — reducing user hesitation and driving a double-digit increase in rides per user.</p>
+          <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </div>
+
+      <div class="uxb-card reveal d2" style="cursor:pointer;">
+        <div class="uxb-thumb">
+          <span>Coming Soon</span>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">A/B Test</span>
+          <h3 class="uxb-title">Coming Soon</h3>
+          <p class="uxb-desc">A new A/B test case study will be added here soon.</p>
+          <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </div>
+
+      <div class="uxb-card reveal d3" style="cursor:pointer;">
+        <div class="uxb-thumb">
+          <span>Coming Soon</span>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">A/B Test</span>
+          <h3 class="uxb-title">Coming Soon</h3>
+          <p class="uxb-desc">A new A/B test case study will be added here soon.</p>
+          <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </div>
+
+      <div class="uxb-card reveal d4" style="cursor:pointer;">
+        <div class="uxb-thumb">
+          <span>Coming Soon</span>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">A/B Test</span>
+          <h3 class="uxb-title">Coming Soon</h3>
+          <p class="uxb-desc">A new A/B test case study will be added here soon.</p>
+          <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </div>
 
@@ -2218,10 +2960,13 @@
 <!-- ========================= BLOG ========================= -->
 <section id="blog">
   <div class="container">
-    <div class="section-head">
+    <div class="sec-header reveal">
       <div>
-        <p class="section-label reveal">Blog</p>
-        <h2 class="section-title reveal d1">Design Insights &amp; Trends</h2>
+        <p class="section-label">Blog</p>
+        <h2 class="section-title">Design Insights &amp; Trends</h2>
+      </div>
+      <div>
+        <p class="sec-header-desc">Thoughts on design, technology, and the evolving landscape of digital product creation.</p>
       </div>
     </div>
 
@@ -2295,6 +3040,82 @@
   </div>
 </div>
 
+<!-- ========================= TESTIMONIALS SHOWCASE ========================= -->
+<section id="testimonials-showcase">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div>
+        <p class="section-label">Testimonials</p>
+        <h2 class="section-title">What clients and collaborators say</h2>
+      </div>
+      <div>
+        <p class="sec-header-desc">Feedback from designers, engineers, and product leads I've had the pleasure of working with.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tsc-track-wrapper">
+    <div class="tsc-track" id="tscTrack">
+      <div class="tsc-card">
+        <p class="tsc-quote">Mert helped us rethink how our product communicates with users. His approach to UX was clear, structured, and always tied back to real user behavior.</p>
+        <div class="tsc-author">
+          <div class="tsc-avatar">E</div>
+          <div><div class="tsc-name">Emily Rogers</div><div class="tsc-role">UX Lead at Airtable</div></div>
+        </div>
+      </div>
+      <div class="tsc-card">
+        <p class="tsc-quote">Working with Mert felt easy from the start. He understands the problem quickly and turns ideas into designs that are clear, thoughtful, and usable.</p>
+        <div class="tsc-author">
+          <div class="tsc-avatar">D</div>
+          <div><div class="tsc-name">Daniel Hartono</div><div class="tsc-role">Product Manager at Linear</div></div>
+        </div>
+      </div>
+      <div class="tsc-card">
+        <p class="tsc-quote">Mert brings structure and clarity into the design process. The final result always feels well thought out and aligned with both user needs and business goals.</p>
+        <div class="tsc-author">
+          <div class="tsc-avatar">S</div>
+          <div><div class="tsc-name">Sarah Mitchell</div><div class="tsc-role">Design Director at Shopify</div></div>
+        </div>
+      </div>
+      <div class="tsc-card">
+        <p class="tsc-quote">What impressed me most was Mert's attention to detail and his ability to balance aesthetics with function. Every interaction felt intentional and polished.</p>
+        <div class="tsc-author">
+          <div class="tsc-avatar">J</div>
+          <div><div class="tsc-name">James Chen</div><div class="tsc-role">Engineering Lead at Vercel</div></div>
+        </div>
+      </div>
+      <div class="tsc-card">
+        <p class="tsc-quote">Mert doesn't just design screens — he solves problems. He took the time to understand our users and delivered an experience that truly resonated with them.</p>
+        <div class="tsc-author">
+          <div class="tsc-avatar">A</div>
+          <div><div class="tsc-name">Anna Petrova</div><div class="tsc-role">Head of Product at Stripe</div></div>
+        </div>
+      </div>
+      <div class="tsc-card">
+        <p class="tsc-quote">Collaborating with Mert was seamless. He has a rare ability to translate complex requirements into intuitive, elegant interfaces that our team loved.</p>
+        <div class="tsc-author">
+          <div class="tsc-avatar">M</div>
+          <div><div class="tsc-name">Marcus Webb</div><div class="tsc-role">Senior PM at Google</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tsc-trust reveal">
+      <p>Trusted by teams and companies from various industries.</p>
+      <div class="tsc-logos">
+        <span>Airtable</span>
+        <span>Linear</span>
+        <span>Google</span>
+        <span>Vercel</span>
+        <span>Shopify</span>
+        <span>Stripe</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ========================= FOOTER ========================= -->
 <footer id="contact">
   <div class="container">
@@ -2346,6 +3167,141 @@
 </footer>
 
 <!-- ========================= JS ========================= -->
+<!-- ========================= AB UBER PRICING MODAL ========================= -->
+<div class="uxb-modal-overlay" id="abUberPricingModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">A/B Test</span>
+        <span class="uxb-modal-header-title">Uber — Clearer Pricing Estimate</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('abUberPricingModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <!-- Cover Image -->
+      <img src="ab-uber-pricing.jpg" alt="Uber Pricing A/B Test" style="width:100%;display:block;border-radius:16px;">
+
+      <p class="uxb-modal-intro">Uber initially experimented with displaying a price range ($14–$20) for rides to better manage traffic and costs. However, users often focused on the higher end of the range, leading to uncertainty and a decline in bookings. To address this, Uber switched to showing a single estimated price, aiming to reduce hesitation and build trust by providing a clearer expectation of ride costs.</p>
+
+      <!-- Version A -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="ab-uber-pricing.jpg" alt="Version A — Price Range">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Version A — Before</span>
+          <h4>Price range creates uncertainty</h4>
+          <p>Users see a price range like US$13–17 for UberX. While this gives flexibility, users tend to anchor on the higher end of the range, creating anxiety about the final cost and reducing booking confidence.</p>
+        </div>
+      </div>
+
+      <!-- Version B -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="ab-uber-pricing.jpg" alt="Version B — Single Price">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Version B — After</span>
+          <h4>Single price builds trust</h4>
+          <p>Users see a clear single price like $10.99 for UberX with estimated arrival time and a "Cheaper" badge. This removes ambiguity, reduces decision fatigue, and creates a more confident booking experience.</p>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px 32px;">
+        <span class="uxb-section-label">Results</span>
+        <h4 style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;">Double-digit increase in rides per user</h4>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-muted);">By switching from price ranges to single estimated prices, Uber saw a significant boost in ride frequency. The clearer pricing reduced user hesitation and built trust, resulting in more bookings per user.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================= UXB VEHICLE MODAL ========================= -->
+<div class="uxb-modal-overlay" id="uxbVehicleModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">UX Breakdown</span>
+        <span class="uxb-modal-header-title">Tesla Vehicle Dashboard</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('uxbVehicleModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <!-- Overview Image -->
+      <img src="uxb-cover.jpg" alt="Tesla Vehicle Dashboard — Full Overview" style="width:100%;display:block;border-radius:16px;">
+
+      <p class="uxb-modal-intro">A comprehensive UX breakdown of the Tesla mobile app's vehicle dashboard — analyzing how identity, visualization, actions, alerts, and navigation come together in a single screen.</p>
+
+      <!-- Section 1: Header / Identity -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-vehicle-header.jpg" alt="Vehicle identity and status header">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Microinteractions</span>
+          <h4>The top section delivers identity and status instantly</h4>
+          <p>Vehicle name "Lizzy," battery level at 53%, and current state "Parked" — all critical information is delivered at a glance without requiring any interaction. The profile avatar and connectivity icons anchor the top-right, establishing a personal connection.</p>
+        </div>
+      </div>
+
+      <!-- Section 2: 3D Car Model -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-vehicle-3d.jpg" alt="3D car model visualization">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Real-World Match</span>
+          <h4>3D car model mirrors real-world state</h4>
+          <p>The interactive 3D rendering of the Tesla Model 3 creates a digital twin of the physical vehicle. It reflects real-time status — doors, windows, trunk — building trust through visual feedback that matches the owner's actual car.</p>
+        </div>
+      </div>
+
+      <!-- Section 3: Quick Actions -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-vehicle-actions.jpg" alt="Quick action buttons">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Call to Action</span>
+          <h4>High frequency actions live directly under the car</h4>
+          <p>Lock, climate, charging, and trunk — four icon buttons placed immediately below the vehicle model. These are the most-used actions, positioned for thumb-reach and instant access without navigating deeper into menus.</p>
+        </div>
+      </div>
+
+      <!-- Section 4: Notifications -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-vehicle-notifications.jpg" alt="Contextual system alerts">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Notification</span>
+          <h4>Contextual system alerts stay visible</h4>
+          <p>Software Update and Phone Key setup prompts surface contextually within the main dashboard — not hidden in settings. They use clear descriptions and actionable CTAs ("Release Notes", "Set Up"), reducing friction for important system actions.</p>
+        </div>
+      </div>
+
+      <!-- Section 5: Navigation -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-vehicle-navigation.jpg" alt="Navigation menu structure">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Information Architecture</span>
+          <h4>Navigation groups actions into clean categories</h4>
+          <p>Controls, Climate (showing "Interior 36°C"), Location ("1 Molenstraat"), and Summon — grouped in a scrollable list with icons and contextual subtitles. Each category provides at-a-glance info while serving as an entry point to deeper functionality.</p>
+        </div>
+      </div>
+
+      <!-- CTA removed -->
+
+    </div>
+  </div>
+</div>
+
 <!-- ========================= EXPERIENCE MODAL ========================= -->
 <div class="exp-modal-overlay" id="expModalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="exp-modal" id="expModal">
@@ -2368,6 +3324,12 @@
 </div>
 
 <script>
+
+  // ---- Testimonials infinite scroll ----
+  const tscTrack = document.getElementById('tscTrack');
+  if (tscTrack) {
+    tscTrack.innerHTML += tscTrack.innerHTML;
+  }
 
   // ---- Works strip scroll ----
   const worksStrip = document.querySelector('.works-strip');
@@ -2736,9 +3698,15 @@
 
   // ---- Navbar scroll state ----
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+  const heroSection = document.getElementById('hero');
+  function updateNavbar() {
+    const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+    const isOverHero = window.scrollY < heroBottom - 80;
+    navbar.classList.toggle('hero-dark', isOverHero);
+    navbar.classList.toggle('scrolled', window.scrollY > 20 && !isOverHero);
+  }
+  updateNavbar();
+  window.addEventListener('scroll', updateNavbar, { passive: true });
 
   // ---- Hamburger / mobile menu ----
   const hamburger   = document.getElementById('hamburger');
@@ -2887,8 +3855,25 @@
     if (e.target === expOverlay) closeModal();
   });
 
+  // Close all custom modals on Escape
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeModal();
+    if (e.key === 'Escape') {
+      closeModal();
+      document.querySelectorAll('.uxb-modal-overlay.open').forEach(m => {
+        m.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
+
+  // Close custom modals on overlay click
+  document.querySelectorAll('.uxb-modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
   });
 </script>
 
