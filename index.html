@@ -195,12 +195,13 @@
     }
 
     .nav-logo {
-      font-family: 'Urbanist', sans-serif;
-      font-size: 30px;
-      font-weight: 300;
-      letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
     }
-    .nav-logo em { color: var(--accent); font-style: normal; font-weight: 300; }
+    .nav-logo img {
+      height: 28px;
+      width: auto;
+    }
 
     .nav-links {
       display: flex;
@@ -367,18 +368,18 @@
       margin-bottom: 20px;
     }
     .hero-name-label {
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 600;
       color: #fff;
       letter-spacing: .02em;
     }
     .hero-name-divider {
       width: 1px;
-      height: 16px;
+      height: 20px;
       background: rgba(255,255,255,0.3);
     }
     .hero-name-title {
-      font-size: 14px;
+      font-size: 17px;
       font-weight: 400;
       color: rgba(255,255,255,0.6);
       letter-spacing: .02em;
@@ -513,6 +514,16 @@
       color: var(--text);
       text-transform: uppercase;
       text-indent: 120px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .manifesto-quote p img.manifesto-icon {
+      height: clamp(18px, 2.5vw, 28px);
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
     }
 
     .manifesto-body h3 {
@@ -1197,7 +1208,7 @@
       font-weight: 600;
       background: #B1F093;
       color: #0a0a0f;
-      padding: 10px 22px;
+      padding: 14px 28px;
       border-radius: 40px;
       border: none;
       transition: background .3s cubic-bezier(.25,.46,.45,.94), transform .3s cubic-bezier(.25,.46,.45,.94), box-shadow .3s;
@@ -1465,20 +1476,6 @@
       position: relative;
       overflow: hidden;
     }
-    #cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('cta-bg.jpg') center center / cover no-repeat;
-      z-index: 0;
-    }
-    #cta::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 1;
-    }
 
     .cta-inner {
       text-align: center;
@@ -1542,8 +1539,29 @@
       cursor: pointer;
       transition: transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s;
     }
-    .blog-card:hover { opacity: .85; }
     .blog-card:hover .blog-thumb img { transform: scale(1.04); }
+    .blog-thumb .blog-hover-arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      opacity: 0;
+      transition: opacity .3s, transform .3s;
+      z-index: 2;
+    }
+    .blog-card:hover .blog-hover-arrow {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
     .blog-thumb {
       aspect-ratio: 16/9;
@@ -1594,8 +1612,91 @@
 
     .uxb-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .uxb-carousel-wrap { position: relative; }
+    .uxb-carousel {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: 4px;
+    }
+    .uxb-carousel::-webkit-scrollbar { display: none; }
+    .uxb-carousel .uxb-card {
+      min-width: 300px;
+      flex: 0 0 calc(25% - 15px);
+      scroll-snap-align: start;
+      background: none;
+      border: none;
+    }
+    .uxb-carousel .uxb-card:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: transparent;
+    }
+    .uxb-carousel .uxb-thumb {
+      aspect-ratio: 4/3;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+    .uxb-carousel .uxb-thumb .uxb-hover-arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      opacity: 0;
+      transition: opacity .3s, transform .3s;
+    }
+    .uxb-carousel .uxb-card:hover .uxb-hover-arrow {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .uxb-carousel .uxb-body {
+      padding: 16px 0 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .uxb-carousel .uxb-body .uxb-tag { margin-bottom: 0; }
+    .uxb-carousel .uxb-body .uxb-title { margin-bottom: 0; font-size: 16px; }
+    .uxb-carousel .uxb-desc { display: none; }
+    .uxb-carousel .uxb-link { display: none; }
+    .uxb-carousel-arrows {
+      display: flex;
+      gap: 8px;
+    }
+    .uxb-carousel-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color .2s, background .2s;
+    }
+    .uxb-carousel-arrow:hover {
+      border-color: #B1F093;
+      background: rgba(177,240,147,.08);
     }
 
     .uxb-card {
@@ -1612,7 +1713,7 @@
     }
 
     .uxb-thumb {
-      aspect-ratio: 16/9;
+      aspect-ratio: 3/2;
       background: #1a1a22;
       overflow: hidden;
       display: flex;
@@ -1629,6 +1730,28 @@
       transition: transform .5s cubic-bezier(.25,.46,.45,.94);
     }
     .uxb-card:hover .uxb-thumb img { transform: scale(1.04); }
+    .uxb-grid .uxb-thumb .uxb-hover-arrow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--bg-dark);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      opacity: 0;
+      transition: opacity .3s, transform .3s;
+      z-index: 2;
+    }
+    .uxb-grid .uxb-card:hover .uxb-hover-arrow {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
 
     /* ===== UXB MODAL ===== */
     .uxb-modal-overlay {
@@ -1820,8 +1943,10 @@
     }
     .uxb-link:hover { gap: 10px; }
 
+    .uxb-grid-3 { grid-template-columns: repeat(3, 1fr); }
     @media (max-width: 860px) {
-      .uxb-grid { grid-template-columns: 1fr; }
+      .uxb-grid, .uxb-grid-3 { grid-template-columns: 1fr; }
+      .uxb-carousel .uxb-card { min-width: 260px; flex: 0 0 80%; }
     }
 
     /* ===== BLOG MODAL ===== */
@@ -1981,13 +2106,14 @@
     }
 
     .footer-logo {
-      font-family: 'Urbanist', sans-serif;
-      font-size: 30px;
-      font-weight: 300;
-      letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
       margin-bottom: 14px;
     }
-    .footer-logo em { color: var(--accent); font-style: normal; font-weight: 300; }
+    .footer-logo img {
+      height: 28px;
+      width: auto;
+    }
 
     .footer-tagline {
       font-size: 14px;
@@ -2266,12 +2392,13 @@
 <!-- ========================= NAVBAR ========================= -->
 <nav class="navbar" id="navbar">
   <div class="container">
-    <a href="#hero" class="nav-logo">Mert<em>.</em></a>
+    <a href="#hero" class="nav-logo"><img src="m-logo-light.svg" alt="Mert" /></a>
     <ul class="nav-links">
       <li><a href="#about">About Me</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#blog">Blog</a></li>
       <li><a href="#cta" class="nav-cta">Contact</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -2298,10 +2425,10 @@
       <!-- Avatar group -->
       <div class="hero-top reveal">
         <div class="hero-avatars">
-          <img src="avatar.png" alt="User 1" />
-          <img src="avatar2.png" alt="User 2" />
-          <img src="avatar.png" alt="User 3" />
-          <img src="avatar2.png" alt="User 4" />
+          <img src="hero-avatar1.png" alt="User 1" />
+          <img src="hero-avatar2.png" alt="User 2" />
+          <img src="hero-avatar3.png" alt="User 3" />
+          <img src="hero-avatar4.png" alt="User 4" />
         </div>
         <span class="hero-inspired"><strong>2K</strong> Inspired by my designs</span>
       </div>
@@ -2347,7 +2474,7 @@
   <div class="container">
 
     <div class="manifesto-quote reveal">
-      <p>I'm problem solvers, visionaries, and passionate creators. This is where my best journey meets yours.</p>
+      <p><img src="m-icon-decorative.svg" alt="" class="manifesto-icon" />I'm problem solvers, visionaries, and passionate creators. This is where my best journey meets yours.<img src="m-icon-decorative.svg" alt="" class="manifesto-icon" style="margin-left: auto;" /></p>
     </div>
 
     <div class="manifesto-body reveal d1">
@@ -2358,41 +2485,6 @@
   </div>
 </section>
 
-<!-- ========================= PROCESS ========================= -->
-<section id="process">
-  <div class="container">
-    <div class="sec-header reveal">
-      <div>
-        <p class="section-label">Process</p>
-        <h2 class="section-title">Here's how we'll work together, <em style="color:#B1F093;font-style:italic;">step by step.</em></h2>
-      </div>
-      <div>
-        <p class="sec-header-desc">This is a simple overview of how I approach each project, from the first idea to the final delivery.</p>
-      </div>
-    </div>
-
-    <div class="process-grid">
-      <div class="process-card reveal d1">
-        <h3>Getting to know the problem</h3>
-        <p>We start by talking. I listen, ask questions, and try to understand your goals, users, and the challenges behind the project.</p>
-      </div>
-      <div class="process-card reveal d2">
-        <h3>Exploring ideas and direction</h3>
-        <p>From early ideas to rough concepts, I explore different directions and approaches to find what makes the most sense.</p>
-      </div>
-      <div class="process-card reveal d3">
-        <h3>Designing the solution</h3>
-        <p>I turn ideas into clear layouts and interfaces, focusing on usability, clarity, and thoughtful interactions.</p>
-      </div>
-      <div class="process-card reveal d4">
-        <h3>Refining and delivering</h3>
-        <p>We review, refine, and polish the details until everything feels aligned, then prepare the design for delivery.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- ========================= ABOUT ========================= -->
 <section id="about">
   <div class="container">
@@ -2400,7 +2492,7 @@
 
       <!-- Left — Image with badges -->
       <div class="about-img-wrap reveal">
-        <img src="hero-showcase.png" alt="Halil Mert" />
+        <img src="about-photo.png" alt="Halil Mert" />
         <div class="about-badge about-badge-top">
           <div class="about-badge-icon">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -2427,7 +2519,7 @@
         <h2 class="about-title reveal d1">I didn't start out strong.<br>I had to <em>build it.</em></h2>
 
         <p class="about-bio reveal d2">
-          I'm a <strong>Product Designer and HCI Specialist</strong> based in Bursa, Turkey, focused on designing
+          I'm a <strong>Product Designer and HCI Specialist</strong> based in Istanbul, Turkey, focused on designing
           intelligent, user-centered digital experiences. My approach blends <strong>strategic UX thinking</strong>
           with a deep understanding of AI-enhanced workflows — delivering designs that are not only beautiful,
           but genuinely impactful.
@@ -2465,144 +2557,6 @@
     </div>
   </div>
 </section>
-
-<!-- ========================= WORKS STRIP ========================= -->
-<div class="container" id="portfolio">
-  <div class="sec-header reveal">
-    <div>
-      <p class="section-label">Portfolio</p>
-      <h2 class="section-title">Latest Works</h2>
-    </div>
-    <div>
-      <p class="sec-header-desc">A curated selection of recent projects spanning product design, branding, and digital experiences.</p>
-      <div style="display:flex;align-items:center;gap:16px;">
-        <div class="works-nav">
-          <button class="works-nav-btn" id="worksPrev" aria-label="Previous">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <button class="works-nav-btn" id="worksNext" aria-label="Next">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="works-strip">
-  <div class="works-track">
-
-    <div class="work-item" data-work="0" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/Lidia-Commerce-1.png" alt="Lidia Commerce Engine" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">Lidia Commerce Engine</span>
-        <span class="work-for">UI &amp; UX Design</span>
-      </div>
-    </div>
-
-    <div class="work-item" data-work="1" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/Startteb-1.png" alt="StartTEB" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">StartTEB</span>
-        <span class="work-for">UX &amp; UI Design</span>
-      </div>
-    </div>
-
-    <div class="work-item" data-work="2" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/KoçSistem-1.png" alt="KoçSistem Audit Platform" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">KoçSistem Audit Platform</span>
-        <span class="work-for">SaaS &amp; Enterprise UX</span>
-      </div>
-    </div>
-
-    <div class="work-item" data-work="3" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/Alisgidis-1.png" alt="Alışgidiş" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">Alışgidiş</span>
-        <span class="work-for">Fintech &amp; BNPL UX</span>
-      </div>
-    </div>
-
-    <div class="work-item" data-work="4" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/Gezi-Cebimde-4.png" alt="Gezi Cebimde" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">Gezi Cebimde</span>
-        <span class="work-for">Travel App UX</span>
-      </div>
-    </div>
-
-    <div class="work-item" data-work="5" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/kontrolmatik1.png" alt="Kontrolmatik Technologies" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">Kontrolmatik Technologies</span>
-        <span class="work-for">Corporate Website Redesign</span>
-      </div>
-    </div>
-
-    <div class="work-item" data-work="6" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/kalekim3.png" alt="Kalekim" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">Kalekim</span>
-        <span class="work-for">Website Redesign</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- ========================= WORK MODAL ========================= -->
-<div class="work-overlay" id="workOverlay" role="dialog" aria-modal="true">
-  <div class="work-modal" id="workModal">
-    <div class="wm-gallery-wrap">
-      <button class="wm-close" id="wmClose" aria-label="Close">✕</button>
-      <div class="wm-gallery" id="wmGallery"></div>
-    </div>
-    <div class="wm-body">
-      <div class="wm-top">
-        <div style="width:100%;">
-          <div class="wm-title-row">
-            <h2 class="wm-title" id="wmTitle"></h2>
-            <a id="wmLink" class="wm-link-btn" href="#" target="_blank" rel="noopener" style="display:none;">
-              Visit Site
-              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-          <div class="wm-tags" id="wmTags"></div>
-        </div>
-      </div>
-      <div class="wm-desc" id="wmDesc"></div>
-      <div class="wm-focus" id="wmFocus"></div>
-      <p class="wm-outcome" id="wmOutcome"></p>
-    </div>
-  </div>
-</div>
 
 <!-- ========================= EXPERIENCE ========================= -->
 <section id="experience">
@@ -2803,6 +2757,144 @@
   </div>
 </section>
 
+<!-- ========================= WORKS STRIP ========================= -->
+<div class="container" id="portfolio">
+  <div class="sec-header reveal">
+    <div>
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Latest Works</h2>
+    </div>
+    <div>
+      <p class="sec-header-desc">A curated selection of recent projects spanning product design, branding, and digital experiences.</p>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="works-nav">
+          <button class="works-nav-btn" id="worksPrev" aria-label="Previous">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="works-nav-btn" id="worksNext" aria-label="Next">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="works-strip">
+  <div class="works-track">
+
+    <div class="work-item" data-work="0" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/Lidia-Commerce-1.png" alt="Lidia Commerce Engine" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Lidia Commerce Engine</span>
+        <span class="work-for">UI &amp; UX Design</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="1" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/Startteb-1.png" alt="StartTEB" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">StartTEB</span>
+        <span class="work-for">UX &amp; UI Design</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="2" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/KoçSistem-1.png" alt="KoçSistem Audit Platform" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">KoçSistem Audit Platform</span>
+        <span class="work-for">SaaS &amp; Enterprise UX</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="3" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/Alisgidis-1.png" alt="Alışgidiş" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Alışgidiş</span>
+        <span class="work-for">Fintech &amp; BNPL UX</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="4" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/Gezi-Cebimde-4.png" alt="Gezi Cebimde" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Gezi Cebimde</span>
+        <span class="work-for">Travel App UX</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="5" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/kontrolmatik1.png" alt="Kontrolmatik Technologies" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Kontrolmatik Technologies</span>
+        <span class="work-for">Corporate Website Redesign</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="6" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/kalekim3.png" alt="Kalekim" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Kalekim</span>
+        <span class="work-for">Website Redesign</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ========================= WORK MODAL ========================= -->
+<div class="work-overlay" id="workOverlay" role="dialog" aria-modal="true">
+  <div class="work-modal" id="workModal">
+    <div class="wm-gallery-wrap">
+      <button class="wm-close" id="wmClose" aria-label="Close">✕</button>
+      <div class="wm-gallery" id="wmGallery"></div>
+    </div>
+    <div class="wm-body">
+      <div class="wm-top">
+        <div style="width:100%;">
+          <div class="wm-title-row">
+            <h2 class="wm-title" id="wmTitle"></h2>
+            <a id="wmLink" class="wm-link-btn" href="#" target="_blank" rel="noopener" style="display:none;">
+              Visit Site
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
+                <path d="M2 9L9 2M9 2H4M9 2V7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+          <div class="wm-tags" id="wmTags"></div>
+        </div>
+      </div>
+      <div class="wm-desc" id="wmDesc"></div>
+      <div class="wm-focus" id="wmFocus"></div>
+      <p class="wm-outcome" id="wmOutcome"></p>
+    </div>
+  </div>
+</div>
+
 <!-- ========================= UX BREAKDOWNS ========================= -->
 <section id="ux-breakdowns">
   <div class="container">
@@ -2813,56 +2905,60 @@
       </div>
       <div>
         <p class="sec-header-desc">In-depth UX breakdowns exploring real interface patterns, interaction flows, and design decisions.</p>
+        <div class="uxb-carousel-arrows" style="margin-top:20px;">
+          <button class="uxb-carousel-arrow" onclick="document.getElementById('uxbCarousel').scrollBy({left:-320,behavior:'smooth'})">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <button class="uxb-carousel-arrow" onclick="document.getElementById('uxbCarousel').scrollBy({left:320,behavior:'smooth'})">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="uxb-grid">
+    <div class="uxb-carousel" id="uxbCarousel">
 
-      <a href="https://www.uxsnaps.com/task-dashboard" target="_blank" class="uxb-card reveal d1">
-        <div class="uxb-thumb">
-          <span>Task Dashboard</span>
-        </div>
-        <div class="uxb-body">
-          <span class="uxb-tag">UX Breakdown</span>
-          <h3 class="uxb-title">Task Dashboard</h3>
-          <p class="uxb-desc">A deep dive into task management dashboard design — exploring layout hierarchy, progress tracking patterns, and actionable UI components.</p>
-          <span class="uxb-link">Read on UXSnaps <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </a>
-
-      <a href="https://www.uxsnaps.com/search-and-discover" target="_blank" class="uxb-card reveal d2">
-        <div class="uxb-thumb">
-          <span>Search & Discover</span>
-        </div>
-        <div class="uxb-body">
-          <span class="uxb-tag">UX Breakdown</span>
-          <h3 class="uxb-title">Search & Discover</h3>
-          <p class="uxb-desc">Breaking down search and discovery UX patterns — filters, autocomplete, result ranking, and how users navigate content-rich interfaces.</p>
-          <span class="uxb-link">Read on UXSnaps <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </a>
-
-      <a href="https://www.uxsnaps.com/ai-workspace" target="_blank" class="uxb-card reveal d3">
-        <div class="uxb-thumb">
-          <span>AI Workspace</span>
-        </div>
-        <div class="uxb-body">
-          <span class="uxb-tag">UX Breakdown</span>
-          <h3 class="uxb-title">AI Workspace</h3>
-          <p class="uxb-desc">Exploring AI-powered workspace interfaces — prompt design, contextual suggestions, and how intelligent tools integrate into creative workflows.</p>
-          <span class="uxb-link">Read on UXSnaps <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </a>
-
-      <div class="uxb-card reveal d4" style="cursor:pointer;" onclick="var m=document.getElementById('uxbVehicleModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
+      <div class="uxb-card reveal d1" style="cursor:pointer;" onclick="var m=document.getElementById('uxbTaskboardModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
         <div class="uxb-thumb" style="background:#f5f5f5;">
-          <img src="uxb-vehicle-overview.jpg" alt="Tesla Vehicle Dashboard UX Breakdown" style="object-fit:contain;padding:12px;">
+          <img src="uxb-taskboard-overview.webp" alt="Task Board UX Breakdown" style="object-fit:contain;padding:12px;">
+          <div class="uxb-hover-arrow">↗</div>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">UX Breakdown</span>
+          <h3 class="uxb-title">Task Board</h3>
+        </div>
+      </div>
+
+      <div class="uxb-card reveal d2" style="cursor:pointer;" onclick="var m=document.getElementById('uxbVehicleModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
+        <div class="uxb-thumb" style="background:#fff;">
+          <img src="uxb-vehicle-overview.webp" alt="Tesla Vehicle Dashboard UX Breakdown" style="object-fit:contain;padding:12px;">
+          <div class="uxb-hover-arrow">↗</div>
         </div>
         <div class="uxb-body">
           <span class="uxb-tag">UX Breakdown</span>
           <h3 class="uxb-title">Vehicle Dashboard</h3>
-          <p class="uxb-desc">Breaking down the Tesla app's vehicle dashboard — identity & status delivery, 3D car visualization, high-frequency action placement, contextual alerts, and navigation architecture.</p>
-          <span class="uxb-link">View Breakdown <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        </div>
+      </div>
+
+      <div class="uxb-card reveal d3" style="cursor:pointer;" onclick="var m=document.getElementById('uxbDiscoverModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
+        <div class="uxb-thumb" style="background:#f5f5f5;">
+          <img src="uxb-discover-overview.webp" alt="Search & Discover UX Breakdown" style="object-fit:contain;padding:12px;">
+          <div class="uxb-hover-arrow">↗</div>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">UX Breakdown</span>
+          <h3 class="uxb-title">Search & Discover</h3>
+        </div>
+      </div>
+
+      <div class="uxb-card reveal d4" style="cursor:pointer;" onclick="var m=document.getElementById('uxbAiWorkspaceModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
+        <div class="uxb-thumb" style="background:#f5f5f5;">
+          <img src="uxb-aiworkspace-overview.webp" alt="AI Workspace UX Breakdown" style="object-fit:contain;padding:12px;">
+          <div class="uxb-hover-arrow">↗</div>
+        </div>
+        <div class="uxb-body">
+          <span class="uxb-tag">UX Breakdown</span>
+          <h3 class="uxb-title">AI Workspace</h3>
         </div>
       </div>
 
@@ -2886,8 +2982,10 @@
     <div class="uxb-grid">
 
       <div class="uxb-card reveal d1" style="cursor:pointer;" onclick="var m=document.getElementById('abUberPricingModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
-        <div class="uxb-thumb" style="background:#f5f5f5;">
-          <img src="ab-uber-pricing.jpg" alt="Uber Clearer Pricing Estimate A/B Test" style="object-fit:contain;padding:12px;">
+        <div class="uxb-thumb" style="display:flex;gap:8px;padding:12px;align-items:center;position:relative;">
+          <img src="ab-uber-version-a.png" alt="Uber Version A" style="width:50%;height:100%;object-fit:contain;">
+          <img src="ab-uber-version-b.png" alt="Uber Version B" style="width:50%;height:100%;object-fit:contain;">
+          <div class="uxb-hover-arrow">↗</div>
         </div>
         <div class="uxb-body">
           <span class="uxb-tag">A/B Test</span>
@@ -2897,38 +2995,30 @@
         </div>
       </div>
 
-      <div class="uxb-card reveal d2" style="cursor:pointer;">
-        <div class="uxb-thumb">
-          <span>Coming Soon</span>
+      <div class="uxb-card reveal d2" style="cursor:pointer;" onclick="var m=document.getElementById('abTiktokOnboardingModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
+        <div class="uxb-thumb" style="display:flex;gap:8px;padding:12px;align-items:center;position:relative;">
+          <img src="ab-tiktok-version-a.png" alt="TikTok Version A" style="width:50%;height:100%;object-fit:contain;">
+          <img src="ab-tiktok-version-b.png" alt="TikTok Version B" style="width:50%;height:100%;object-fit:contain;">
+          <div class="uxb-hover-arrow">↗</div>
         </div>
         <div class="uxb-body">
           <span class="uxb-tag">A/B Test</span>
-          <h3 class="uxb-title">Coming Soon</h3>
-          <p class="uxb-desc">A new A/B test case study will be added here soon.</p>
+          <h3 class="uxb-title">Delayed Bank Account Setup</h3>
+          <p class="uxb-desc">How TikTok revised onboarding to let creators start earning before linking bank accounts — driving a 25% increase in program enrollment.</p>
           <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </div>
 
-      <div class="uxb-card reveal d3" style="cursor:pointer;">
-        <div class="uxb-thumb">
-          <span>Coming Soon</span>
+      <div class="uxb-card reveal d3" style="cursor:pointer;" onclick="var m=document.getElementById('abDuolingoStreakModal');m.classList.add('open');document.body.style.overflow='hidden';m.querySelector('.uxb-modal-body').scrollTop=0;">
+        <div class="uxb-thumb" style="display:flex;gap:8px;padding:12px;align-items:center;position:relative;">
+          <img src="ab-duolingo-version-a.png" alt="Duolingo Version A" style="width:50%;height:100%;object-fit:contain;">
+          <img src="ab-duolingo-version-b.png" alt="Duolingo Version B" style="width:50%;height:100%;object-fit:contain;">
+          <div class="uxb-hover-arrow">↗</div>
         </div>
         <div class="uxb-body">
           <span class="uxb-tag">A/B Test</span>
-          <h3 class="uxb-title">Coming Soon</h3>
-          <p class="uxb-desc">A new A/B test case study will be added here soon.</p>
-          <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        </div>
-      </div>
-
-      <div class="uxb-card reveal d4" style="cursor:pointer;">
-        <div class="uxb-thumb">
-          <span>Coming Soon</span>
-        </div>
-        <div class="uxb-body">
-          <span class="uxb-tag">A/B Test</span>
-          <h3 class="uxb-title">Coming Soon</h3>
-          <p class="uxb-desc">A new A/B test case study will be added here soon.</p>
+          <h3 class="uxb-title">Decoupling Streaks from Daily Goals</h3>
+          <p class="uxb-desc">How Duolingo decoupled streaks from daily goals — reducing pressure and driving a 40% increase in 7+ day streaks.</p>
           <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         </div>
       </div>
@@ -2937,22 +3027,36 @@
   </div>
 </section>
 
-<!-- ========================= CTA BANNER ========================= -->
-<section id="cta">
+<!-- ========================= PROCESS ========================= -->
+<section id="process">
   <div class="container">
-    <div class="cta-inner">
-      <p class="section-label reveal">Let's Collaborate</p>
-      <h2 class="cta-headline reveal d1">Got a Vision?<br>Let's Bring It to Life!</h2>
-      <p class="cta-sub reveal d2">
-        I'm always excited to collaborate on new and innovative projects. Whatever you're
-        starting from scratch or refining an existing experience — let's talk.
-      </p>
-      <a href="mailto:himert9@gmail.com" class="btn-cta reveal d3">
-        Contact
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+    <div class="sec-header reveal">
+      <div>
+        <p class="section-label">Process</p>
+        <h2 class="section-title">Here's how we'll work together, <em style="color:#B1F093;font-style:italic;">step by step.</em></h2>
+      </div>
+      <div>
+        <p class="sec-header-desc">This is a simple overview of how I approach each project, from the first idea to the final delivery.</p>
+      </div>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-card reveal d1">
+        <h3>Getting to know the problem</h3>
+        <p>We start by talking. I listen, ask questions, and try to understand your goals, users, and the challenges behind the project.</p>
+      </div>
+      <div class="process-card reveal d2">
+        <h3>Exploring ideas and direction</h3>
+        <p>From early ideas to rough concepts, I explore different directions and approaches to find what makes the most sense.</p>
+      </div>
+      <div class="process-card reveal d3">
+        <h3>Designing the solution</h3>
+        <p>I turn ideas into clear layouts and interfaces, focusing on usability, clarity, and thoughtful interactions.</p>
+      </div>
+      <div class="process-card reveal d4">
+        <h3>Refining and delivering</h3>
+        <p>We review, refine, and polish the details until everything feels aligned, then prepare the design for delivery.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -2975,6 +3079,7 @@
       <div class="blog-card reveal" data-post="0">
         <div class="blog-thumb" style="background:#111;">
           <img src="blog-ai-design.png" alt="AI and the Future of Design" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div class="blog-hover-arrow">↗</div>
         </div>
         <div class="blog-body">
           <div class="blog-meta">
@@ -2990,6 +3095,7 @@
       <div class="blog-card reveal d1" data-post="1">
         <div class="blog-thumb" style="background:#111;">
           <img src="blog-ux-trends.png" alt="2025 UX Trends" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div class="blog-hover-arrow">↗</div>
         </div>
         <div class="blog-body">
           <div class="blog-meta">
@@ -3005,6 +3111,7 @@
       <div class="blog-card reveal d2" data-post="2">
         <div class="blog-thumb" style="background:#111;">
           <img src="blog-mobile-first.png" alt="The Importance of Mobile-First Approach" style="width:100%;height:100%;object-fit:cover;display:block;" />
+          <div class="blog-hover-arrow">↗</div>
         </div>
         <div class="blog-body">
           <div class="blog-meta">
@@ -3060,42 +3167,42 @@
         <p class="tsc-quote">Mert helped us rethink how our product communicates with users. His approach to UX was clear, structured, and always tied back to real user behavior.</p>
         <div class="tsc-author">
           <div class="tsc-avatar">E</div>
-          <div><div class="tsc-name">Emily Rogers</div><div class="tsc-role">UX Lead at Airtable</div></div>
+          <div><div class="tsc-name">Emily Rogers</div><div class="tsc-role">UX Lead</div></div>
         </div>
       </div>
       <div class="tsc-card">
         <p class="tsc-quote">Working with Mert felt easy from the start. He understands the problem quickly and turns ideas into designs that are clear, thoughtful, and usable.</p>
         <div class="tsc-author">
           <div class="tsc-avatar">D</div>
-          <div><div class="tsc-name">Daniel Hartono</div><div class="tsc-role">Product Manager at Linear</div></div>
+          <div><div class="tsc-name">Daniel Hartono</div><div class="tsc-role">Product Manager</div></div>
         </div>
       </div>
       <div class="tsc-card">
         <p class="tsc-quote">Mert brings structure and clarity into the design process. The final result always feels well thought out and aligned with both user needs and business goals.</p>
         <div class="tsc-author">
           <div class="tsc-avatar">S</div>
-          <div><div class="tsc-name">Sarah Mitchell</div><div class="tsc-role">Design Director at Shopify</div></div>
+          <div><div class="tsc-name">Sarah Mitchell</div><div class="tsc-role">Design Director</div></div>
         </div>
       </div>
       <div class="tsc-card">
         <p class="tsc-quote">What impressed me most was Mert's attention to detail and his ability to balance aesthetics with function. Every interaction felt intentional and polished.</p>
         <div class="tsc-author">
           <div class="tsc-avatar">J</div>
-          <div><div class="tsc-name">James Chen</div><div class="tsc-role">Engineering Lead at Vercel</div></div>
+          <div><div class="tsc-name">James Chen</div><div class="tsc-role">Engineering Lead</div></div>
         </div>
       </div>
       <div class="tsc-card">
         <p class="tsc-quote">Mert doesn't just design screens — he solves problems. He took the time to understand our users and delivered an experience that truly resonated with them.</p>
         <div class="tsc-author">
           <div class="tsc-avatar">A</div>
-          <div><div class="tsc-name">Anna Petrova</div><div class="tsc-role">Head of Product at Stripe</div></div>
+          <div><div class="tsc-name">Anna Petrova</div><div class="tsc-role">Head of Product</div></div>
         </div>
       </div>
       <div class="tsc-card">
         <p class="tsc-quote">Collaborating with Mert was seamless. He has a rare ability to translate complex requirements into intuitive, elegant interfaces that our team loved.</p>
         <div class="tsc-author">
           <div class="tsc-avatar">M</div>
-          <div><div class="tsc-name">Marcus Webb</div><div class="tsc-role">Senior PM at Google</div></div>
+          <div><div class="tsc-name">Marcus Webb</div><div class="tsc-role">Senior PM</div></div>
         </div>
       </div>
     </div>
@@ -3104,14 +3211,27 @@
   <div class="container">
     <div class="tsc-trust reveal">
       <p>Trusted by teams and companies from various industries.</p>
-      <div class="tsc-logos">
-        <span>Airtable</span>
-        <span>Linear</span>
-        <span>Google</span>
-        <span>Vercel</span>
-        <span>Shopify</span>
-        <span>Stripe</span>
-      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= CTA BANNER ========================= -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <img src="m-logo-light.svg" alt="Mert" style="height: 32px; width: auto; margin: 0 auto 28px;" class="reveal" />
+      <p class="section-label reveal">Let's Collaborate</p>
+      <h2 class="cta-headline reveal d1">Got a Vision?<br>Let's Bring It to Life!</h2>
+      <p class="cta-sub reveal d2">
+        I'm always excited to collaborate on new and innovative projects. Whatever you're
+        starting from scratch or refining an existing experience — let's talk.
+      </p>
+      <a href="mailto:himert9@gmail.com" class="btn-cta reveal d3">
+        Contact
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </div>
 </section>
@@ -3122,8 +3242,8 @@
 
     <div class="footer-top">
       <div>
-        <div class="footer-logo">Mert<em>.</em></div>
-        <p class="footer-tagline">Product Designer &amp; HCI Specialist crafting AI-enhanced digital experiences from Bursa, Turkey.</p>
+        <div class="footer-logo"><img src="m-logo-light.svg" alt="Mert" /></div>
+        <p class="footer-tagline">Product Designer &amp; HCI Specialist crafting AI-enhanced digital experiences from Istanbul, Turkey.</p>
       </div>
       <div>
         <a href="mailto:himert9@gmail.com" class="footer-email-big">
@@ -3185,9 +3305,9 @@
       <p class="uxb-modal-intro">Uber initially experimented with displaying a price range ($14–$20) for rides to better manage traffic and costs. However, users often focused on the higher end of the range, leading to uncertainty and a decline in bookings. To address this, Uber switched to showing a single estimated price, aiming to reduce hesitation and build trust by providing a clearer expectation of ride costs.</p>
 
       <!-- Version A -->
-      <div class="uxb-modal-section">
+      <div class="uxb-modal-section" style="grid-template-columns:0.7fr 1fr;">
         <div class="uxb-modal-section-img">
-          <img src="ab-uber-pricing.jpg" alt="Version A — Price Range">
+          <img src="ab-uber-version-a.png" alt="Version A — Price Range">
         </div>
         <div class="uxb-modal-section-text">
           <span class="uxb-section-label">Version A — Before</span>
@@ -3197,9 +3317,9 @@
       </div>
 
       <!-- Version B -->
-      <div class="uxb-modal-section reverse">
+      <div class="uxb-modal-section reverse" style="grid-template-columns:0.7fr 1fr;">
         <div class="uxb-modal-section-img">
-          <img src="ab-uber-pricing.jpg" alt="Version B — Single Price">
+          <img src="ab-uber-version-b.png" alt="Version B — Single Price">
         </div>
         <div class="uxb-modal-section-text">
           <span class="uxb-section-label">Version B — After</span>
@@ -3219,6 +3339,104 @@
   </div>
 </div>
 
+<!-- ========================= TIKTOK ONBOARDING A/B MODAL ========================= -->
+<div class="uxb-modal-overlay" id="abTiktokOnboardingModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">A/B Test</span>
+        <span class="uxb-modal-header-title">TikTok · Delayed Bank Account Setup</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('abTiktokOnboardingModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <p class="uxb-modal-intro">TikTok sought to boost enrollment in its revenue-sharing program, which required creators to complete a KYC process, including linking their bank accounts, before they could earn revenue. The initial process caused a significant drop-off, as creators were hesitant to provide banking details upfront. To address this, TikTok revised the onboarding flow, allowing creators to start producing content and see potential earnings before connecting their bank accounts. This change aimed to reduce friction and motivate more creators to join the program, easing the initial commitment and building trust.</p>
+
+      <!-- Version A -->
+      <div class="uxb-modal-section" style="grid-template-columns:0.7fr 1fr;">
+        <div class="uxb-modal-section-img">
+          <img src="ab-tiktok-version-a.png" alt="Version A — Upfront bank setup" style="max-height:400px;object-fit:contain;margin:0 auto;">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Version A — Before</span>
+          <h4>Upfront bank account requirement blocks momentum</h4>
+          <p>Creators land on a "Monthly earnings" page showing $0.00 with no records. The interface requires bank account setup before any content creation can begin. This creates a high-friction entry point that discourages new creators from completing the enrollment process.</p>
+        </div>
+      </div>
+
+      <!-- Version B -->
+      <div class="uxb-modal-section reverse" style="grid-template-columns:0.7fr 1fr;">
+        <div class="uxb-modal-section-img">
+          <img src="ab-tiktok-version-b.png" alt="Version B — Delayed bank setup" style="max-height:400px;object-fit:contain;margin:0 auto;">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Version B — After</span>
+          <h4>Delayed setup lets creators build momentum first</h4>
+          <p>Creators can explore the Creativity Program, see available rewards programs, and start producing content before linking a bank account. The flow shows earning potential upfront — Creator Rewards, Video Gifts, Subscriptions — building motivation before asking for commitment.</p>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px 32px;">
+        <span class="uxb-section-label">Results</span>
+        <h4 style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;">25% increase in creators enrolling in the program</h4>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-muted);">By delaying the bank account requirement and letting creators see earning potential first, TikTok significantly reduced onboarding friction and increased program enrollment.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================= DUOLINGO STREAK A/B MODAL ========================= -->
+<div class="uxb-modal-overlay" id="abDuolingoStreakModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">A/B Test</span>
+        <span class="uxb-modal-header-title">Duolingo · Decoupling Streaks</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('abDuolingoStreakModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <p class="uxb-modal-intro">Duolingo redesigned its streak feature to better support user engagement and retention. Previously, maintaining a streak required users to meet their daily learning goals, which could be daunting for those with higher goals. The redesign decoupled streaks from daily goals, allowing users to preserve their streak by completing just one lesson per day, regardless of their set goal. This change aimed to reduce pressure and make streaks more achievable, particularly for learners with ambitious goals.</p>
+
+      <!-- Version A -->
+      <div class="uxb-modal-section" style="grid-template-columns:0.7fr 1fr;">
+        <div class="uxb-modal-section-img">
+          <img src="ab-duolingo-version-a.png" alt="Version A — Streak tied to daily goal" style="max-height:400px;object-fit:contain;margin:0 auto;">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Version A — Before</span>
+          <h4>Streaks require meeting full daily goals</h4>
+          <p>Users must complete their entire daily XP goal to maintain their streak. For learners with higher goals, this creates pressure and anxiety. Missing a single day resets the streak entirely, which can be demotivating and lead to disengagement.</p>
+        </div>
+      </div>
+
+      <!-- Version B -->
+      <div class="uxb-modal-section reverse" style="grid-template-columns:0.7fr 1fr;">
+        <div class="uxb-modal-section-img">
+          <img src="ab-duolingo-version-b.png" alt="Version B — Streak decoupled from goal" style="max-height:400px;object-fit:contain;margin:0 auto;">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Version B — After</span>
+          <h4>One lesson keeps the streak alive</h4>
+          <p>Streaks are preserved by completing just one lesson per day, regardless of the daily goal. This celebrates consistency over intensity. The new "Lesson complete!" and "day streak!" screens provide positive reinforcement, making daily practice feel rewarding rather than stressful.</p>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px 32px;">
+        <span class="uxb-section-label">Results</span>
+        <h4 style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px;">Increase in the number of learners on a 7+ day streak by over 40%</h4>
+        <p style="font-size:14px;line-height:1.7;color:var(--text-muted);">By decoupling streaks from daily goals, Duolingo made streaks more achievable and reduced the anxiety of breaking them. This led to significantly more users maintaining consistent learning habits.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- ========================= UXB VEHICLE MODAL ========================= -->
 <div class="uxb-modal-overlay" id="uxbVehicleModal" role="dialog" aria-modal="true">
   <div class="uxb-modal">
@@ -3232,71 +3450,314 @@
     <div class="uxb-modal-body">
 
       <!-- Overview Image -->
-      <img src="uxb-cover.jpg" alt="Tesla Vehicle Dashboard — Full Overview" style="width:100%;display:block;border-radius:16px;">
+      <img src="uxb-vehicle-overview.webp" alt="Tesla Vehicle Dashboard — Full Overview" style="width:100%;display:block;border-radius:16px;">
 
       <p class="uxb-modal-intro">A comprehensive UX breakdown of the Tesla mobile app's vehicle dashboard — analyzing how identity, visualization, actions, alerts, and navigation come together in a single screen.</p>
 
       <!-- Section 1: Header / Identity -->
       <div class="uxb-modal-section">
         <div class="uxb-modal-section-img">
-          <img src="uxb-vehicle-header.jpg" alt="Vehicle identity and status header">
+          <img src="uxb-vehicle-header.webp" alt="Vehicle identity and status header">
         </div>
         <div class="uxb-modal-section-text">
           <span class="uxb-section-label">Microinteractions</span>
           <h4>The top section delivers identity and status instantly</h4>
-          <p>Vehicle name "Lizzy," battery level at 53%, and current state "Parked" — all critical information is delivered at a glance without requiring any interaction. The profile avatar and connectivity icons anchor the top-right, establishing a personal connection.</p>
+          <p>The driver name, battery level, and car state sit right at the top, so users can anchor themselves within a second. The tap interaction that lets you switch between battery percentage and mileage is a tiny detail that removes friction and respects how different people think about range.</p>
         </div>
       </div>
 
       <!-- Section 2: 3D Car Model -->
       <div class="uxb-modal-section reverse">
         <div class="uxb-modal-section-img">
-          <img src="uxb-vehicle-3d.jpg" alt="3D car model visualization">
+          <img src="uxb-vehicle-3d.webp" alt="3D car model visualization">
         </div>
         <div class="uxb-modal-section-text">
           <span class="uxb-section-label">Real-World Match</span>
           <h4>3D car model mirrors real-world state</h4>
-          <p>The interactive 3D rendering of the Tesla Model 3 creates a digital twin of the physical vehicle. It reflects real-time status — doors, windows, trunk — building trust through visual feedback that matches the owner's actual car.</p>
+          <p>Tesla shows your exact car color, wheel type, and door status. The model updates based on real conditions, so it doubles as a status report. This frees users from reading heavy labels and lets the visual do most of the interpretation.</p>
         </div>
       </div>
 
       <!-- Section 3: Quick Actions -->
       <div class="uxb-modal-section">
         <div class="uxb-modal-section-img">
-          <img src="uxb-vehicle-actions.jpg" alt="Quick action buttons">
+          <img src="uxb-vehicle-actions.webp" alt="Quick action buttons">
         </div>
         <div class="uxb-modal-section-text">
           <span class="uxb-section-label">Call to Action</span>
           <h4>High frequency actions live directly under the car</h4>
-          <p>Lock, climate, charging, and trunk — four icon buttons placed immediately below the vehicle model. These are the most-used actions, positioned for thumb-reach and instant access without navigating deeper into menus.</p>
+          <p>Lock, climate, charging, and trunk controls sit right below the model because that's the moment users naturally look for interaction. The placement matches real-world intent, which cuts down on searching and creates a smooth mental flow.</p>
         </div>
       </div>
 
       <!-- Section 4: Notifications -->
       <div class="uxb-modal-section reverse">
         <div class="uxb-modal-section-img">
-          <img src="uxb-vehicle-notifications.jpg" alt="Contextual system alerts">
+          <img src="uxb-vehicle-notifications.webp" alt="Contextual system alerts">
         </div>
         <div class="uxb-modal-section-text">
           <span class="uxb-section-label">Notification</span>
           <h4>Contextual system alerts stay visible</h4>
-          <p>Software Update and Phone Key setup prompts surface contextually within the main dashboard — not hidden in settings. They use clear descriptions and actionable CTAs ("Release Notes", "Set Up"), reducing friction for important system actions.</p>
+          <p>Software updates, phone key setup, and other system prompts appear only when they matter. They sit in their own block instead of mixing with controls, which keeps urgency clear without hijacking the layout.</p>
         </div>
       </div>
 
       <!-- Section 5: Navigation -->
       <div class="uxb-modal-section">
         <div class="uxb-modal-section-img">
-          <img src="uxb-vehicle-navigation.jpg" alt="Navigation menu structure">
+          <img src="uxb-vehicle-navigation.webp" alt="Navigation menu structure">
         </div>
         <div class="uxb-modal-section-text">
           <span class="uxb-section-label">Information Architecture</span>
           <h4>Navigation groups actions into clean categories</h4>
-          <p>Controls, Climate (showing "Interior 36°C"), Location ("1 Molenstraat"), and Summon — grouped in a scrollable list with icons and contextual subtitles. Each category provides at-a-glance info while serving as an entry point to deeper functionality.</p>
+          <p>Controls, climate, location, and summon are grouped in a compact list with simple icons and short subtitles. The structure reduces cognitive load and helps users predict where each action will live, even before reading the labels.</p>
         </div>
       </div>
 
       <!-- CTA removed -->
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================= TASK BOARD UX MODAL ========================= -->
+<div class="uxb-modal-overlay" id="uxbTaskboardModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">UX Breakdown</span>
+        <span class="uxb-modal-header-title">Task Board</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('uxbTaskboardModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <!-- Overview Image -->
+      <img src="uxb-taskboard-overview.webp" alt="Task Board — Full Overview" style="width:100%;display:block;border-radius:16px;">
+
+      <p class="uxb-modal-intro">A comprehensive UX breakdown of a task management board — analyzing how grouping, card design, navigation, analytics, and minimal UI come together to help users stay focused and organized.</p>
+
+      <!-- Section 1: Task Grouping -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-taskboard-grouping.webp" alt="Task grouping with board columns">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Information Architecture</span>
+          <h4>Task grouping creates a scannable structure</h4>
+          <p>Tasks are divided into clear stages like To Do, This Week, and Review. This grouping creates a natural structure that helps users quickly understand what needs attention now versus later. Instead of showing a long unstructured list, the board format organizes work into meaningful categories. This reduces cognitive load and helps users prioritize faster.</p>
+        </div>
+      </div>
+
+      <!-- Section 2: Card Density -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-taskboard-cards.webp" alt="Task card density and readability">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Visual Hierarchy</span>
+          <h4>Task cards balance density and readability</h4>
+          <p>Each task card contains multiple details such as assignee avatars, due dates, subtasks, comments, and reminders. Even with this amount of information, the design keeps everything readable through subtle typography and icon usage. Important details like deadlines are highlighted while secondary information stays quiet. This hierarchy lets users scan many tasks quickly without feeling overwhelmed.</p>
+        </div>
+      </div>
+
+      <!-- Section 3: Insights Panel -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-taskboard-insights.webp" alt="Insights panel with project analytics">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Metrics</span>
+          <h4>Insights panel gives a high level understanding of progress</h4>
+          <p>The Insights panel on the right provides analytics about project health, progress, and completed tasks. Instead of forcing users to analyze every task manually, the dashboard summarizes key signals. Visual indicators such as progress bars, activity graphs, and risk warnings help users quickly understand the state of the project and decide where attention is needed.</p>
+        </div>
+      </div>
+
+      <!-- Section 4: Sidebar Navigation -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-taskboard-sidebar.webp" alt="Sidebar navigation with clear priority">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Call to Action</span>
+          <h4>Sidebar organizes navigation with clear priority</h4>
+          <p>The left sidebar separates global navigation, personal views, and project spaces. Icons and spacing create clear visual grouping which makes navigation feel predictable and easy to scan. The Add task button stands out as the main action of the product. Highlighting the primary action ensures users can quickly capture tasks without searching for the entry point.</p>
+        </div>
+      </div>
+
+      <!-- Section 5: Minimal UI -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-taskboard-minimal.webp" alt="Minimal UI design keeping focus on work">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Minimalism</span>
+          <h4>Minimal UI keeps the focus on the work itself</h4>
+          <p>The overall interface uses a restrained color palette, generous spacing, and subtle dividers. This minimal approach prevents visual noise and keeps attention on the tasks rather than the interface. For productivity tools this is important. When the interface stays quiet, users can focus on organizing and completing their work without distraction.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================= SEARCH & DISCOVER UX MODAL ========================= -->
+<div class="uxb-modal-overlay" id="uxbDiscoverModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">UX Breakdown</span>
+        <span class="uxb-modal-header-title">Search & Discover</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('uxbDiscoverModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <!-- Overview Image -->
+      <img src="uxb-discover-overview.webp" alt="Search & Discover — Full Overview" style="width:100%;display:block;border-radius:16px;">
+
+      <p class="uxb-modal-intro">A comprehensive UX breakdown of a stock trading discover screen — analyzing how search, index snapshots, trending content, segmented movers, and subtle alerts work together to help users explore the market efficiently.</p>
+
+      <!-- Section 1: Cognitive Friction -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-discover-search.webp" alt="Search and market toggle reducing friction">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Clarity</span>
+          <h4>Market status + region toggle reduce cognitive friction</h4>
+          <p>The green Open indicator instantly answers a high intent question before the user even searches. When multiple markets are supported, this prevents costly mistakes. The Aus and Wall St toggle at the top reinforces control. Users decide the context before they explore, not after. This is strong contextual framing. It reduces mental switching and keeps discovery focused.</p>
+        </div>
+      </div>
+
+      <!-- Section 2: Index Snapshots -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-discover-indexes.webp" alt="Index snapshots with spark charts">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Information Architecture</span>
+          <h4>Index snapshots deliver high value in low space</h4>
+          <p>Indexes are compact, horizontally arranged, and paired with micro live charts. In one glance, users see performance and direction. The small sparkline preview removes the need to tap into each index just to understand momentum. It respects time and reduces unnecessary navigation.</p>
+        </div>
+      </div>
+
+      <!-- Section 3: Trending Today -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-discover-trending.webp" alt="Trending today horizontal scroll">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Retention</span>
+          <h4>Trending today drives discovery beyond intent</h4>
+          <p>Most users open a trading app without a specific ticker in mind. Trending today captures that moment. It nudges exploration and surfaces opportunities users may not have considered. This increases session depth and engagement without feeling pushy. Discovery becomes part of the product, not an afterthought.</p>
+        </div>
+      </div>
+
+      <!-- Section 4: Movers Segmentation -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-discover-movers.webp" alt="Movers segmented into most up and most down">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Real-World Match</span>
+          <h4>Movers segmented into Most up and Most down</h4>
+          <p>Instead of one long volatile list, the screen splits movers into clear categories. This reduces scanning effort and speeds decision making. The structure mirrors how investors think. Gainers and losers. It matches mental models, which makes the interface feel intuitive. Clear grouping always beats long lists.</p>
+        </div>
+      </div>
+
+      <!-- Section 5: Subtle Alerts -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-discover-alerts.webp" alt="Subtle alert icons on stock items">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Minimalism</span>
+          <h4>Subtle stock alerts without visual noise</h4>
+          <p>Small message icons beside stock names quietly signal announcements or major updates. There are no loud banners or heavy labels. Just a minimal indicator that rewards attentive users. It informs without overwhelming. That balance between awareness and cleanliness is hard to get right.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================= AI WORKSPACE UX MODAL ========================= -->
+<div class="uxb-modal-overlay" id="uxbAiWorkspaceModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">UX Breakdown</span>
+        <span class="uxb-modal-header-title">AI Workspace</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('uxbAiWorkspaceModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <!-- Overview Image -->
+      <img src="uxb-aiworkspace-overview.webp" alt="AI Workspace — Full Overview" style="width:100%;display:block;border-radius:16px;">
+
+      <p class="uxb-modal-intro">A comprehensive UX breakdown of an AI-powered workspace — analyzing how familiar chat patterns, contextual sources, flexible input methods, personalized files, and minimal layout work together to create an intelligent and focused experience.</p>
+
+      <!-- Section 1: Chat Patterns -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-aiworkspace-chat.webp" alt="Established AI chat patterns">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Affordance</span>
+          <h4>Follow established AI chat patterns to reduce friction</h4>
+          <p>Instead of inventing a new interaction model, the interface follows familiar AI chat conventions. Input at the bottom, conversation in the center, context on the side. This lowers cognitive load and helps users focus on what matters: the prompt and the response.</p>
+        </div>
+      </div>
+
+      <!-- Section 2: Context Panel -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-aiworkspace-context.webp" alt="Sources panel beside conversation">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Information Architecture</span>
+          <h4>Context lives beside the conversation, not inside it</h4>
+          <p>The Sources panel sits on the right, separate from the main chat. Users can upload files, browse content, or reference documents without breaking their flow. Keeping context adjacent but not embedded prevents clutter and keeps the conversation readable.</p>
+        </div>
+      </div>
+
+      <!-- Section 3: Input Paths -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-aiworkspace-input.webp" alt="Multiple input paths for sources">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">User Control</span>
+          <h4>Multiple input paths increase perceived intelligence</h4>
+          <p>The Sources card supports file upload, image upload, browsing content, and @ tagging. This creates flexibility in how users provide context. When the system adapts to different input behaviors, it feels more capable and responsive.</p>
+        </div>
+      </div>
+
+      <!-- Section 4: Related Files -->
+      <div class="uxb-modal-section reverse">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-aiworkspace-related.webp" alt="Personalized related files">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Personalization</span>
+          <h4>Personalized related files build trust in the AI</h4>
+          <p>The Related section surfaces documents connected to the current query. This small detail signals that the AI understands context beyond a single message. It reduces search effort and makes the experience feel tailored.</p>
+        </div>
+      </div>
+
+      <!-- Section 5: Minimal UI -->
+      <div class="uxb-modal-section">
+        <div class="uxb-modal-section-img">
+          <img src="uxb-aiworkspace-minimal.webp" alt="Minimal UI with controllable layout">
+        </div>
+        <div class="uxb-modal-section-text">
+          <span class="uxb-section-label">Minimalism</span>
+          <h4>Minimal UI with controllable layout keeps focus intact</h4>
+          <p>The interface uses restrained color and generous spacing to prioritize content. Side panels can be collapsed, giving users control over complexity. This balance between simplicity and customization supports both beginners and power users.</p>
+        </div>
+      </div>
 
     </div>
   </div>
