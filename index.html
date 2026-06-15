@@ -2385,6 +2385,89 @@
       .wm-gallery { grid-template-columns: 1fr; grid-template-rows: 220px 140px 140px; }
       .wm-gallery .wm-img-main { grid-row: 1; }
     }
+
+    /* ===== LOGO MARQUEE ===== */
+    .logo-marquee {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .logo-marquee .section-label {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .logo-marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee-scroll 30s linear infinite;
+    }
+
+    .logo-marquee-track:hover {
+      animation-play-state: paused;
+    }
+
+    .logo-marquee-group {
+      display: flex;
+      align-items: center;
+      gap: 64px;
+      padding-right: 64px;
+    }
+
+    .logo-marquee-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      opacity: 0.5;
+      filter: grayscale(1) brightness(0) invert(1) brightness(0.5);
+      transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+
+    .logo-marquee-item:hover {
+      opacity: 0.9;
+      filter: grayscale(0) brightness(1);
+    }
+
+    .logo-marquee-item img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Fade edges */
+    .logo-marquee::before,
+    .logo-marquee::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 120px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .logo-marquee::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg), transparent);
+    }
+
+    .logo-marquee::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg), transparent);
+    }
+
+    @keyframes marquee-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 768px) {
+      .logo-marquee { padding: 48px 0; }
+      .logo-marquee-group { gap: 40px; padding-right: 40px; }
+      .logo-marquee-item { height: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -3232,6 +3315,30 @@
           <path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= LOGO MARQUEE ========================= -->
+<section class="logo-marquee">
+  <div class="logo-marquee-track">
+    <!-- Group 1 -->
+    <div class="logo-marquee-group">
+      <div class="logo-marquee-item"><img src="teb-logo-dark.png" alt="TEB" /></div>
+      <div class="logo-marquee-item"><img src="otelz-logo-dark.png" alt="Otelz" /></div>
+      <div class="logo-marquee-item"><img src="kontrolmatik-logo-dark.png" alt="Kontrolmatik Technologies" /></div>
+      <div class="logo-marquee-item"><img src="kocsistem-logo-dark.png" alt="KoçSistem" /></div>
+      <div class="logo-marquee-item"><img src="kalekim-logo-dark.png" alt="Kalekim" /></div>
+      <div class="logo-marquee-item"><img src="fibabanka-logo-dark.png" alt="Fibabanka" /></div>
+    </div>
+    <!-- Group 2 (duplicate for seamless loop) -->
+    <div class="logo-marquee-group">
+      <div class="logo-marquee-item"><img src="teb-logo-dark.png" alt="TEB" /></div>
+      <div class="logo-marquee-item"><img src="otelz-logo-dark.png" alt="Otelz" /></div>
+      <div class="logo-marquee-item"><img src="kontrolmatik-logo-dark.png" alt="Kontrolmatik Technologies" /></div>
+      <div class="logo-marquee-item"><img src="kocsistem-logo-dark.png" alt="KoçSistem" /></div>
+      <div class="logo-marquee-item"><img src="kalekim-logo-dark.png" alt="Kalekim" /></div>
+      <div class="logo-marquee-item"><img src="fibabanka-logo-dark.png" alt="Fibabanka" /></div>
     </div>
   </div>
 </section>
