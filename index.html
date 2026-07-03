@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mert — Marketing Designer</title>
+  <title>Halil Mert — Product Designer</title>
   <link rel="icon" type="image/svg+xml" href="m-logo-brand.svg" />
   <link rel="apple-touch-icon" href="m-logo-brand.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -656,151 +656,6 @@
     @media (max-width: 600px) {
       .process-grid { grid-template-columns: 1fr; }
       #process { padding: 60px 0; }
-    }
-
-    /* ===== TESTIMONIALS SHOWCASE ===== */
-    #testimonials-showcase {
-      padding: 120px 0;
-      background: var(--bg);
-      overflow: hidden;
-    }
-
-    .tsc-header {
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .tsc-header h2 {
-      font-family: 'Archivo', sans-serif;
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 700;
-      letter-spacing: -1px;
-      line-height: 1.15;
-      color: var(--text);
-    }
-
-    .tsc-track-wrapper {
-      position: relative;
-      width: 100%;
-    }
-    .tsc-track-wrapper::before,
-    .tsc-track-wrapper::after {
-      content: '';
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 80px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .tsc-track-wrapper::before {
-      left: 0;
-      background: linear-gradient(to right, var(--bg), transparent);
-    }
-    .tsc-track-wrapper::after {
-      right: 0;
-      background: linear-gradient(to left, var(--bg), transparent);
-    }
-
-    .tsc-track {
-      display: flex;
-      gap: 20px;
-      animation: tscScroll 30s linear infinite;
-      width: max-content;
-    }
-    .tsc-track:hover { animation-play-state: paused; }
-
-    @keyframes tscScroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .tsc-card {
-      flex-shrink: 0;
-      width: 340px;
-      background: var(--card);
-      border-radius: 20px;
-      padding: 36px 30px 32px;
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 260px;
-      transition: transform .5s cubic-bezier(.25,.46,.45,.94), box-shadow .5s cubic-bezier(.25,.46,.45,.94), border-color .3s;
-    }
-    .tsc-card:hover {
-      transform: translateY(-6px) scale(1.015);
-      box-shadow: 0 20px 52px rgba(0,0,0,.1);
-      border-color: rgba(177,240,147,.25);
-    }
-
-    .tsc-quote {
-      font-size: 16px;
-      font-weight: 500;
-      line-height: 1.55;
-      color: var(--text);
-      margin-bottom: 28px;
-    }
-
-    .tsc-author {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .tsc-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #2a2a30, #1e1e24);
-      flex-shrink: 0;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      color: var(--text-muted);
-    }
-    .tsc-name {
-      font-family: 'Urbanist', sans-serif;
-      font-size: 16px;
-      font-weight: 300;
-      color: #B1F093;
-      font-style: italic;
-    }
-    .tsc-role {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .tsc-trust {
-      text-align: center;
-      margin-top: 64px;
-    }
-    .tsc-trust p {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-    }
-    .tsc-logos {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 48px;
-      flex-wrap: wrap;
-    }
-    .tsc-logos span {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--text-muted);
-      opacity: .45;
-      letter-spacing: -.02em;
-      white-space: nowrap;
-    }
-
-    @media (max-width: 600px) {
-      #testimonials-showcase { padding: 64px 0 48px; }
-      .tsc-card { width: 280px; padding: 28px 22px 24px; }
-      .tsc-logos { gap: 28px; }
-      .tsc-logos span { font-size: 15px; }
     }
 
     /* ===== ABOUT ===== */
@@ -2520,7 +2375,7 @@
       <div class="hero-name reveal d1">
         <span class="hero-name-label">Halil Mert</span>
         <span class="hero-name-divider"></span>
-        <span class="hero-name-title">Marketing Designer</span>
+        <span class="hero-name-title">Product Designer</span>
       </div>
 
       <!-- Headline -->
@@ -2530,7 +2385,7 @@
 
       <!-- Subtitle -->
       <p class="hero-sub reveal d3">
-        Turning complex ideas into clear, compelling visuals — from ad creatives and social posts to ebooks and landing pages.
+        Designing end-to-end product experiences that turn complex, data-rich interfaces into clear, intuitive flows — across web and mobile.
       </p>
 
       <!-- Bottom row -->
@@ -2580,7 +2435,7 @@
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </div>
           <div class="about-badge-text">
-            <strong>6+ Years</strong>
+            <strong>4+ Years</strong>
             <span>In the field</span>
           </div>
         </div>
@@ -2589,8 +2444,8 @@
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 3.5L13 7l-3 2.5.5 3.5L8 11.5 5.5 13l.5-3.5L3 7l3.5-1.5L8 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
           </div>
           <div class="about-badge-text">
-            <strong>200+</strong>
-            <span>Problems solved</span>
+            <strong>M.Sc. HCI</strong>
+            <span>Research background</span>
           </div>
         </div>
       </div>
@@ -2601,24 +2456,24 @@
         <h2 class="about-title reveal d1">I didn't start out strong.<br>I had to <em>build it.</em></h2>
 
         <p class="about-bio reveal d2">
-          I'm a <strong>Marketing Designer</strong> based in Istanbul, Turkey, focused on creating clear, compelling visuals across every digital surface. My approach blends <strong>strategic design thinking</strong> with a deep understanding of brand consistency — crafting assets that educate audiences, generate leads, and look intentional.
+          I'm a <strong>Product Designer</strong> based in Istanbul, Turkey, designing end-to-end user experiences across web and mobile — including fintech, BNPL payments, e-commerce, and enterprise SaaS. My approach blends <strong>HCI research</strong> with strategic design thinking: user interviews, usability testing, and prototype validation inform every decision I make.
         </p>
         <p class="about-bio reveal d3">
-          From landing pages and ad creatives to pitch decks and ebooks, I own the full visual output end-to-end. All my work lives in Figma, and I thrive on taking a brief from "we need this" to a finished asset — fast, independently, and with brand consistency across every touchpoint.
+          From discovery to delivery, I own the full process — user flows, wireframes, design systems, and high-fidelity UI, all in Figma. My master's research in <strong>Human-Computer Interaction</strong> focused on reducing cognitive load in complex interfaces, which is exactly what I love doing in practice: making dense, data-heavy products feel simple. I also work hands-on with AI-powered design tools to explore and iterate faster.
         </p>
 
         <div class="about-stats reveal d4">
           <div class="about-stat">
-            <div class="about-stat-num">200+</div>
-            <div class="about-stat-lbl">Projects Done</div>
+            <div class="about-stat-num">7+</div>
+            <div class="about-stat-lbl">Shipped Products</div>
           </div>
           <div class="about-stat">
-            <div class="about-stat-num">15+</div>
-            <div class="about-stat-lbl">Certifications</div>
+            <div class="about-stat-num">3</div>
+            <div class="about-stat-lbl">Fintech, SaaS &amp; E-commerce</div>
           </div>
           <div class="about-stat">
-            <div class="about-stat-num">98%</div>
-            <div class="about-stat-lbl">Success Rate</div>
+            <div class="about-stat-num">M.Sc.</div>
+            <div class="about-stat-lbl">Human-Computer Interaction</div>
           </div>
         </div>
 
@@ -2626,7 +2481,7 @@
           <a href="#cta" class="about-cta">Get in Touch</a>
           <div class="about-signature">
             <strong>Halil Mert</strong>
-            <span>Marketing Designer</span>
+            <span>Product Designer</span>
           </div>
         </div>
       </div>
@@ -2645,7 +2500,7 @@
         <h2 class="section-title reveal d1">Explore My Design Journey</h2>
       </div>
       <div>
-        <p class="exp-intro reveal">Over the past 6+ years, I've designed marketing and product visuals across multiple industries — from B2B SaaS platforms to e-commerce brands.</p>
+        <p class="exp-intro reveal">Over the past 4+ years, I've designed digital products across fintech, e-commerce, and enterprise SaaS — owning end-to-end UX from research to delivery.</p>
         <a href="#cta" class="exp-cta-btn reveal d1">Contact ↗</a>
       </div>
     </div>
@@ -2659,19 +2514,20 @@
             <p class="exp-co">Freelance — Bursa, Turkey (Remote)</p>
             <span class="exp-date-line">Apr 2025 – Present</span>
           </div>
-          <p class="exp-mid">Marketing & Product Designer · Freelance</p>
+          <p class="exp-mid">Product Designer · Hausè</p>
           <div class="exp-tags">
-            <span class="exp-tag-pill">Marketing Design</span>
+            <span class="exp-tag-pill">Product Design</span>
             <span class="exp-tag-pill">Figma</span>
-            <span class="exp-tag-pill">Brand Identity</span>
+            <span class="exp-tag-pill">Design Systems</span>
           </div>
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
             <div class="exp-feat-img" style="background:#1a1a20;overflow:hidden;"><img src="works/freelance-1.png" alt="Freelance project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
             <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/freelance-2.png" alt="Freelance project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/artiki-1.png" alt="Web platform design" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
-          <p class="exp-feat-desc">Designing marketing and product visuals for multiple clients — landing pages, social media creatives, pitch decks, ebooks, email campaigns, and ad visuals for paid channels. All work in Figma, shipping fast and independently.</p>
+          <p class="exp-feat-desc">Partnering with startups and SaaS teams to take products from first idea to launch — discovery research, user flows, wireframes, scalable design systems, and high-fidelity UI in Figma, all the way through developer handoff. I specialize in turning dense, data-heavy dashboards into clear, task-oriented experiences, and use AI-powered tools to prototype and iterate at speed.</p>
           <button class="exp-feat-arrow" data-modal="freelance">↗</button>
         </div>
       </div>
@@ -2686,85 +2542,18 @@
           <p class="exp-mid">User Experience Designer · Full-time</p>
           <div class="exp-tags">
             <span class="exp-tag-pill">UX Design</span>
-            <span class="exp-tag-pill">UI/UX</span>
+            <span class="exp-tag-pill">Fintech</span>
+            <span class="exp-tag-pill">Design Systems</span>
           </div>
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
             <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/Lidia-Commerce-1.png" alt="Lidia Commerce" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
             <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/Startteb-1.png" alt="Startteb" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/markastok-1.png" alt="E-commerce platform design" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
-          <p class="exp-feat-desc">Led user experience design across multiple digital products, collaborating closely with cross-functional teams to deliver user-centered solutions that drive measurable engagement and business outcomes.</p>
+          <p class="exp-feat-desc">Led UX design across mobile and web products for three years — fintech &amp; BNPL payment flows (Alışgidiş by Fibabanka), a large-scale commerce platform (Lidia Commerce Engine), and enterprise SaaS (KoçSistem, StartTEB). Owned the full journey from user research and wireframing to high-fidelity prototypes and developer handoff, turning user interviews and usability tests into decisions that shaped each product.</p>
           <button class="exp-feat-arrow" data-modal="feux">↗</button>
-        </div>
-      </div>
-
-      <!-- 3. Markastok / Exxeselection -->
-      <div class="exp-row reveal">
-        <div class="exp-row-top">
-          <div class="exp-left">
-            <p class="exp-co">Markastok.com &amp; Exxeselection.com — Bursa</p>
-            <span class="exp-date-line">Sep 2021 – Mar 2022</span>
-          </div>
-          <p class="exp-mid">User Interface Designer · Full-time, On-site</p>
-          <div class="exp-tags">
-            <span class="exp-tag-pill">UI Design</span>
-            <span class="exp-tag-pill">E-commerce</span>
-          </div>
-        </div>
-        <div class="exp-row-body">
-          <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/markastok-1.png" alt="Markastok project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/markastok-2.png" alt="Markastok project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-          </div>
-          <p class="exp-feat-desc">Designed and refined user interfaces for e-commerce platforms, focusing on conversion-optimized layouts and consistent visual systems across web and mobile touchpoints.</p>
-          <button class="exp-feat-arrow" data-modal="markastok">↗</button>
-        </div>
-      </div>
-
-      <!-- 4. ARTI İKİ -->
-      <div class="exp-row reveal">
-        <div class="exp-row-top">
-          <div class="exp-left">
-            <p class="exp-co">ARTI İKİ İnternet Bilişim Teknoloji — Bursa</p>
-            <span class="exp-date-line">May 2020 – Jun 2021</span>
-          </div>
-          <p class="exp-mid">User Interface Designer · Full-time, On-site</p>
-          <div class="exp-tags">
-            <span class="exp-tag-pill">UI Design</span>
-            <span class="exp-tag-pill">Web</span>
-          </div>
-        </div>
-        <div class="exp-row-body">
-          <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#1a1a20;overflow:hidden;"><img src="works/artiki-1.png" alt="Artı İki project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/artiki-2.png" alt="Artı İki project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-          </div>
-          <p class="exp-feat-desc">Created and maintained UI designs for web and digital products in a fast-paced agency environment, iterating on interfaces based on client feedback and user insights.</p>
-          <button class="exp-feat-arrow" data-modal="artiki">↗</button>
-        </div>
-      </div>
-
-      <!-- 5. ULUDAĞ KOLEJİ (Intern) -->
-      <div class="exp-row reveal">
-        <div class="exp-row-top">
-          <div class="exp-left">
-            <p class="exp-co">ULUDAĞ KOLEJİ — Bursa</p>
-            <span class="exp-date-line">Nov 2019 – May 2020</span>
-          </div>
-          <p class="exp-mid">Graphic Designer · Internship, On-site</p>
-          <div class="exp-tags">
-            <span class="exp-tag-pill">Graphic Design</span>
-            <span class="exp-tag-pill">Branding</span>
-          </div>
-        </div>
-        <div class="exp-row-body">
-          <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/uludag-1.png" alt="Uludağ Koleji project 1" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/uludag-2.png" alt="Uludağ Koleji project 2" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-          </div>
-          <p class="exp-feat-desc">Supported the design team with visual communications, print materials, and brand assets — building foundational skills in typography, layout, and visual identity during an early-career internship.</p>
-          <button class="exp-feat-arrow" data-modal="uludag-koleji">↗</button>
         </div>
       </div>
 
@@ -2791,7 +2580,28 @@
       <div class="exp-row reveal">
         <div class="exp-row-top">
           <div class="exp-left">
-            <p class="exp-co">Uludağ University</p>
+            <p class="exp-co">Bursa Uludağ University</p>
+            <span class="exp-date-line">2020 – 2022</span>
+          </div>
+          <p class="exp-mid">Master's in Human-Computer Interaction</p>
+          <div class="exp-tags">
+            <span class="exp-tag-pill">HCI</span>
+            <span class="exp-tag-pill">UX Research</span>
+          </div>
+        </div>
+        <div class="exp-row-body">
+          <div class="exp-feat-imgs">
+            <div class="exp-feat-img" style="background:#1a1a20;overflow:hidden;"><img src="edu-btu.jpg" alt="Bursa Uludağ University" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
+          </div>
+          <p class="exp-feat-desc">Research in usability engineering, interaction design patterns, and AI–human collaboration. Thesis: cognitive load reduction in complex digital interfaces.</p>
+          <button class="exp-feat-arrow" data-modal="buu-msc">↗</button>
+        </div>
+      </div>
+
+      <div class="exp-row reveal">
+        <div class="exp-row-top">
+          <div class="exp-left">
+            <p class="exp-co">Bursa Uludağ University</p>
             <span class="exp-date-line">2016 – 2020</span>
           </div>
           <p class="exp-mid">Bachelor's in Graphic Design — Visual Communication</p>
@@ -2842,6 +2652,17 @@
 <div class="works-strip">
   <div class="works-track">
 
+    <div class="work-item" data-work="3" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/Alisgidis-1.png" alt="Alışgidiş" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Alışgidiş</span>
+        <span class="work-for">Fintech &amp; BNPL UX</span>
+      </div>
+    </div>
+
     <div class="work-item" data-work="0" style="cursor:pointer;">
       <div class="work-thumb" style="overflow:hidden; position:relative;">
         <img src="works/Lidia-Commerce-1.png" alt="Lidia Commerce Engine" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
@@ -2872,17 +2693,6 @@
       <div class="work-meta">
         <span class="work-title">KoçSistem Audit Platform</span>
         <span class="work-for">SaaS &amp; Enterprise UX</span>
-      </div>
-    </div>
-
-    <div class="work-item" data-work="3" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/Alisgidis-1.png" alt="Alışgidiş" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">Alışgidiş</span>
-        <span class="work-for">Fintech &amp; BNPL UX</span>
       </div>
     </div>
 
@@ -3203,74 +3013,6 @@
   </div>
 </div>
 
-<!-- ========================= TESTIMONIALS SHOWCASE ========================= -->
-<section id="testimonials-showcase">
-  <div class="container">
-    <div class="sec-header reveal">
-      <div>
-        <p class="section-label">Testimonials</p>
-        <h2 class="section-title">What clients and collaborators say</h2>
-      </div>
-      <div>
-        <p class="sec-header-desc">Feedback from designers, engineers, and product leads I've had the pleasure of working with.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="tsc-track-wrapper">
-    <div class="tsc-track" id="tscTrack">
-      <div class="tsc-card">
-        <p class="tsc-quote">Mert helped us rethink how our product communicates with users. His approach to UX was clear, structured, and always tied back to real user behavior.</p>
-        <div class="tsc-author">
-          <div class="tsc-avatar">E</div>
-          <div><div class="tsc-name">Emily Rogers</div><div class="tsc-role">UX Lead</div></div>
-        </div>
-      </div>
-      <div class="tsc-card">
-        <p class="tsc-quote">Working with Mert felt easy from the start. He understands the problem quickly and turns ideas into designs that are clear, thoughtful, and usable.</p>
-        <div class="tsc-author">
-          <div class="tsc-avatar">D</div>
-          <div><div class="tsc-name">Daniel Hartono</div><div class="tsc-role">Product Manager</div></div>
-        </div>
-      </div>
-      <div class="tsc-card">
-        <p class="tsc-quote">Mert brings structure and clarity into the design process. The final result always feels well thought out and aligned with both user needs and business goals.</p>
-        <div class="tsc-author">
-          <div class="tsc-avatar">S</div>
-          <div><div class="tsc-name">Sarah Mitchell</div><div class="tsc-role">Design Director</div></div>
-        </div>
-      </div>
-      <div class="tsc-card">
-        <p class="tsc-quote">What impressed me most was Mert's attention to detail and his ability to balance aesthetics with function. Every interaction felt intentional and polished.</p>
-        <div class="tsc-author">
-          <div class="tsc-avatar">J</div>
-          <div><div class="tsc-name">James Chen</div><div class="tsc-role">Engineering Lead</div></div>
-        </div>
-      </div>
-      <div class="tsc-card">
-        <p class="tsc-quote">Mert doesn't just design screens — he solves problems. He took the time to understand our users and delivered an experience that truly resonated with them.</p>
-        <div class="tsc-author">
-          <div class="tsc-avatar">A</div>
-          <div><div class="tsc-name">Anna Petrova</div><div class="tsc-role">Head of Product</div></div>
-        </div>
-      </div>
-      <div class="tsc-card">
-        <p class="tsc-quote">Collaborating with Mert was seamless. He has a rare ability to translate complex requirements into intuitive, elegant interfaces that our team loved.</p>
-        <div class="tsc-author">
-          <div class="tsc-avatar">M</div>
-          <div><div class="tsc-name">Marcus Webb</div><div class="tsc-role">Senior PM</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-    <div class="tsc-trust reveal">
-      <p>Trusted by teams and companies from various industries.</p>
-    </div>
-  </div>
-</section>
-
 <!-- ========================= CTA BANNER ========================= -->
 <section id="cta">
   <div class="container">
@@ -3323,7 +3065,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-logo"><img src="m-logo-light.svg" alt="Mert" /></div>
-        <p class="footer-tagline">Marketing Designer creating clear, compelling visuals for brands from Istanbul, Turkey.</p>
+        <p class="footer-tagline">Product Designer crafting clear, intuitive digital experiences from Istanbul, Turkey.</p>
       </div>
       <div>
         <a href="mailto:himert9@gmail.com" class="footer-email-big">
@@ -3866,12 +3608,6 @@
 
 <script>
 
-  // ---- Testimonials infinite scroll ----
-  const tscTrack = document.getElementById('tscTrack');
-  if (tscTrack) {
-    tscTrack.innerHTML += tscTrack.innerHTML;
-  }
-
   // ---- Works strip scroll ----
   const worksStrip = document.querySelector('.works-strip');
   const worksPrev  = document.getElementById('worksPrev');
@@ -4314,45 +4050,31 @@
   const EXP_DATA = {
     freelance: {
       company: 'Freelance — Bursa, Turkey (Remote)',
-      role: 'Marketing & Product Designer · Freelance',
+      role: 'Product Designer · Hausè',
       date: 'Apr 2025 – Present',
-      desc: 'Designed and delivered end-to-end web and mobile projects for clients, advancing UX practices through user research, wireframing, and interaction design. Enhanced workflows and product quality by integrating AI-powered tools such as Cursor and Claude into the design and development process. Built full-stack projects independently, combining design expertise with technical implementation. Developed a solid understanding of Python fundamentals and actively expanded knowledge in machine learning concepts, bridging the gap between intelligent systems and human-centered design.',
+      desc: 'Independent product design practice working with startups and SaaS teams — owning the full process from discovery to delivery. I run user research, map user flows, and design wireframes, scalable design systems, and high-fidelity UI in Figma, then guide developer handoff for pixel-perfect implementation.\n\nMy focus is simplifying dense, data-heavy dashboards into clear, task-oriented experiences. I work hands-on with AI-powered tools like Claude and Cursor to prototype and iterate faster, and build full-stack side projects that keep me close to how products actually ship — bridging intelligent systems with human-centered design.',
       skills: ['User Experience Design','Product Development','Product Design','User-Centered Design','User Interaction','Mobile Applications','Agile Methodologies','Mobile App Development','Research Skills','Project Management','Computer Science','Information Architecture','Graphic Design Principles','Human-Computer Interaction','AI for Design','Visual Language','Python','Pandas','Machine Learning Algorithms','AI-Powered Design','Prompt Engineering','Claude AI'],
     },
     feux: {
       company: 'Feux — İstanbul, Turkey (Remote)',
       role: 'User Experience Designer · Full-time',
       date: 'Mar 2022 – Apr 2025',
-      desc: 'Led and participated in the end-to-end design process including kickoff, research & analysis. Collaborated with cross-functional teams, conducted usability evaluations, and ensured responsive design standards before deployment.',
-      skills: ['User Experience Design','UX Research','User-Centered Design','Agile Methodologies','Figma','Research Skills','Analytical Skills','Computer Science','Bridging','Graphic Design Principles','User Interface Design','Human-Computer Interaction','AI for Design','Visual Language'],
+      desc: 'Led UX design across mobile and web products for three years, working with cross-functional teams in an agile environment. Designed fintech & BNPL payment flows for Alışgidiş (Fibabanka), a large-scale commerce platform (Lidia Commerce Engine), an enterprise SaaS audit platform for KoçSistem, and TEB\'s startup networking platform StartTEB.\n\nOwned end-to-end flows — user research, wireframing, high-fidelity prototyping, usability testing, and developer handoff — and built design systems that kept multi-product ecosystems consistent. Turned user interviews and usability findings into product decisions that improved clarity, trust, and task completion.',
+      skills: ['User Experience Design','UX Research','User-Centered Design','Fintech','Design Systems','Agile Methodologies','Figma','Research Skills','Analytical Skills','Computer Science','Bridging','Graphic Design Principles','User Interface Design','Human-Computer Interaction','AI for Design','Visual Language'],
     },
-    markastok: {
-      company: 'Markastok.com & Exxeselection.com — Bursa',
-      role: 'User Interface Designer · Full-time, On-site',
-      date: 'Sep 2021 – Mar 2022',
-      desc: 'Supported the design team in refining user flows and layout structure.',
-      skills: ['Web Design','Figma','Research Skills','Graphic Design Principles','Human-Computer Interaction'],
-    },
-    artiki: {
-      company: 'ARTI İKİ İnternet Bilişim Teknoloji — Bursa',
-      role: 'User Interface Designer · Full-time, On-site',
-      date: 'May 2020 – Jun 2021',
-      desc: 'Conducted stakeholder meetings and content analysis. Built wireframes and user journeys. Designed responsive UI components and design system. Supported front-end team during CMS integration and testing.',
-      skills: ['User Experience Design','Figma','Research Skills','Graphic Design Principles','Human-Computer Interaction'],
+    'buu-msc': {
+      company: 'Bursa Uludağ University',
+      role: "Master's in Human-Computer Interaction",
+      date: '2020 – 2022',
+      desc: 'Master\'s degree in Human-Computer Interaction. Research in usability engineering, interaction design patterns, and AI–human collaboration. Thesis: cognitive load reduction in complex digital interfaces.\n\nSpecialization: Human-AI Interaction',
+      skills: ['Human-Computer Interaction','UX Research','Usability Testing','Interaction Design','Cognitive Load Theory','AI for Design','Research Skills'],
     },
     'uludag-uni': {
-      company: 'Uludağ University',
+      company: 'Bursa Uludağ University',
       role: "Bachelor's in Graphic Design — Visual Communication",
       date: '2016 – 2020',
       desc: 'Studied graphic design with a focus on visual communication, typography, and digital media. Gained foundational knowledge in user interface design and design thinking principles.\n\nSpecialization: Graphic Design & Visual Communication\nActivities: Design workshops, creative projects, visual arts activities',
       skills: ['Research Skills','Graphic Design Principles','User Interface Design','Human-Computer Interaction','User Experience','Figma','Proactive Design Thinking','Communication Design','Adobe Creative Suite'],
-    },
-    'uludag-koleji': {
-      company: 'ULUDAĞ KOLEJİ — Bursa',
-      role: 'Graphic Designer · Internship, On-site',
-      date: 'Nov 2019 – May 2020',
-      desc: 'Assisted in creating visual materials including brochures, banners, and social media content. Developed skills in typography, layout design, and brand consistency. Collaborated with the design team on various print and digital projects.',
-      skills: ['Research Skills','Graphic Design Principles','Human-Computer Interaction','Visual Language'],
     },
   };
 
