@@ -3588,7 +3588,7 @@
             <button class="ds-stage-toggle" id="dsSurfaceToggle" type="button">Dark surface</button>
             <button class="ds-btn" id="dsBtn" type="button">
               <svg class="ds-ico-lead" viewBox="0 0 20 20" fill="none" style="display:none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              <span id="dsBtnLabel">Taksitle öde</span>
+              <span id="dsBtnLabel">Pay in installments</span>
               <svg class="ds-ico-trail" viewBox="0 0 20 20" fill="none" style="display:none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="ds-anatomy">
@@ -3648,7 +3648,7 @@
         <div class="ds-cell">
           <h4>Usage rules</h4>
           <div class="ds-rules">
-            <div class="ds-rule do"><b>Do</b><span>One primary per view — it marks the single most important action (in checkout: "Taksitle öde").</span></div>
+            <div class="ds-rule do"><b>Do</b><span>One primary per view — it marks the single most important action (in checkout: "Pay in installments").</span></div>
             <div class="ds-rule do"><b>Do</b><span>Keep the label a verb phrase, max 3 words. Loading keeps the button width so layout doesn't jump.</span></div>
             <div class="ds-rule dont"><b>Don't</b><span>Use Destructive for cancel/back — it's reserved for data loss (e.g. removing a saved card).</span></div>
             <div class="ds-rule dont"><b>Don't</b><span>Put Ghost buttons on brand-500 surfaces; contrast drops below 4.5:1.</span></div>
@@ -5688,7 +5688,7 @@
         lg: { h: 'size.control.lg · 52px', px: 'space.6 · 24px', r: 'radius.lg · 14px', type: 'text.label.lg · 15/20 · 600' },
       }
     };
-    const LABELS = { primary: 'Taksitle öde', secondary: 'Kampanyayı gör', ghost: 'Vazgeç', destructive: 'Kartı kaldır' };
+    const LABELS = { primary: 'Pay in installments', secondary: 'View campaign', ghost: 'Cancel', destructive: 'Remove card' };
     const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 
     function render() {
