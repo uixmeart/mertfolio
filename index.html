@@ -2182,9 +2182,10 @@
     .ds-more-card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr 1fr; }
     .ds-more-card > img { width: 100%; height: 100%; object-fit: cover; display: block; background: #f6f6f6; }
     .ds-more-card.wide > img { min-height: 320px; }
-    .ds-more-imgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
-    .ds-more-imgs.two { grid-template-columns: 1fr 1fr; }
-    .ds-more-imgs img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: #f6f6f6; }
+    .ds-more-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); }
+    .ds-more-imgs img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: #f0f0f2; }
+    .ds-more-imgs.three img:first-child { grid-column: 1 / -1; aspect-ratio: 2 / 1; }
+    .ds-more-imgs.two img { aspect-ratio: 1 / 1; }
     .ds-more-card figcaption { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 6px; }
     .ds-more-card figcaption .uxb-section-label { margin-bottom: 2px; }
     .ds-more-card figcaption strong { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -.01em; }
@@ -3668,7 +3669,7 @@
         </figure>
 
         <figure class="ds-more-card">
-          <div class="ds-more-imgs">
+          <div class="ds-more-imgs three">
             <img src="works/ds-incident-card-3.jpg" alt="Incident card — Alerts variant">
             <img src="works/ds-incident-card-2.jpg" alt="Incident card — Reviews variant">
             <img src="works/ds-incident-card-1.jpg" alt="Incident card — task variant">
