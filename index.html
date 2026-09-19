@@ -2745,6 +2745,11 @@
       object-fit: cover;
       display: block;
     }
+    /* Fewer images: no empty cells */
+    .wm-gallery.count-1 { grid-template-columns: 1fr; grid-template-rows: 440px; }
+    .wm-gallery.count-1 .wm-img-main { grid-row: 1; }
+    .wm-gallery.count-2 { grid-template-rows: 440px; }
+    .wm-gallery.count-2 .wm-img-main { grid-row: 1; }
 
     .wm-close {
       position: absolute;
@@ -2870,6 +2875,8 @@
       .wm-body { padding: 28px 24px 40px; }
       .wm-gallery { grid-template-columns: 1fr; grid-template-rows: 220px 140px 140px; }
       .wm-gallery .wm-img-main { grid-row: 1; }
+      .wm-gallery.count-1 { grid-template-rows: 260px; }
+      .wm-gallery.count-2 { grid-template-columns: 1fr; grid-template-rows: 220px 180px; }
     }
 
     /* ===== LOGO MARQUEE ===== */
@@ -5273,6 +5280,7 @@
     const w = WORKS[idx];
     // Gallery
     const gallery = document.getElementById('wmGallery');
+    gallery.className = 'wm-gallery' + (w.images.length < 3 ? ' count-' + w.images.length : '');
     gallery.innerHTML = w.images.map((src, i) =>
       `<img src="${src}" alt="${w.title} ${i+1}" class="${i === 0 ? 'wm-img-main' : 'wm-img-sm'}" />`
     ).join('');
