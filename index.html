@@ -2164,6 +2164,43 @@
       .cs-table td:first-child { white-space: normal; }
     }
 
+
+    /* Design system — more components */
+    .ds-more { margin-top: 28px; }
+    .ds-more-head { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 16px; }
+    .ds-more-head h3 { font-size: 20px; font-weight: 500; letter-spacing: -.02em; color: var(--text); }
+    .ds-more-head p { font-size: 13px; color: var(--text-muted); max-width: 52ch; }
+    .ds-more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .ds-more-card {
+      margin: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--card);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .ds-more-card.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1.4fr 1fr; }
+    .ds-more-card > img { width: 100%; height: 100%; object-fit: cover; display: block; background: #f6f6f6; }
+    .ds-more-card.wide > img { min-height: 320px; }
+    .ds-more-imgs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); }
+    .ds-more-imgs.two { grid-template-columns: 1fr 1fr; }
+    .ds-more-imgs img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: #f6f6f6; }
+    .ds-more-card figcaption { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 6px; }
+    .ds-more-card figcaption .uxb-section-label { margin-bottom: 2px; }
+    .ds-more-card figcaption strong { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -.01em; }
+    .ds-more-card figcaption p { font-size: 13px; line-height: 1.65; color: var(--text-muted); }
+    .ds-state-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .ds-state-chips span {
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: 11px; color: var(--text);
+      padding: 3px 9px; border-radius: 40px;
+      border: 1px solid var(--border); background: rgba(255,255,255,.03);
+    }
+    @media (max-width: 900px) {
+      .ds-more-grid { grid-template-columns: 1fr; }
+      .ds-more-card.wide { grid-template-columns: 1fr; }
+      .ds-more-card.wide > img { min-height: 0; }
+    }
     /* ===== DESIGN SYSTEM SECTION ===== */
     #design-system { padding: var(--pad) 0; }
     .ds-wrap {
@@ -3119,9 +3156,9 @@
         </div>
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/freelance-1.png" alt="Payments platform website" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/freelance-2.png" alt="Rental product landing page" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/artiki-2.png" alt="Runly fitness app" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/hause-dashboard-1.jpg" alt="Consulting ops dashboard" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/hause-upgrade-1.jpg" alt="AI finance assistant upgrade sheet" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/hause-research-chat.jpg" alt="Research assistant chat" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Partnering with startups and SaaS teams to take products from first idea to launch — discovery research, user flows, wireframes, scalable design systems, and high-fidelity UI in Figma, all the way through developer handoff. I specialize in turning complex products into clear, task-oriented experiences, and use AI tools (Claude, Cursor) to explore and iterate faster.</p>
           <button class="exp-feat-arrow" data-modal="freelance">↗</button>
@@ -3194,7 +3231,7 @@
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
             <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/artiki-1.png" alt="Beyond — agency website" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
-            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/uludag-2.png" alt="Mobile news app screens" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/artiki-2.png" alt="Runly fitness app" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Created and iterated on UI designs for web and digital products in a fast-paced agency environment. Refined interfaces based on client feedback and user insights.</p>
           <button class="exp-feat-arrow" data-modal="artiki">↗</button>
@@ -3218,6 +3255,7 @@
         <div class="exp-row-body">
           <div class="exp-feat-imgs">
             <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/uludag-1.png" alt="Editorial layout design" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
+            <div class="exp-feat-img" style="background:#1c1c22;overflow:hidden;"><img src="works/uludag-2.png" alt="Mobile news app screens" style="width:100%;height:100%;object-fit:cover;display:block;" /></div>
           </div>
           <p class="exp-feat-desc">Supported the design team with visual communications, print materials, and brand assets. Built foundational skills in typography, layout, and visual identity.</p>
           <button class="exp-feat-arrow" data-modal="uludag-koleji">↗</button>
@@ -3340,6 +3378,50 @@
       <div class="work-meta">
         <span class="work-title">KoçSistem Audit Platform</span>
         <span class="work-for">SaaS &amp; Enterprise UX</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="7" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/hause-dashboard-2.jpg" alt="Consulting Ops Dashboard" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Consulting Ops Dashboard</span>
+        <span class="work-for">SaaS · Data Viz</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="8" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/hause-upgrade-1.jpg" alt="AI Finance Assistant" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">AI Finance Assistant</span>
+        <span class="work-for">Fintech · Upgrade Flow</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="9" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/hause-research-chat.jpg" alt="Research Assistant" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Research Assistant</span>
+        <span class="work-for">AI Product · Chat UI</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="10" style="cursor:pointer;">
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/hause-communi-empty.jpg" alt="Mobile Patterns" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">Mobile Patterns</span>
+        <span class="work-for">Empty States · Offers</span>
       </div>
     </div>
 
@@ -3559,6 +3641,51 @@
         </div>
       </div>
       <div class="ds-footnote">Built in Figma with variants (variant × size × state × icon = 4 × 3 × 5 × 3), component properties for label and icon, and tokens synced via Figma Variables. Handoff: Dev Mode with token names on every property, plus this spec table in the shared component doc.</div>
+    </div>
+
+    <div class="ds-more reveal d2">
+      <div class="ds-more-head">
+        <h3>More from the library</h3>
+        <p>Every component ships the same way: all states drawn, variants named, one craft note for the developer.</p>
+      </div>
+      <div class="ds-more-grid">
+
+        <figure class="ds-more-card wide">
+          <img src="works/ds-search-states.jpg" alt="Company search combobox — six states">
+          <figcaption>
+            <span class="uxb-section-label">Combobox · 6 states</span>
+            <strong>Company search with add-to-list</strong>
+            <p>Default with suggestions, idle empty, searching, results, no results, and add-hover with tooltip. The empty and no-results copy tell the user what to do next; the "+" affordance stays in the same column in every state so the hand never moves.</p>
+            <div class="ds-state-chips"><span>default</span><span>idle</span><span>searching</span><span>results</span><span>no results</span><span>hover</span></div>
+          </figcaption>
+        </figure>
+
+        <figure class="ds-more-card">
+          <div class="ds-more-imgs">
+            <img src="works/ds-incident-card-3.jpg" alt="Incident card — Alerts variant">
+            <img src="works/ds-incident-card-2.jpg" alt="Incident card — Reviews variant">
+            <img src="works/ds-incident-card-1.jpg" alt="Incident card — task variant">
+          </div>
+          <figcaption>
+            <span class="uxb-section-label">Composite card · 3 content variants</span>
+            <strong>Problem → resolution card</strong>
+            <p>Light "problem" panel + dark "resolution" panel, one segmented control for the stage (Alerts / Resolve / Mitigate). Same anatomy carries an incident, a review and a task — only the slot content and the status pill change.</p>
+          </figcaption>
+        </figure>
+
+        <figure class="ds-more-card">
+          <div class="ds-more-imgs two">
+            <img src="works/ds-blur-technique.jpg" alt="Progressive layer blur construction">
+            <img src="works/hause-offers-card.jpg" alt="Result — offers card with soft header glow">
+          </div>
+          <figcaption>
+            <span class="uxb-section-label">Craft note</span>
+            <strong>Header glow without an image asset</strong>
+            <p>A tinted ellipse with a 200px layer blur, clipped by the card. Documented as a recipe (shape, blur value, clip) so developers reproduce it with a gradient + filter instead of exporting a PNG — it stays crisp at every density and recolors with the theme.</p>
+          </figcaption>
+        </figure>
+
+      </div>
     </div>
   </div>
 </section>
@@ -5065,6 +5192,76 @@
         'Collaboration with developers for pixel-perfect handoff',
       ],
       outcome: 'The redesigned Kalekim website provides users with a clean, modern, and professional experience that improves both usability and brand perception.'
+    }    ,{
+      title: 'Consulting Ops Dashboard',
+      link: null,
+      tags: ['SaaS', 'Dashboard', 'Data Visualization', 'Hausè · 2025'],
+      images: ['works/hause-dashboard-2.jpg', 'works/hause-dashboard-1.jpg'],
+      desc: `
+        <p>An operations dashboard for a consulting firm that allocates consultants and sales agents to client engagements. The home screen answers three questions in one glance: how is revenue trending, who is unallocated right now, and what needs my action today.</p>
+        <p>The top of the page is a plain-language summary ("8 consultants &amp; 6 sales agents are unallocated. You've to submit hiring report by day end.") instead of a row of KPI tiles — the numbers that matter are in the sentence, the rest is one scroll below. KPI cards carry allocated/unallocated splits inline so managers don't open a second view to act on them.</p>
+        <p>Charts use a restrained monochrome scale: only the selected period is dark, everything else recedes. Tooltips show the two values a manager compares (revenue and allocation %) rather than every series.</p>
+      `,
+      focus: [
+        'Sentence-first dashboard: the summary is the headline, tiles support it',
+        'Allocated / unallocated split inline on every people metric',
+        'Monochrome chart scale — highlight only the selected period',
+        'Quick-access bookmarks for saved views (engagements, top performers)',
+        'Persistent support panel without leaving the workspace',
+      ],
+      outcome: 'Designed end-to-end at Hausè — information architecture, KPI hierarchy, chart system and component library — and handed off with token-mapped specs.'
+    },
+    {
+      title: 'AI Finance Assistant',
+      link: null,
+      tags: ['Fintech', 'Mobile', 'Upgrade Flow', 'Hausè · 2025'],
+      images: ['works/hause-upgrade-1.jpg', 'works/hause-upgrade-3.jpg', 'works/hause-upgrade-2.jpg'],
+      desc: `
+        <p>Upgrade sheet for a personal-finance app that adds an AI analyst tier. The job of this single screen is to make a $19/mo decision feel informed, not pushed.</p>
+        <p>The header illustration signals "AI" without a robot; the headline names the benefit as a person ("a personal analyst that reads your accounts"); three features each get a one-line proof, not a marketing claim. The discount badge sits beside the title so price context arrives before the CTA. "No thanks" is a real, readable dismiss — not a hidden link — because trust in a finance product is worth more than one forced conversion.</p>
+      `,
+      focus: [
+        'Benefit-as-a-person headline, feature list with plain proofs',
+        'Price on the CTA itself — no surprise at the next step',
+        'Honest dismiss action, equal visual weight to the decision',
+        'Header illustration built with layered blur, no stock imagery',
+        'Component spec: sheet, feature row, badge, primary/tertiary button',
+      ],
+      outcome: 'Delivered as a reusable "upgrade sheet" pattern with variants for discount / no-discount and 2–4 features.'
+    },
+    {
+      title: 'Research Assistant',
+      link: null,
+      tags: ['AI Product', 'Chat UI', 'Web', 'Hausè · 2025'],
+      images: ['works/hause-research-chat.jpg'],
+      desc: `
+        <p>A document-grounded research assistant: the user reads a paper on the left, asks the agent about it on the right. The chat follows familiar AI conventions (model picker, share, new chat) so nothing has to be learned — the design effort went into how answers are structured.</p>
+        <p>Responses are formatted as labelled sections (research question → context → focus of investigation) rather than a wall of text, and the composer supports rich references — a pasted YouTube link becomes a chip inline — so the follow-up prompt reads like a sentence, not a form. Feedback and save actions sit under every answer.</p>
+      `,
+      focus: [
+        'Structured answers: labelled sections instead of prose blocks',
+        'Inline link chips in the composer for multi-source prompts',
+        'Reader + chat split view with page position in context',
+        'Model picker and export actions in the conversation header',
+      ],
+      outcome: 'Shipped as the conversation module of a research tool built with the client team at Hausè.'
+    },
+    {
+      title: 'Mobile Patterns',
+      link: null,
+      tags: ['Mobile', 'Empty States', 'Micro-UI', 'Hausè · 2025'],
+      images: ['works/hause-communi-empty.jpg', 'works/hause-offers-card.jpg'],
+      desc: `
+        <p>Two small screens that carry a lot of weight. The <strong>empty state</strong> for a membership-card wallet explains what will appear here and why it's empty ("no cards linked to your number yet"), then offers the one recovery action — add a card manually. The illustrated card uses the product's own visual language, so the empty screen already teaches what a real card looks like.</p>
+        <p>The <strong>offers card</strong> is a promotional module designed to be skimmed in a second: three previews, a benefit headline, a CTA that names the count ("Show 10 easy offers") so the tap has a known cost.</p>
+      `,
+      focus: [
+        'Empty state = explanation + single recovery action',
+        'Illustration built from the product\'s own component, not a generic graphic',
+        'CTA copy that quantifies what happens next',
+        'Soft header glow via progressive layer blur (see Design System)',
+      ],
+      outcome: 'Patterns documented in the client\'s component library with copy guidelines for empty states and promo modules.'
     }
   ];
 
