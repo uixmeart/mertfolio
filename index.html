@@ -1751,12 +1751,606 @@
     }
     .uxb-modal-cta a:hover { background: #A2FF80; }
 
+    /* Hero image never fills the whole modal — the text below must peek */
+    .uxb-modal-body > img:first-child {
+      max-height: 46vh;
+      object-fit: contain;
+      background: #0e0e13;
+      border: 1px solid var(--border);
+    }
+    .uxb-modal { position: relative; }
+    .uxb-scroll-cue {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 96px;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(20,20,25,0) 0%, rgba(20,20,25,.92) 70%);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 16px;
+      opacity: 1;
+      transition: opacity .3s;
+      z-index: 2;
+    }
+    .uxb-scroll-cue span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 40px;
+      background: rgba(177,240,147,.12);
+      border: 1px solid rgba(177,240,147,.35);
+      color: #B1F093;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      animation: uxbCueBob 1.6s ease-in-out infinite;
+    }
+    @keyframes uxbCueBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+    .uxb-modal.scrolled .uxb-scroll-cue { opacity: 0; }
+
     @media (max-width: 600px) {
       .uxb-modal { width: 100%; max-height: 100vh; border-radius: 0; }
+      .uxb-modal-body > img:first-child { max-height: 40vh; }
       .uxb-modal-header { padding: 20px; }
       .uxb-modal-body { padding: 20px; gap: 28px; }
       .uxb-modal-section { grid-template-columns: 1fr; }
       .uxb-modal-section.reverse { direction: ltr; }
+    }
+
+    /* ===== CASE STUDY MODAL ===== */
+    .uxb-modal.cs-modal { width: min(1040px, 94vw); }
+    .cs-meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .cs-meta-item {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.02);
+    }
+    .cs-meta-item span {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .cs-meta-item strong { font-size: 13px; font-weight: 500; color: var(--text); }
+    .cs-steps {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .cs-step {
+      flex: 1 1 120px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .cs-step i {
+      font-style: normal;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700;
+      background: rgba(177,240,147,.12);
+      color: #B1F093;
+      flex-shrink: 0;
+    }
+    .cs-block h4 {
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.02em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .cs-block p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 72ch;
+    }
+    .cs-block p + p { margin-top: 10px; }
+    .cs-block ul { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+    .cs-block ul li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+    .cs-block ul li::before {
+      content: '';
+      position: absolute; left: 0; top: 10px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #B1F093;
+    }
+    .cs-block ul li strong { color: var(--text); font-weight: 500; }
+    .cs-two { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .cs-callout {
+      padding: 20px 22px;
+      border-radius: 16px;
+      border: 1px solid rgba(177,240,147,.25);
+      background: rgba(177,240,147,.05);
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text);
+    }
+    .cs-callout em { color: #B1F093; font-style: normal; }
+
+    /* Diagrams */
+    .cs-diagram {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: #0e0e13;
+      padding: 20px;
+      overflow-x: auto;
+    }
+    .cs-diagram-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+    .cs-ia { display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 640px; }
+    .cs-ia-root {
+      padding: 10px 22px;
+      border-radius: 40px;
+      background: #B1F093;
+      color: #0a0a0f;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .cs-ia-stem { width: 1px; height: 22px; background: rgba(255,255,255,.25); }
+    .cs-ia-cols {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      gap: 12px;
+      width: 100%;
+      position: relative;
+      padding-top: 14px;
+    }
+    .cs-ia-cols::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: rgba(255,255,255,.25);
+    }
+    .cs-ia-col { display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+    .cs-ia-col::before {
+      content: '';
+      position: absolute; top: -14px; left: 50%;
+      width: 1px; height: 14px;
+      background: rgba(255,255,255,.25);
+    }
+    .cs-ia-node {
+      width: 100%;
+      text-align: center;
+      padding: 9px 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .cs-ia-node.lvl1 { border-color: rgba(177,240,147,.5); }
+    .cs-ia-leaf {
+      width: 100%;
+      text-align: center;
+      padding: 7px 8px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.03);
+      border: 1px dashed rgba(255,255,255,.14);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .cs-ia-group {
+      width: 100%;
+      margin-top: 4px;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.08);
+      display: flex; flex-direction: column; gap: 6px;
+    }
+    .cs-ia-group-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #B1F093;
+      text-align: center;
+    }
+
+    .cs-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .cs-flow-node {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.35;
+      max-width: 170px;
+    }
+    .cs-flow-node small { display: block; font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+    .cs-flow-node.start { background: #B1F093; color: #0a0a0f; border-color: #B1F093; font-weight: 600; }
+    .cs-flow-node.decision {
+      border-style: dashed;
+      border-color: rgba(255,200,120,.6);
+      background: rgba(255,200,120,.06);
+    }
+    .cs-flow-node.end { border-color: rgba(177,240,147,.6); background: rgba(177,240,147,.08); }
+    .cs-flow-node.pain { border-color: rgba(255,120,120,.55); background: rgba(255,120,120,.06); }
+    .cs-flow-arrow { color: var(--text-muted); font-size: 14px; flex-shrink: 0; }
+    .cs-flow-row2 { flex-wrap: nowrap; margin-top: 14px; padding-top: 14px; border-top: 1px dashed rgba(255,255,255,.1); min-width: max-content; }
+    .cs-flow-branch { display: flex; flex-direction: column; gap: 8px; }
+    .cs-flow-branch .cs-flow { flex-wrap: nowrap; }
+    .cs-flow-label { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); padding: 0 4px; }
+
+    /* Screens */
+    .cs-screens { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cs-screens figure {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #111;
+    }
+    .cs-screens figure.wide { grid-column: 1 / -1; }
+    .cs-screens img { width: 100%; height: auto; display: block; }
+    .cs-screens figcaption {
+      padding: 12px 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+    .cs-screens figcaption strong { color: var(--text); font-weight: 500; }
+
+    /* Before / After */
+    .cs-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .cs-compare-col {
+      padding: 18px 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .cs-compare-col h5 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      color: var(--text-muted);
+    }
+    .cs-compare-col.after { border-color: rgba(177,240,147,.3); }
+    .cs-compare-col.after h5 { color: #B1F093; }
+    .cs-compare-col ul { display: flex; flex-direction: column; gap: 8px; }
+    .cs-compare-col li { font-size: 13px; line-height: 1.55; color: var(--text-muted); padding-left: 16px; position: relative; }
+    .cs-compare-col li::before { content: '–'; position: absolute; left: 0; color: var(--text-muted); }
+    .cs-compare-col.after li::before { content: '+'; color: #B1F093; }
+
+    /* Metrics */
+    .cs-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .cs-metric {
+      padding: 18px 20px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .cs-metric-val {
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: -.03em;
+      color: #B1F093;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .cs-metric-val.placeholder {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #ffc878;
+      border: 1px dashed rgba(255,200,120,.6);
+      border-radius: 8px;
+      padding: 6px 10px;
+      letter-spacing: 0;
+    }
+    .cs-metric-label { font-size: 13px; color: var(--text); font-weight: 500; }
+    .cs-metric-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; line-height: 1.5; }
+
+    /* Spec / handoff table */
+    .cs-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .cs-table th, .cs-table td {
+      text-align: left;
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .cs-table th {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .cs-table td { color: var(--text-muted); }
+    .cs-table td:first-child { color: var(--text); font-weight: 500; white-space: nowrap; }
+    .cs-table code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      color: #B1F093;
+      background: rgba(177,240,147,.08);
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+    .cs-handoff-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .cs-handoff-item {
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .cs-handoff-item strong { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+    .cs-handoff-item p { font-size: 12px; line-height: 1.55; color: var(--text-muted); }
+
+    .cs-note { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+    .cs-divider { height: 1px; background: var(--border); }
+
+    .work-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      padding: 5px 11px;
+      border-radius: 40px;
+      background: rgba(10,10,15,.82);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      color: #B1F093;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(177,240,147,.3);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* Public-case disclaimer pill */
+    .ab-disclaimer {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 40px;
+      border: 1px solid rgba(255,200,120,.35);
+      background: rgba(255,200,120,.06);
+      color: #ffc878;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .ab-disclaimer svg { flex-shrink: 0; }
+    .ab-modal-note {
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255,200,120,.4);
+      font-size: 12px;
+      line-height: 1.55;
+      color: var(--text-muted);
+    }
+    .ab-modal-note strong { color: #ffc878; font-weight: 600; }
+
+    @media (max-width: 800px) {
+      .cs-meta { grid-template-columns: 1fr 1fr; }
+      .cs-two, .cs-screens, .cs-compare { grid-template-columns: 1fr; }
+      .cs-screens figure.wide { grid-column: auto; }
+      .cs-metrics, .cs-handoff-list { grid-template-columns: 1fr; }
+      .cs-block h4 { font-size: 18px; }
+      .cs-table td:first-child { white-space: normal; }
+    }
+
+    /* ===== DESIGN SYSTEM SECTION ===== */
+    #design-system { padding: var(--pad) 0; }
+    .ds-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      background: var(--card);
+      overflow: hidden;
+    }
+    .ds-top {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .ds-stage-wrap { border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+    .ds-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ds-control { display: flex; flex-direction: column; gap: 6px; }
+    .ds-control-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .ds-seg { display: inline-flex; gap: 4px; padding: 3px; border-radius: 40px; background: rgba(255,255,255,.04); border: 1px solid var(--border); }
+    .ds-seg button {
+      padding: 6px 12px;
+      border-radius: 40px;
+      font-size: 12px;
+      color: var(--text-muted);
+      transition: background .2s, color .2s;
+    }
+    .ds-seg button:hover { color: var(--text); }
+    .ds-seg button.active { background: var(--text); color: var(--bg); }
+    .ds-stage {
+      flex: 1;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background:
+        linear-gradient(rgba(0,0,0,.04) 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(90deg, rgba(0,0,0,.04) 1px, transparent 1px) 0 0 / 24px 24px,
+        #ffffff;
+      padding: 40px 24px;
+    }
+    .ds-stage.dark {
+      background:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 24px 24px,
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 24px 24px,
+        #111110;
+    }
+    .ds-stage-tag {
+      position: absolute;
+      top: 12px; left: 14px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.4);
+    }
+    .ds-stage.dark .ds-stage-tag { color: rgba(255,255,255,.4); }
+    .ds-stage-toggle {
+      position: absolute;
+      top: 8px; right: 10px;
+      padding: 5px 10px;
+      border-radius: 40px;
+      font-size: 11px;
+      color: rgba(0,0,0,.55);
+      border: 1px solid rgba(0,0,0,.15);
+    }
+    .ds-stage.dark .ds-stage-toggle { color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.2); }
+
+    /* --- The component: Button --- */
+    .ds-btn {
+      --btn-bg: #D8FF3D;
+      --btn-fg: #111110;
+      --btn-border: #D8FF3D;
+      --btn-bg-hover: #C9F22A;
+      --btn-h: 44px;
+      --btn-px: 20px;
+      --btn-fs: 14px;
+      --btn-gap: 8px;
+      --btn-radius: 12px;
+      --btn-focus: #7A5CFF;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--btn-gap);
+      height: var(--btn-h);
+      padding: 0 var(--btn-px);
+      font-size: var(--btn-fs);
+      font-weight: 600;
+      letter-spacing: -.005em;
+      border-radius: var(--btn-radius);
+      background: var(--btn-bg);
+      color: var(--btn-fg);
+      border: 1.5px solid var(--btn-border);
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background .15s, border-color .15s, color .15s, transform .1s, box-shadow .15s;
+      white-space: nowrap;
+    }
+    .ds-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .ds-btn.secondary { --btn-bg: transparent; --btn-fg: #111110; --btn-border: #111110; --btn-bg-hover: rgba(17,17,16,.06); }
+    .ds-btn.ghost { --btn-bg: transparent; --btn-fg: #111110; --btn-border: transparent; --btn-bg-hover: rgba(17,17,16,.06); }
+    .ds-btn.destructive { --btn-bg: #E5484D; --btn-fg: #ffffff; --btn-border: #E5484D; --btn-bg-hover: #D0393E; }
+    .ds-stage.dark .ds-btn.secondary, .ds-stage.dark .ds-btn.ghost { --btn-fg: #ffffff; --btn-border: rgba(255,255,255,.7); --btn-bg-hover: rgba(255,255,255,.1); }
+    .ds-stage.dark .ds-btn.ghost { --btn-border: transparent; }
+    .ds-btn.sm { --btn-h: 36px; --btn-px: 14px; --btn-fs: 13px; --btn-radius: 10px; }
+    .ds-btn.lg { --btn-h: 52px; --btn-px: 26px; --btn-fs: 15px; --btn-radius: 14px; }
+    .ds-btn:hover, .ds-btn.is-hover { background: var(--btn-bg-hover); }
+    .ds-btn:active, .ds-btn.is-active { transform: translateY(1px); }
+    .ds-btn:focus-visible, .ds-btn.is-focus { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--btn-focus); }
+    .ds-stage.dark .ds-btn.is-focus, .ds-stage.dark .ds-btn:focus-visible { box-shadow: 0 0 0 2px #111110, 0 0 0 4px var(--btn-focus); }
+    .ds-btn:disabled, .ds-btn.is-disabled { opacity: .4; cursor: not-allowed; pointer-events: none; }
+    .ds-btn.is-loading { color: transparent; pointer-events: none; }
+    .ds-btn.is-loading::after {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 2px solid var(--btn-fg);
+      border-right-color: transparent;
+      animation: dsSpin .7s linear infinite;
+    }
+    .ds-btn.is-loading.secondary::after, .ds-btn.is-loading.ghost::after { border-color: #111110; border-right-color: transparent; }
+    .ds-stage.dark .ds-btn.is-loading.secondary::after, .ds-stage.dark .ds-btn.is-loading.ghost::after { border-color: #fff; border-right-color: transparent; }
+    @keyframes dsSpin { to { transform: rotate(360deg); } }
+
+    .ds-anatomy {
+      position: absolute;
+      bottom: 14px; left: 14px; right: 14px;
+      display: flex; gap: 14px; flex-wrap: wrap;
+      font-size: 11px;
+      color: rgba(0,0,0,.5);
+    }
+    .ds-stage.dark .ds-anatomy { color: rgba(255,255,255,.5); }
+    .ds-anatomy b { font-weight: 600; color: rgba(0,0,0,.75); }
+    .ds-stage.dark .ds-anatomy b { color: rgba(255,255,255,.8); }
+
+    .ds-spec { padding: 22px 24px; display: flex; flex-direction: column; gap: 18px; }
+    .ds-spec h4 { font-size: 15px; font-weight: 600; color: var(--text); letter-spacing: -.01em; }
+    .ds-spec-sub { font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-top: -10px; }
+    .ds-spec .cs-table td:first-child { color: var(--text-muted); font-weight: 400; }
+    .ds-spec .cs-table td:last-child { color: var(--text); }
+
+    .ds-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+    .ds-cell { padding: 22px 24px; border-right: 1px solid var(--border); }
+    .ds-cell:last-child { border-right: none; }
+    .ds-cell h4 { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 12px; }
+    .ds-swatches { display: flex; flex-direction: column; gap: 8px; }
+    .ds-swatch { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--text-muted); }
+    .ds-swatch i { width: 26px; height: 26px; border-radius: 7px; border: 1px solid rgba(255,255,255,.12); flex-shrink: 0; }
+    .ds-swatch code { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--text); }
+    .ds-swatch span { margin-left: auto; font-family: ui-monospace, Menlo, monospace; font-size: 11px; }
+    .ds-rules { display: flex; flex-direction: column; gap: 10px; }
+    .ds-rule { display: flex; gap: 10px; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+    .ds-rule b { flex-shrink: 0; width: 44px; font-size: 10px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding-top: 2px; }
+    .ds-rule.do b { color: #B1F093; }
+    .ds-rule.dont b { color: #ff8a8a; }
+    .ds-states { display: flex; flex-direction: column; gap: 8px; }
+    .ds-state-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; color: var(--text-muted); padding: 6px 0; border-bottom: 1px solid var(--border); }
+    .ds-state-row:last-child { border-bottom: none; }
+    .ds-state-row code { font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: var(--text); }
+    .ds-footnote { padding: 14px 24px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); line-height: 1.55; }
+
+    @media (max-width: 900px) {
+      .ds-top { grid-template-columns: 1fr; }
+      .ds-controls { padding: 16px; gap: 12px 16px; }
+      .ds-seg { flex-wrap: wrap; border-radius: 16px; }
+      .ds-spec { padding: 18px 16px; }
+      .ds-spec .cs-table th, .ds-spec .cs-table td { padding: 9px 8px; }
+      .ds-spec .cs-table code { white-space: normal; }
+      .ds-cell { padding: 18px 16px; }
+      .ds-footnote { padding: 14px 16px; }
+      .ds-stage-wrap { border-right: none; border-bottom: 1px solid var(--border); }
+      .ds-bottom { grid-template-columns: 1fr; }
+      .ds-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .ds-cell:last-child { border-bottom: none; }
     }
 
     .uxb-body {
@@ -2334,6 +2928,7 @@
     <ul class="nav-links">
       <li><a href="#about">About Me</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#design-system">Design System</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#blog">Blog</a></li>
@@ -2349,6 +2944,7 @@
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
   <a href="#about"      class="mob-link">About Me</a>
   <a href="#portfolio"  class="mob-link">Portfolio</a>
+  <a href="#design-system" class="mob-link">Design System</a>
   <a href="#experience" class="mob-link">Experience</a>
   <a href="#education"  class="mob-link">Education</a>
   <a href="#blog"       class="mob-link">Blog</a>
@@ -2631,7 +3227,7 @@
       <h2 class="section-title">Latest Works</h2>
     </div>
     <div>
-      <p class="sec-header-desc">A curated selection of recent projects spanning product design, branding, and digital experiences.</p>
+      <p class="sec-header-desc">Shipped product work across fintech, enterprise SaaS and e-commerce. Two projects are documented as full case studies — problem, research, IA &amp; flows, UI, outcome and handoff.</p>
       <div style="display:flex;align-items:center;gap:16px;">
         <div class="works-nav">
           <button class="works-nav-btn" id="worksPrev" aria-label="Previous">
@@ -2652,7 +3248,8 @@
 <div class="works-strip">
   <div class="works-track">
 
-    <div class="work-item" data-work="3" style="cursor:pointer;">
+    <div class="work-item" data-work="3" data-case="csAlisgidisModal" style="cursor:pointer;">
+      <span class="work-badge">Case Study</span>
       <div class="work-thumb" style="overflow:hidden; position:relative;">
         <img src="works/Alisgidis-1.png" alt="Alışgidiş" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
       </div>
@@ -2660,6 +3257,18 @@
       <div class="work-meta">
         <span class="work-title">Alışgidiş</span>
         <span class="work-for">Fintech &amp; BNPL UX</span>
+      </div>
+    </div>
+
+    <div class="work-item" data-work="2" data-case="csKocsistemModal" style="cursor:pointer;">
+      <span class="work-badge">Case Study</span>
+      <div class="work-thumb" style="overflow:hidden; position:relative;">
+        <img src="works/KoçSistem-1.png" alt="KoçSistem Audit Platform" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
+      </div>
+      <div class="work-arrow">↗</div>
+      <div class="work-meta">
+        <span class="work-title">KoçSistem Audit Platform</span>
+        <span class="work-for">SaaS &amp; Enterprise UX</span>
       </div>
     </div>
 
@@ -2682,17 +3291,6 @@
       <div class="work-meta">
         <span class="work-title">StartTEB</span>
         <span class="work-for">UX &amp; UI Design</span>
-      </div>
-    </div>
-
-    <div class="work-item" data-work="2" style="cursor:pointer;">
-      <div class="work-thumb" style="overflow:hidden; position:relative;">
-        <img src="works/KoçSistem-1.png" alt="KoçSistem Audit Platform" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:16px;" />
-      </div>
-      <div class="work-arrow">↗</div>
-      <div class="work-meta">
-        <span class="work-title">KoçSistem Audit Platform</span>
-        <span class="work-for">SaaS &amp; Enterprise UX</span>
       </div>
     </div>
 
@@ -2760,6 +3358,139 @@
     </div>
   </div>
 </div>
+
+<!-- ========================= DESIGN SYSTEM ========================= -->
+<section id="design-system">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div>
+        <p class="section-label">Design System</p>
+        <h2 class="section-title">One component, fully specified</h2>
+      </div>
+      <div>
+        <p class="sec-header-desc">The Button primitive from the Alışgidiş design system I built with Fibabanka's brand. Tokens, variants, sizes, states and the handoff spec — the same depth every component in the library carries. Live: click the controls.</p>
+      </div>
+    </div>
+
+    <div class="ds-wrap reveal d1">
+      <div class="ds-top">
+
+        <!-- Live stage -->
+        <div class="ds-stage-wrap">
+          <div class="ds-controls">
+            <div class="ds-control">
+              <span class="ds-control-label">Variant</span>
+              <div class="ds-seg" data-ds="variant">
+                <button class="active" data-val="primary">Primary</button>
+                <button data-val="secondary">Secondary</button>
+                <button data-val="ghost">Ghost</button>
+                <button data-val="destructive">Destructive</button>
+              </div>
+            </div>
+            <div class="ds-control">
+              <span class="ds-control-label">Size</span>
+              <div class="ds-seg" data-ds="size">
+                <button data-val="sm">S · 36</button>
+                <button class="active" data-val="md">M · 44</button>
+                <button data-val="lg">L · 52</button>
+              </div>
+            </div>
+            <div class="ds-control">
+              <span class="ds-control-label">State</span>
+              <div class="ds-seg" data-ds="state">
+                <button class="active" data-val="default">Default</button>
+                <button data-val="is-hover">Hover</button>
+                <button data-val="is-focus">Focus</button>
+                <button data-val="is-loading">Loading</button>
+                <button data-val="is-disabled">Disabled</button>
+              </div>
+            </div>
+            <div class="ds-control">
+              <span class="ds-control-label">Icon</span>
+              <div class="ds-seg" data-ds="icon">
+                <button class="active" data-val="none">None</button>
+                <button data-val="leading">Leading</button>
+                <button data-val="trailing">Trailing</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ds-stage" id="dsStage">
+            <span class="ds-stage-tag">Preview · surface/light</span>
+            <button class="ds-stage-toggle" id="dsSurfaceToggle" type="button">Dark surface</button>
+            <button class="ds-btn" id="dsBtn" type="button">
+              <svg class="ds-ico-lead" viewBox="0 0 20 20" fill="none" style="display:none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span id="dsBtnLabel">Taksitle öde</span>
+              <svg class="ds-ico-trail" viewBox="0 0 20 20" fill="none" style="display:none"><path d="M4 10h12M11 5l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="ds-anatomy">
+              <span><b>1</b> container</span>
+              <span><b>2</b> label · 600</span>
+              <span><b>3</b> optional icon 18px</span>
+              <span><b>4</b> focus ring 2+2px</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spec panel -->
+        <div class="ds-spec">
+          <h4>Spec · <span id="dsSpecTitle">Button / Primary / M</span></h4>
+          <p class="ds-spec-sub">Every value maps to a token — developers consume the token, not the hex. Updates as you change the controls.</p>
+          <table class="cs-table" id="dsSpecTable">
+            <tbody>
+              <tr><td>Background</td><td><code data-spec="bg">color.brand.500</code></td></tr>
+              <tr><td>Foreground</td><td><code data-spec="fg">color.ink.900</code></td></tr>
+              <tr><td>Border</td><td><code data-spec="border">color.brand.500 · 1.5px</code></td></tr>
+              <tr><td>Hover</td><td><code data-spec="hover">color.brand.600</code></td></tr>
+              <tr><td>Height</td><td><code data-spec="h">size.control.md · 44px</code></td></tr>
+              <tr><td>Padding X</td><td><code data-spec="px">space.5 · 20px</code></td></tr>
+              <tr><td>Radius</td><td><code data-spec="r">radius.md · 12px</code></td></tr>
+              <tr><td>Type</td><td><code data-spec="type">text.label.md · 14/20 · 600</code></td></tr>
+              <tr><td>Icon gap</td><td><code>space.2 · 8px</code></td></tr>
+              <tr><td>Focus ring</td><td><code>color.focus · 2px offset + 2px ring</code></td></tr>
+              <tr><td>Min tap target</td><td><code>44 × 44 (S adds 4px hit-slop)</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ds-bottom">
+        <div class="ds-cell">
+          <h4>Tokens used</h4>
+          <div class="ds-swatches">
+            <div class="ds-swatch"><i style="background:#D8FF3D"></i><code>color.brand.500</code><span>#D8FF3D</span></div>
+            <div class="ds-swatch"><i style="background:#C9F22A"></i><code>color.brand.600</code><span>#C9F22A</span></div>
+            <div class="ds-swatch"><i style="background:#111110"></i><code>color.ink.900</code><span>#111110</span></div>
+            <div class="ds-swatch"><i style="background:#E5484D"></i><code>color.danger.500</code><span>#E5484D</span></div>
+            <div class="ds-swatch"><i style="background:#7A5CFF"></i><code>color.focus</code><span>#7A5CFF</span></div>
+            <div class="ds-swatch"><i style="background:#ffffff"></i><code>surface.base</code><span>#FFFFFF</span></div>
+          </div>
+        </div>
+        <div class="ds-cell">
+          <h4>States &amp; behavior</h4>
+          <div class="ds-states">
+            <div class="ds-state-row"><span>Hover</span><code>bg → brand.600, 150ms</code></div>
+            <div class="ds-state-row"><span>Pressed</span><code>translateY(1px)</code></div>
+            <div class="ds-state-row"><span>Focus-visible</span><code>ring only on keyboard</code></div>
+            <div class="ds-state-row"><span>Loading</span><code>label hidden, width locked</code></div>
+            <div class="ds-state-row"><span>Disabled</span><code>opacity .4, no pointer</code></div>
+            <div class="ds-state-row"><span>Contrast</span><code>ink on brand 16.4:1 · AAA</code></div>
+          </div>
+        </div>
+        <div class="ds-cell">
+          <h4>Usage rules</h4>
+          <div class="ds-rules">
+            <div class="ds-rule do"><b>Do</b><span>One primary per view — it marks the single most important action (in checkout: "Taksitle öde").</span></div>
+            <div class="ds-rule do"><b>Do</b><span>Keep the label a verb phrase, max 3 words. Loading keeps the button width so layout doesn't jump.</span></div>
+            <div class="ds-rule dont"><b>Don't</b><span>Use Destructive for cancel/back — it's reserved for data loss (e.g. removing a saved card).</span></div>
+            <div class="ds-rule dont"><b>Don't</b><span>Put Ghost buttons on brand-500 surfaces; contrast drops below 4.5:1.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ds-footnote">Built in Figma with variants (variant × size × state × icon = 4 × 3 × 5 × 3), component properties for label and icon, and tokens synced via Figma Variables. Handoff: Dev Mode with token names on every property, plus this spec table in the shared component doc.</div>
+    </div>
+  </div>
+</section>
 
 <!-- ========================= UX BREAKDOWNS ========================= -->
 <section id="ux-breakdowns">
@@ -2837,11 +3568,12 @@
   <div class="container">
     <div class="sec-header reveal">
       <div>
-        <p class="section-label">A/B Tests</p>
-        <h2 class="section-title">Real-World A/B Tests</h2>
+        <p class="section-label">A/B Test Analyses</p>
+        <h2 class="section-title">Analysis of Public A/B Tests</h2>
       </div>
       <div>
-        <p class="sec-header-desc">Analyzing real A/B test cases from top products — what changed, why it worked, and the impact on user behavior.</p>
+        <p class="sec-header-desc">My written analysis of publicly documented experiments by Uber, TikTok and Duolingo — what changed, why it worked, and what the result says about user behavior.</p>
+        <span class="ab-disclaimer"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 7v4M8 5v.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>Not my work — third-party experiments I studied. My own shipped work is in the case studies above.</span>
       </div>
     </div>
 
@@ -2854,7 +3586,7 @@
           <div class="uxb-hover-arrow">↗</div>
         </div>
         <div class="uxb-body">
-          <span class="uxb-tag">A/B Test</span>
+          <span class="uxb-tag">Public Case · Analysis</span>
           <h3 class="uxb-title">Clearer Pricing Estimate</h3>
           <p class="uxb-desc">How Uber switched from price ranges to single estimated prices — reducing user hesitation and driving a double-digit increase in rides per user.</p>
           <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -2868,7 +3600,7 @@
           <div class="uxb-hover-arrow">↗</div>
         </div>
         <div class="uxb-body">
-          <span class="uxb-tag">A/B Test</span>
+          <span class="uxb-tag">Public Case · Analysis</span>
           <h3 class="uxb-title">Delayed Bank Account Setup</h3>
           <p class="uxb-desc">How TikTok revised onboarding to let creators start earning before linking bank accounts — driving a 25% increase in program enrollment.</p>
           <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -2882,7 +3614,7 @@
           <div class="uxb-hover-arrow">↗</div>
         </div>
         <div class="uxb-body">
-          <span class="uxb-tag">A/B Test</span>
+          <span class="uxb-tag">Public Case · Analysis</span>
           <h3 class="uxb-title">Decoupling Streaks from Daily Goals</h3>
           <p class="uxb-desc">How Duolingo decoupled streaks from daily goals — reducing pressure and driving a 40% increase in 7+ day streaks.</p>
           <span class="uxb-link">View Case <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -3114,12 +3846,14 @@
   <div class="uxb-modal">
     <div class="uxb-modal-header">
       <div class="uxb-modal-header-left">
-        <span class="uxb-tag">A/B Test</span>
+        <span class="uxb-tag">Public Case · Analysis</span>
         <span class="uxb-modal-header-title">Uber — Clearer Pricing Estimate</span>
       </div>
       <button class="uxb-modal-close" onclick="document.getElementById('abUberPricingModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
     </div>
     <div class="uxb-modal-body">
+
+      <div class="ab-modal-note"><strong>Public case analysis.</strong> This experiment was designed and run by Uber; the figures below come from their public reporting. My contribution is the UX analysis of why the change worked.</div>
 
       <!-- Cover Image -->
       <img src="ab-uber-pricing.jpg" alt="Uber Pricing A/B Test" style="width:100%;display:block;border-radius:16px;">
@@ -3166,12 +3900,14 @@
   <div class="uxb-modal">
     <div class="uxb-modal-header">
       <div class="uxb-modal-header-left">
-        <span class="uxb-tag">A/B Test</span>
+        <span class="uxb-tag">Public Case · Analysis</span>
         <span class="uxb-modal-header-title">TikTok · Delayed Bank Account Setup</span>
       </div>
       <button class="uxb-modal-close" onclick="document.getElementById('abTiktokOnboardingModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
     </div>
     <div class="uxb-modal-body">
+
+      <div class="ab-modal-note"><strong>Public case analysis.</strong> This experiment was designed and run by TikTok; the figures below come from their public reporting. My contribution is the UX analysis of why the change worked.</div>
 
       <p class="uxb-modal-intro">TikTok sought to boost enrollment in its revenue-sharing program, which required creators to complete a KYC process, including linking their bank accounts, before they could earn revenue. The initial process caused a significant drop-off, as creators were hesitant to provide banking details upfront. To address this, TikTok revised the onboarding flow, allowing creators to start producing content and see potential earnings before connecting their bank accounts. This change aimed to reduce friction and motivate more creators to join the program, easing the initial commitment and building trust.</p>
 
@@ -3215,12 +3951,14 @@
   <div class="uxb-modal">
     <div class="uxb-modal-header">
       <div class="uxb-modal-header-left">
-        <span class="uxb-tag">A/B Test</span>
+        <span class="uxb-tag">Public Case · Analysis</span>
         <span class="uxb-modal-header-title">Duolingo · Decoupling Streaks</span>
       </div>
       <button class="uxb-modal-close" onclick="document.getElementById('abDuolingoStreakModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
     </div>
     <div class="uxb-modal-body">
+
+      <div class="ab-modal-note"><strong>Public case analysis.</strong> This experiment was designed and run by Duolingo; the figures below come from their public reporting. My contribution is the UX analysis of why the change worked.</div>
 
       <p class="uxb-modal-intro">Duolingo redesigned its streak feature to better support user engagement and retention. Previously, maintaining a streak required users to meet their daily learning goals, which could be daunting for those with higher goals. The redesign decoupled streaks from daily goals, allowing users to preserve their streak by completing just one lesson per day, regardless of their set goal. This change aimed to reduce pressure and make streaks more achievable, particularly for learners with ambitious goals.</p>
 
@@ -3585,6 +4323,472 @@
   </div>
 </div>
 
+<!-- ========================= CASE STUDY: ALIŞGİDİŞ ========================= -->
+<div class="uxb-modal-overlay" id="csAlisgidisModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal cs-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">Case Study · Fintech / BNPL</span>
+        <span class="uxb-modal-header-title">Alışgidiş by Fibabanka — Buy-now-pay-later without a credit card</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('csAlisgidisModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <img src="works/Alisgidis-1.png" alt="Alışgidiş campaign detail page" style="width:100%;display:block;border-radius:16px;">
+
+      <div class="cs-meta">
+        <div class="cs-meta-item"><span>Role</span><strong>UX/UI Designer — research, IA, flows, UI, handoff</strong></div>
+        <div class="cs-meta-item"><span>Client / Team</span><strong>Fibabanka · with product owner &amp; dev team at Feux</strong></div>
+        <div class="cs-meta-item"><span>Platform</span><strong>Responsive web (desktop + mobile)</strong></div>
+        <div class="cs-meta-item"><span>Timeline</span><strong>2022 · <span class="cs-metric-val placeholder" style="font-size:11px;padding:2px 6px;">fill: duration</span></strong></div>
+      </div>
+
+      <div class="cs-steps">
+        <div class="cs-step"><i>1</i>Problem</div>
+        <div class="cs-step"><i>2</i>Research</div>
+        <div class="cs-step"><i>3</i>IA &amp; flows</div>
+        <div class="cs-step"><i>4</i>UI &amp; system</div>
+        <div class="cs-step"><i>5</i>Outcome</div>
+        <div class="cs-step"><i>6</i>Handoff</div>
+      </div>
+
+      <!-- 1 Problem -->
+      <div class="cs-block">
+        <span class="uxb-section-label">01 · Problem definition</span>
+        <h4>A bank product for people who don't have a bank card — and don't fully trust one</h4>
+        <p>Alışgidiş lets shoppers pay in installments at partner merchants ("Alışgidiş Noktaları") without a credit card, with a limit granted by SMS in minutes. The product had two audiences with opposite needs — <strong style="color:var(--text)">shoppers</strong> asking "is this safe, what does it cost me, where can I use it?" and <strong style="color:var(--text)">merchants</strong> asking "how do I become a point and what do I gain?" — and one website trying to serve both.</p>
+        <p>Three things were breaking: campaign pages buried the conditions users actually needed (dates, minimum basket, which cards) inside legal text; the merchant onboarding path was hard to find; and at the moment that matters most — <strong style="color:var(--text)">the merchant's checkout</strong> — Alışgidiş appeared as an unfamiliar payment option with mandatory agreements, right before a bank redirect. A regulated product had to carry its disclosures without feeling like a contract.</p>
+        <div class="cs-callout" style="margin-top:14px;">Design goal: <em>make a credit product feel as simple as a shopping cart</em> — clear enough to trust in one scroll, compliant enough to ship in a bank.</div>
+      </div>
+
+      <!-- 2 Research -->
+      <div class="cs-two">
+        <div class="cs-block">
+          <span class="uxb-section-label">02 · Research</span>
+          <h4>What we learned before drawing anything</h4>
+          <ul>
+            <li><strong>Stakeholder sessions with Fibabanka's product &amp; compliance teams</strong> — mapped which disclosures are mandatory per screen vs. which were habit. This shrank the "must show" list considerably.</li>
+            <li><strong>Competitive walkthroughs of BNPL flows</strong> (local and global) — noted where they explain limits and installment cost, and where users drop.</li>
+            <li><strong>Support &amp; FAQ review</strong> — the most repeated questions were about campaign validity and "where can I use this", not about how installments work.</li>
+            <li><strong>Heuristic audit of the existing site</strong> — the buyer/merchant split wasn't visible above the fold; both groups landed on the same generic hero.</li>
+          </ul>
+        </div>
+        <div class="cs-block">
+          <span class="uxb-section-label">Insights → decisions</span>
+          <h4>Three insights shaped the IA</h4>
+          <ul>
+            <li><strong>Trust is built by specificity.</strong> Users scan for dates, amounts and merchant names — so campaign pages lead with a structured "Kampanya koşulları" block, not a paragraph.</li>
+            <li><strong>Buyers and merchants must self-select in one click.</strong> A persistent "Alıcılar için / Satıcılar için" toggle on the advantages section, and "Alışgidiş Noktası Ol" as a sticky CTA.</li>
+            <li><strong>Discovery beats explanation.</strong> Campaigns and the merchant directory became top-level navigation; "how it works" was demoted to a supporting section.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 IA -->
+      <div class="cs-block">
+        <span class="uxb-section-label">03 · Information architecture</span>
+        <h4>From one generic site to two clear paths</h4>
+        <div class="cs-diagram" style="margin-top:14px;">
+          <div class="cs-ia">
+            <div class="cs-ia-root">Alışgidiş — Home</div>
+            <div class="cs-ia-stem"></div>
+            <div class="cs-ia-cols">
+              <div class="cs-ia-col">
+                <div class="cs-ia-node lvl1">Kampanyalar</div>
+                <div class="cs-ia-leaf">Campaign list · filter by category</div>
+                <div class="cs-ia-leaf">Campaign detail</div>
+                <div class="cs-ia-group">
+                  <div class="cs-ia-group-label">detail template</div>
+                  <div class="cs-ia-leaf">Hero + category tag</div>
+                  <div class="cs-ia-leaf">Kampanya koşulları (structured)</div>
+                  <div class="cs-ia-leaf">Valid merchants · share</div>
+                </div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-node lvl1">Alışgidiş Noktaları</div>
+                <div class="cs-ia-leaf">Merchant directory</div>
+                <div class="cs-ia-leaf">Search · category · city</div>
+                <div class="cs-ia-leaf">Merchant detail + active campaigns</div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-node lvl1">Nasıl çalışır</div>
+                <div class="cs-ia-group">
+                  <div class="cs-ia-group-label">Alıcılar için</div>
+                  <div class="cs-ia-leaf">Limit via SMS in 5 min</div>
+                  <div class="cs-ia-leaf">Pay at merchant · installments</div>
+                </div>
+                <div class="cs-ia-group">
+                  <div class="cs-ia-group-label">Satıcılar için</div>
+                  <div class="cs-ia-leaf">Sell to card-less customers</div>
+                  <div class="cs-ia-leaf">Settlement &amp; support</div>
+                </div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-node lvl1">Alışgidiş Noktası Ol</div>
+                <div class="cs-ia-leaf">Sticky CTA · every page</div>
+                <div class="cs-ia-leaf">Merchant application form</div>
+                <div class="cs-ia-leaf">Confirmation · bank callback</div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-node lvl1" style="border-style:dashed;">Checkout module</div>
+                <div class="cs-ia-leaf">Embedded in merchant checkout</div>
+                <div class="cs-ia-leaf">Payment option · details</div>
+                <div class="cs-ia-leaf">Agreements · Fibabanka redirect</div>
+              </div>
+            </div>
+          </div>
+          <p class="cs-diagram-caption">Sitemap after redesign. Campaigns and merchant directory became the primary entries (where users actually go); "how it works" is a supporting page split by audience; merchant onboarding is one click from anywhere. The checkout module lives inside partner merchants' apps, so it had to work with their steppers and visual language.</p>
+        </div>
+      </div>
+
+      <!-- User flow -->
+      <div class="cs-block">
+        <span class="uxb-section-label">Key user flow</span>
+        <h4>Paying with Alışgidiş inside a merchant's checkout</h4>
+        <div class="cs-diagram" style="margin-top:14px;">
+          <div class="cs-flow">
+            <div class="cs-flow-node start">Merchant checkout<small>Sepet → Adres → Ödeme</small></div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-node">Ödeme yöntemi seç<small>Alışgidiş limiti · Kart · Cüzdan</small></div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-node">Ödeme detayları<small>"şimdi al, taksit taksit öde" + what happens next</small></div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-node">Sözleşmeler<small>Ön Bilgilendirme Formu, expandable</small></div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-node">Ödeme Yap<small>total shown next to CTA</small></div>
+            <span class="cs-flow-arrow">↴</span>
+          </div>
+          <div class="cs-flow cs-flow-row2">
+            <div class="cs-flow-node decision">Has an Alışgidiş limit?</div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-branch">
+              <div class="cs-flow"><span class="cs-flow-label">yes</span><span class="cs-flow-arrow">→</span><div class="cs-flow-node">Fibabanka screen<small>pick installments · confirm</small></div></div>
+              <div class="cs-flow"><span class="cs-flow-label">no</span><span class="cs-flow-arrow">→</span><div class="cs-flow-node">SMS application<small>limit in ~5 min, no branch visit</small></div><span class="cs-flow-arrow">→</span><div class="cs-flow-node">Fibabanka screen</div></div>
+            </div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-node end">Sonuç<small>back in merchant flow, order confirmed</small></div>
+          </div>
+          <p class="cs-diagram-caption">The critical design decision is the "Ödeme detayları" node: before the redirect, the card states in one sentence what Alışgidiş is and that the user will be taken to Fibabanka's screen. Removing that surprise was the difference between a payment option people skip and one they try. Agreements are visible and expandable, not a pre-ticked checkbox — a compliance requirement turned into a trust signal.</p>
+        </div>
+      </div>
+
+      <!-- 4 UI -->
+      <div class="cs-block">
+        <span class="uxb-section-label">04 · UI &amp; design system</span>
+        <h4>Structured, brand-loud where it helps, quiet where the law speaks</h4>
+        <div class="cs-screens" style="margin-top:14px;">
+          <figure>
+            <img src="works/Alisgidis-1.png" alt="Campaign detail page">
+            <figcaption><strong>Campaign detail.</strong> Category tag, plain-language title, date range in the first line. "Kampanya koşulları" is a scannable list with bold dates and amounts — the legal content, restructured rather than hidden. Sticky "Alışgidiş Noktası Ol" card on the right keeps the merchant path visible.</figcaption>
+          </figure>
+          <figure>
+            <img src="works/Alisgidis-2.png" alt="Advantages section with buyer / seller toggle">
+            <figcaption><strong>Advantages.</strong> "Alıcılar için / Satıcılar için" segmented toggle lets each audience self-select; cards lead with the outcome ("satış yapmanın yolu Alışgidiş") and the proof ("sadece 5 dakikada", "bankaya gitmeden").</figcaption>
+          </figure>
+          <figure class="wide">
+            <img src="works/Alisgidis-5.png" alt="Alışgidiş payment option inside a merchant checkout">
+            <figcaption><strong>Checkout module (mobile).</strong> Alışgidiş sits as a first-class payment method next to card and wallet, selected state in brand lime. The details card explains the product in one line and pre-announces the Fibabanka redirect. Agreements ("Sözleşmeler") are an expandable list above the CTA; the total sits beside "Ödeme Yap" so the user confirms an amount, not a button. The whole module inherits the host merchant's stepper and neutral palette — only the brand mark and the selected state carry Alışgidiş color. See the <a href="#design-system" onclick="document.getElementById('csAlisgidisModal').classList.remove('open');document.body.style.overflow='';" style="color:#B1F093;">Button spec</a> for one component of this system in full depth.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Before / After -->
+      <div class="cs-block">
+        <span class="uxb-section-label">Before → after</span>
+        <div class="cs-compare" style="margin-top:14px;">
+          <div class="cs-compare-col">
+            <h5>Before</h5>
+            <ul>
+              <li>Single hero for everyone; buyers and merchants both had to scroll to find out which parts applied to them</li>
+              <li>Campaign conditions in a paragraph of legal text; dates and amounts not scannable</li>
+              <li>"Become a merchant" reachable only from the footer</li>
+              <li>In merchant checkout, Alışgidiş was a logo with no explanation before a bank redirect</li>
+              <li>No shared components — each campaign page laid out by hand</li>
+            </ul>
+          </div>
+          <div class="cs-compare-col after">
+            <h5>After</h5>
+            <ul>
+              <li>Audience toggle above the fold; each path answers its own top question first</li>
+              <li>Structured condition list with bold dates/amounts; same template for every campaign</li>
+              <li>Sticky merchant CTA on every page</li>
+              <li>Checkout module explains the product and the redirect in one card; agreements visible, total beside the CTA</li>
+              <li>Component library with tokens — new campaign pages assembled, not designed, in under an hour</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Outcome -->
+      <div class="cs-block">
+        <span class="uxb-section-label">05 · Outcome</span>
+        <h4>What shipped and what it changed</h4>
+        <p>The redesigned site launched with the campaign template, merchant directory and the audience-split content. The team could publish a new campaign page from the template without design involvement — the practical measure of whether a system works.</p>
+        <div class="cs-metrics" style="margin-top:14px;">
+          <div class="cs-metric">
+            <div class="cs-metric-val placeholder">fill: e.g. +XX%</div>
+            <div class="cs-metric-label">Checkout: Alışgidiş selected → payment completed</div>
+            <div class="cs-metric-sub">Before vs. after the details card + visible agreements</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-val placeholder">fill: e.g. +XX%</div>
+            <div class="cs-metric-label">Merchant application submissions</div>
+            <div class="cs-metric-sub">Sticky CTA vs. footer link</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-val placeholder">fill: e.g. −XX%</div>
+            <div class="cs-metric-label">Support questions about campaign conditions</div>
+            <div class="cs-metric-sub">Structured conditions block</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 Handoff -->
+      <div class="cs-block">
+        <span class="uxb-section-label">06 · Handoff</span>
+        <h4>What developers received</h4>
+        <div class="cs-handoff-list" style="margin-top:14px;">
+          <div class="cs-handoff-item"><strong>Figma component library</strong><p>Variants for every state; tokens as Figma Variables (color, space, radius, type) so Dev Mode shows token names, not hex.</p></div>
+          <div class="cs-handoff-item"><strong>Annotated flows</strong><p>Each flow diagram with screen IDs, edge cases (no limit, redirect failure, expired campaign, agreement not opened) and empty/error states drawn, not described.</p></div>
+          <div class="cs-handoff-item"><strong>Responsive specs</strong><p>Breakpoints at 1200 / 768 / 390, per-component collapse rules, and a content-priority table so mobile order was a decision, not a fallback.</p></div>
+          <div class="cs-handoff-item"><strong>Compliance map</strong><p>Which disclosure appears on which screen, agreed with Fibabanka compliance — so legal changes touch one place.</p></div>
+          <div class="cs-handoff-item"><strong>Campaign page template guide</strong><p>A one-page guide for the marketing team: what goes where, character limits, image ratios.</p></div>
+          <div class="cs-handoff-item"><strong>QA checklist</strong><p>Visual QA pass per breakpoint with the dev team before each release; issues logged against component names.</p></div>
+        </div>
+      </div>
+
+      <p class="cs-note">Screens shown are the shipped production designs. Some internal metrics are shared under NDA — ask me about them in an interview.</p>
+
+    </div>
+  </div>
+</div>
+
+<!-- ========================= CASE STUDY: KOÇSİSTEM ========================= -->
+<div class="uxb-modal-overlay" id="csKocsistemModal" role="dialog" aria-modal="true">
+  <div class="uxb-modal cs-modal">
+    <div class="uxb-modal-header">
+      <div class="uxb-modal-header-left">
+        <span class="uxb-tag">Case Study · Enterprise SaaS</span>
+        <span class="uxb-modal-header-title">KoçSistem Audit Platform — Structuring an enterprise audit lifecycle</span>
+      </div>
+      <button class="uxb-modal-close" onclick="document.getElementById('csKocsistemModal').classList.remove('open');document.body.style.overflow='';" aria-label="Close">✕</button>
+    </div>
+    <div class="uxb-modal-body">
+
+      <img src="works/KoçSistem-2.png" alt="KoçSistem audit platform list template" style="width:100%;display:block;border-radius:16px;">
+
+      <div class="cs-meta">
+        <div class="cs-meta-item"><span>Role</span><strong>UX/UI Designer — IA, page templates, component adaptation, handoff</strong></div>
+        <div class="cs-meta-item"><span>Client / Team</span><strong>KoçSistem Audit Group Presidency · Feux product &amp; dev team</strong></div>
+        <div class="cs-meta-item"><span>Platform</span><strong>Web SaaS, desktop-first · Ant Design</strong></div>
+        <div class="cs-meta-item"><span>Timeline</span><strong><span class="cs-metric-val placeholder" style="font-size:11px;padding:2px 6px;">fill: e.g. 8 weeks</span> · tight deadline</strong></div>
+      </div>
+
+      <div class="cs-steps">
+        <div class="cs-step"><i>1</i>Problem</div>
+        <div class="cs-step"><i>2</i>Research</div>
+        <div class="cs-step"><i>3</i>IA &amp; flows</div>
+        <div class="cs-step"><i>4</i>UI &amp; system</div>
+        <div class="cs-step"><i>5</i>Outcome</div>
+        <div class="cs-step"><i>6</i>Handoff</div>
+      </div>
+
+      <!-- 1 Problem -->
+      <div class="cs-block">
+        <span class="uxb-section-label">01 · Problem definition</span>
+        <h4>Eight departments, one audit process, no shared structure</h4>
+        <p>KoçSistem's Audit Group needed an internal platform ("Elektronik Denetim Sistemi") where multiple departments plan audits, run them, log findings and produce reports — replacing a process spread across documents, spreadsheets and email. Each department had its own vocabulary and its own view of the data; auditors, auditees and management needed different permissions on the same records.</p>
+        <p>The constraint that shaped everything: the delivery window was short. We couldn't design a bespoke UI kit and still ship — so the real design problem became the <strong style="color:var(--text)">information architecture</strong> and a small set of <strong style="color:var(--text)">page templates</strong> that could absorb every module.</p>
+        <div class="cs-callout" style="margin-top:14px;">Design goal: <em>one mental model for the whole audit lifecycle</em> — so a user who learns one module can use all of them.</div>
+      </div>
+
+      <!-- 2 Research -->
+      <div class="cs-two">
+        <div class="cs-block">
+          <span class="uxb-section-label">02 · Research</span>
+          <h4>Mapping the process before the screens</h4>
+          <ul>
+            <li><strong>Workshops with the Audit Group leads</strong> — walked through a full audit from risk assessment to final report; captured every artifact, owner and hand-off.</li>
+            <li><strong>Existing artifact review</strong> — the spreadsheets and report templates in use became the field list for each entity (plan, audit, finding, report).</li>
+            <li><strong>Role matrix</strong> — who can create, view, edit, approve at each stage; this drove both the permissions module and which actions appear on each screen.</li>
+            <li><strong>Ant Design audit</strong> — inventoried which AntD components could carry the patterns we needed (tree tables, filter bars, drawers) and where we'd need to extend them.</li>
+          </ul>
+        </div>
+        <div class="cs-block">
+          <span class="uxb-section-label">Insights → decisions</span>
+          <h4>What the research told us</h4>
+          <ul>
+            <li><strong>The lifecycle is linear; the org chart isn't.</strong> Navigation was organized by process stage, not by department — every department finds its work in the same order.</li>
+            <li><strong>90% of screens are "filter → list → detail".</strong> One list template with tree rows, inline status and row actions covers plans, audits, findings and reports.</li>
+            <li><strong>Findings are the hub.</strong> A finding links backwards to its audit and forwards to a report; it needed the richest detail view and a clear status model.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 IA -->
+      <div class="cs-block">
+        <span class="uxb-section-label">03 · Information architecture</span>
+        <h4>Navigation follows the audit lifecycle</h4>
+        <div class="cs-diagram" style="margin-top:14px;">
+          <div class="cs-ia">
+            <div class="cs-ia-root">Elektronik Denetim Sistemi</div>
+            <div class="cs-ia-stem"></div>
+            <div class="cs-ia-cols">
+              <div class="cs-ia-col">
+                <div class="cs-ia-node lvl1">Dashboard</div>
+                <div class="cs-ia-leaf">Open findings by dept.</div>
+                <div class="cs-ia-leaf">Plan progress</div>
+                <div class="cs-ia-leaf">Upcoming audits</div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-group" style="margin-top:0;">
+                  <div class="cs-ia-group-label">1 · Plan</div>
+                  <div class="cs-ia-node lvl1">Risk Değerlendirme</div>
+                  <div class="cs-ia-node lvl1">Kapasite Yönetimi</div>
+                  <div class="cs-ia-node lvl1">Denetim Planları</div>
+                </div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-group" style="margin-top:0;">
+                  <div class="cs-ia-group-label">2 · Execute</div>
+                  <div class="cs-ia-node lvl1">Denetimler</div>
+                  <div class="cs-ia-leaf">Audit list · detail · checklist</div>
+                  <div class="cs-ia-leaf">Evidence &amp; attachments</div>
+                </div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-group" style="margin-top:0;">
+                  <div class="cs-ia-group-label">3 · Track</div>
+                  <div class="cs-ia-node lvl1">Bulgu Yönetimi</div>
+                  <div class="cs-ia-leaf">Finding detail · status · owner</div>
+                  <div class="cs-ia-leaf">Action plan · due date</div>
+                </div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-group" style="margin-top:0;">
+                  <div class="cs-ia-group-label">4 · Report</div>
+                  <div class="cs-ia-node lvl1">Raporlar</div>
+                  <div class="cs-ia-leaf">Generate · export · archive</div>
+                </div>
+              </div>
+              <div class="cs-ia-col">
+                <div class="cs-ia-node lvl1">Sistem Yönetimi</div>
+                <div class="cs-ia-leaf">Users · roles · permissions</div>
+                <div class="cs-ia-leaf">Departments · parameters</div>
+              </div>
+            </div>
+          </div>
+          <p class="cs-diagram-caption">Sidebar order = process order. Plan → Execute → Track → Report, with Dashboard as the entry and System Management as the admin layer. The same grouping is used in breadcrumbs (Level 01 / Level 02) so users always know which stage they're in.</p>
+        </div>
+      </div>
+
+      <!-- Flow -->
+      <div class="cs-block">
+        <span class="uxb-section-label">Key user flow</span>
+        <h4>Finding lifecycle — the flow every role touches</h4>
+        <div class="cs-diagram" style="margin-top:14px;">
+          <div class="cs-flow">
+            <div class="cs-flow-node start">Auditor logs finding<small>from audit checklist</small></div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-node">Classify<small>severity · category · dept.</small></div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-node">Assign owner<small>auditee gets notification</small></div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-node">Action plan<small>owner proposes fix + due date</small></div>
+            <span class="cs-flow-arrow">↴</span>
+          </div>
+          <div class="cs-flow cs-flow-row2">
+            <div class="cs-flow-node decision">Auditor accepts plan?</div>
+            <span class="cs-flow-arrow">→</span>
+            <div class="cs-flow-branch">
+              <div class="cs-flow"><span class="cs-flow-label">no</span><span class="cs-flow-arrow">→</span><div class="cs-flow-node pain">Returned with comment<small>loops back to action plan</small></div></div>
+              <div class="cs-flow"><span class="cs-flow-label">yes</span><span class="cs-flow-arrow">→</span><div class="cs-flow-node">In progress<small>tracked on dashboard</small></div><span class="cs-flow-arrow">→</span><div class="cs-flow-node decision">Verified closed?</div><span class="cs-flow-arrow">→</span><div class="cs-flow-node end">Closed · in report</div></div>
+            </div>
+          </div>
+          <p class="cs-diagram-caption">Status model: Open → Assigned → Plan proposed → Plan accepted / Returned → In progress → Closed. Every status has one owner and one available primary action — that rule alone removed most of the "what do I do now?" questions in review sessions.</p>
+        </div>
+      </div>
+
+      <!-- 4 UI -->
+      <div class="cs-block">
+        <span class="uxb-section-label">04 · UI &amp; system</span>
+        <h4>Page templates, Ant Design underneath, KoçSistem on top</h4>
+        <div class="cs-screens" style="margin-top:14px;">
+          <figure>
+            <img src="works/KoçSistem-2.png" alt="List template with filters, tree table and row actions">
+            <figcaption><strong>List template.</strong> Breadcrumb (stage / module), page title with the primary CTA top-right, filter bar, tree table with expandable rows, inline status tags, row-level "…" actions and pagination. Used by every module.</figcaption>
+          </figure>
+          <figure>
+            <img src="works/KoçSistem-3.png" alt="Empty state template">
+            <figcaption><strong>Empty state, designed on purpose.</strong> Every list has a first-run state with an illustration, a one-line explanation and the primary CTA kept in the same top-right position — so a new department's first screen teaches the layout instead of showing an empty table.</figcaption>
+          </figure>
+          <figure class="wide">
+            <img src="works/KoçSistem-1.png" alt="Platform overview">
+            <figcaption><strong>System layer.</strong> Ant Design tokens overridden for brand (KoçSistem red for primary and active nav), 8px spacing grid, and a restrained palette so status colors (severity, state) are the only strong signals on data-dense screens. Truncated cells reveal full text on hover — a small pattern that saved many extra columns.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <!-- Decisions -->
+      <div class="cs-block">
+        <span class="uxb-section-label">Constraints → decisions</span>
+        <table class="cs-table" style="margin-top:14px;">
+          <thead><tr><th>Constraint</th><th>Decision</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>Short timeline</td><td>Ant Design as the base, extended with 6 custom composite components</td><td>Speed without losing consistency; devs already knew AntD's API</td></tr>
+            <tr><td>Multi-department vocabulary</td><td>Shared entity names fixed in a glossary; departments differ only by filters</td><td>One template can serve everyone; no per-department screens</td></tr>
+            <tr><td>Role-based access</td><td>Actions rendered from the role matrix, not hidden per screen</td><td>Permission changes don't require UI changes</td></tr>
+            <tr><td>Dense audit data</td><td>Tree tables + truncation with hover reveal + saved filters</td><td>Keeps rows scannable; power users get depth on demand</td></tr>
+            <tr><td>Reports must match existing formats</td><td>Report module mirrors the legacy template's section order</td><td>Zero retraining for management readers</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 5 Outcome -->
+      <div class="cs-block">
+        <span class="uxb-section-label">05 · Outcome</span>
+        <h4>Shipped on the deadline, adopted across departments</h4>
+        <p>The platform launched with all modules on the shared templates. Because the IA follows the process rather than the org chart, onboarding a new department meant configuring filters and roles — not designing new screens.</p>
+        <div class="cs-metrics" style="margin-top:14px;">
+          <div class="cs-metric">
+            <div class="cs-metric-val placeholder">fill: e.g. XX → X</div>
+            <div class="cs-metric-label">Tools used to run one audit</div>
+            <div class="cs-metric-sub">Spreadsheets + email + docs → single platform</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-val placeholder">fill: e.g. −XX%</div>
+            <div class="cs-metric-label">Time from finding logged to action plan accepted</div>
+            <div class="cs-metric-sub">Status model with one owner per step</div>
+          </div>
+          <div class="cs-metric">
+            <div class="cs-metric-val placeholder">fill: e.g. X departments</div>
+            <div class="cs-metric-label">Departments onboarded without new screens</div>
+            <div class="cs-metric-sub">Template + role matrix approach</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 Handoff -->
+      <div class="cs-block">
+        <span class="uxb-section-label">06 · Handoff</span>
+        <h4>What developers received</h4>
+        <div class="cs-handoff-list" style="margin-top:14px;">
+          <div class="cs-handoff-item"><strong>Template spec sheets</strong><p>List, Detail/Form and Dashboard templates documented once with slots ("filter bar goes here, primary CTA here") and which modules use which slot.</p></div>
+          <div class="cs-handoff-item"><strong>AntD token overrides</strong><p>A single theme file: brand colors, radius, spacing, typography — mapped to AntD's token names so devs applied it with ConfigProvider.</p></div>
+          <div class="cs-handoff-item"><strong>Status &amp; permission matrix</strong><p>Every entity's statuses, allowed transitions and which role can trigger them — the source of truth for both UI and backend rules.</p></div>
+          <div class="cs-handoff-item"><strong>Annotated flows</strong><p>Finding lifecycle and audit execution flows with screen IDs, notifications and empty/error states.</p></div>
+          <div class="cs-handoff-item"><strong>Component extension notes</strong><p>For the 6 composite components: which AntD primitives they wrap, props, and behavior on overflow.</p></div>
+          <div class="cs-handoff-item"><strong>Weekly design QA</strong><p>Reviewed built screens against Figma per sprint; issues tracked against template and component names, not page names.</p></div>
+        </div>
+      </div>
+
+      <p class="cs-note">Screens shown use placeholder content by agreement with the client — the real data is internal audit material. Structure, components and interaction are as shipped.</p>
+
+    </div>
+  </div>
+</div>
+
 <!-- ========================= EXPERIENCE MODAL ========================= -->
 <div class="exp-modal-overlay" id="expModalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="exp-modal" id="expModal">
@@ -3831,7 +5035,18 @@
   }
 
   document.querySelectorAll('.work-item[data-work]').forEach(item => {
-    item.addEventListener('click', () => openWork(Number(item.dataset.work)));
+    item.addEventListener('click', () => {
+      if (item.dataset.case) {
+        const m = document.getElementById(item.dataset.case);
+        if (m) {
+          m.classList.add('open');
+          document.body.style.overflow = 'hidden';
+          m.querySelector('.uxb-modal-body').scrollTop = 0;
+          return;
+        }
+      }
+      openWork(Number(item.dataset.work));
+    });
   });
 
   wmClose.addEventListener('click', closeWork);
@@ -4122,6 +5337,24 @@
     }
   });
 
+  // Scroll cue: show "scroll for breakdown" until the user scrolls the modal body
+  document.querySelectorAll('.uxb-modal').forEach(modal => {
+    const body = modal.querySelector('.uxb-modal-body');
+    if (!body) return;
+    const cue = document.createElement('div');
+    cue.className = 'uxb-scroll-cue';
+    cue.innerHTML = '<span>Scroll for the breakdown <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+    modal.appendChild(cue);
+    const update = () => {
+      const scrollable = body.scrollHeight - body.clientHeight > 24;
+      modal.classList.toggle('scrolled', !scrollable || body.scrollTop > 40);
+    };
+    body.addEventListener('scroll', update, { passive: true });
+    const overlay = modal.closest('.uxb-modal-overlay');
+    if (overlay) new MutationObserver(() => { if (overlay.classList.contains('open')) setTimeout(update, 450); }).observe(overlay, { attributes: true, attributeFilter: ['class'] });
+    window.addEventListener('resize', update);
+  });
+
   // Close custom modals on overlay click
   document.querySelectorAll('.uxb-modal-overlay').forEach(overlay => {
     overlay.addEventListener('click', e => {
@@ -4131,6 +5364,61 @@
       }
     });
   });
+  // ---- Design system playground ----
+  (function () {
+    const btn   = document.getElementById('dsBtn');
+    const stage = document.getElementById('dsStage');
+    if (!btn || !stage) return;
+    const state = { variant: 'primary', size: 'md', state: 'default', icon: 'none' };
+    const SPEC = {
+      variant: {
+        primary:     { bg: 'color.brand.500',   fg: 'color.ink.900',     border: 'color.brand.500 · 1.5px',   hover: 'color.brand.600' },
+        secondary:   { bg: 'transparent',       fg: 'color.ink.900',     border: 'color.ink.900 · 1.5px',     hover: 'color.ink.900 @ 6%' },
+        ghost:       { bg: 'transparent',       fg: 'color.ink.900',     border: 'none',                      hover: 'color.ink.900 @ 6%' },
+        destructive: { bg: 'color.danger.500',  fg: 'color.surface.base', border: 'color.danger.500 · 1.5px', hover: 'color.danger.600' },
+      },
+      size: {
+        sm: { h: 'size.control.sm · 36px', px: 'space.4 · 16px', r: 'radius.sm · 10px', type: 'text.label.sm · 13/18 · 600' },
+        md: { h: 'size.control.md · 44px', px: 'space.5 · 20px', r: 'radius.md · 12px', type: 'text.label.md · 14/20 · 600' },
+        lg: { h: 'size.control.lg · 52px', px: 'space.6 · 24px', r: 'radius.lg · 14px', type: 'text.label.lg · 15/20 · 600' },
+      }
+    };
+    const LABELS = { primary: 'Taksitle öde', secondary: 'Kampanyayı gör', ghost: 'Vazgeç', destructive: 'Kartı kaldır' };
+    const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+
+    function render() {
+      btn.className = 'ds-btn ' + state.variant + ' ' + state.size + (state.state !== 'default' ? ' ' + state.state : '');
+      btn.disabled = state.state === 'is-disabled';
+      document.getElementById('dsBtnLabel').textContent = LABELS[state.variant];
+      btn.querySelector('.ds-ico-lead').style.display  = state.icon === 'leading'  ? '' : 'none';
+      btn.querySelector('.ds-ico-trail').style.display = state.icon === 'trailing' ? '' : 'none';
+      const v = SPEC.variant[state.variant], z = SPEC.size[state.size];
+      const set = (k, val) => { const el = document.querySelector('[data-spec="' + k + '"]'); if (el) el.textContent = val; };
+      set('bg', v.bg); set('fg', v.fg); set('border', v.border); set('hover', v.hover);
+      set('h', z.h); set('px', z.px); set('r', z.r); set('type', z.type);
+      document.getElementById('dsSpecTitle').textContent =
+        'Button / ' + cap(state.variant) + ' / ' + state.size.toUpperCase() +
+        (state.state !== 'default' ? ' / ' + cap(state.state.replace('is-', '')) : '');
+    }
+
+    document.querySelectorAll('.ds-seg').forEach(seg => {
+      seg.addEventListener('click', e => {
+        const b = e.target.closest('button'); if (!b) return;
+        seg.querySelectorAll('button').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        state[seg.dataset.ds] = b.dataset.val;
+        render();
+      });
+    });
+
+    document.getElementById('dsSurfaceToggle').addEventListener('click', function () {
+      const dark = stage.classList.toggle('dark');
+      this.textContent = dark ? 'Light surface' : 'Dark surface';
+      stage.querySelector('.ds-stage-tag').textContent = dark ? 'Preview · surface/dark' : 'Preview · surface/light';
+    });
+
+    render();
+  })();
 </script>
 
 </body>
