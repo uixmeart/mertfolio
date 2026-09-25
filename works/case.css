@@ -1,0 +1,116 @@
+/* Shared styles for individual work/case-study pages — works/project-*.html */
+
+:root {
+  --bg:           #0a0a0f;
+  --text:         #f0f0f0;
+  --text-muted:   #8a8a8a;
+  --accent:       #B1F093;
+  --border:       rgba(255,255,255,0.1);
+  --font:         'Archivo', sans-serif;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ===== NAV ===== */
+.cs-nav {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+}
+.cs-nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cs-nav-logo img { height: 22px; display: block; }
+.cs-nav-back {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color .2s;
+}
+.cs-nav-back:hover { color: var(--text); }
+
+/* ===== HEADER (NAME / OVERVIEW / SCOPE) ===== */
+.cs-header {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+.cs-header-inner { max-width: 560px; }
+.cs-header-block { margin-bottom: 32px; }
+.cs-header-block:last-child { margin-bottom: 0; }
+.cs-header-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.cs-header-value {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.cs-header-name { font-size: clamp(32px, 4vw, 44px); font-weight: 400; letter-spacing: -.02em; }
+
+/* ===== IMAGE BLOCKS ===== */
+.cs-images { padding-bottom: 80px; }
+.cs-image-block {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto 24px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+.cs-image-block img { width: 100%; display: block; }
+.cs-image-ph {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #1e1e24;
+  color: #ABABAA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+/* ===== FOOTER / BACK LINK ===== */
+.cs-footer {
+  padding: 60px 0 100px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.cs-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  border-bottom: 1px solid var(--text);
+  padding-bottom: 2px;
+  transition: color .2s, border-color .2s;
+}
+.cs-footer a:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 700px) {
+  .cs-header { min-height: auto; padding: 56px 0; }
+}

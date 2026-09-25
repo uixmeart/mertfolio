@@ -939,6 +939,67 @@
     }
     .work-for strong { font-weight: 500; color: var(--text); }
 
+    /* ===== WORKS GRID (new works, one page per project) ===== */
+    .works-grid-section { padding: 140px 0; background: var(--bg); }
+    .works-grid-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      margin-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .works-grid-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .works-grid-index {
+      font-size: 12px;
+      letter-spacing: .05em;
+      color: var(--text-muted);
+    }
+    .works-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 24px;
+    }
+    .works-grid-card { display: block; }
+    .works-grid-card-media {
+      position: relative;
+      aspect-ratio: 21 / 10;
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .4s cubic-bezier(.16,1,.3,1);
+    }
+    .works-grid-card:hover .works-grid-card-media { transform: translateY(-4px); }
+    .works-grid-card-media img.wgs-mark {
+      width: 32px;
+      height: 32px;
+      opacity: .9;
+    }
+    .works-grid-card-meta { padding: 16px 2px 0; }
+    .works-grid-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .works-grid-card-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    @media (max-width: 700px) {
+      .works-grid { grid-template-columns: 1fr; }
+    }
+
     /* ===== PORTFOLIO ===== */
     #portfolio { scroll-margin-top: var(--nav-h); padding-top: 120px; }
 
@@ -3526,6 +3587,79 @@
     </div>
   </div>
 </div>
+
+<!-- ========================= WORKS GRID (new works — each links to its own page) ========================= -->
+<section id="works-grid" class="works-grid-section">
+  <div class="container">
+    <div class="works-grid-topbar">
+      <span class="works-grid-eyebrow">Works</span>
+      <span class="works-grid-index">/ 02</span>
+    </div>
+    <div class="works-grid">
+
+      <a class="works-grid-card" href="works/alpaca.html">
+        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#2a2f22,#101208);">
+          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+        </div>
+        <div class="works-grid-card-meta">
+          <span class="works-grid-card-title">Alpaca AI</span>
+          <p class="works-grid-card-desc">AI Platform · Model Deployment</p>
+        </div>
+      </a>
+
+      <a class="works-grid-card" href="works/aster.html">
+        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#1c2430,#0a0d12);">
+          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+        </div>
+        <div class="works-grid-card-meta">
+          <span class="works-grid-card-title">Aster</span>
+          <p class="works-grid-card-desc">Modern CRM · Workflow UX</p>
+        </div>
+      </a>
+
+      <a class="works-grid-card" href="works/scout.html">
+        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#232030,#0c0a11);">
+          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+        </div>
+        <div class="works-grid-card-meta">
+          <span class="works-grid-card-title">Scout Intelligence</span>
+          <p class="works-grid-card-desc">Private Markets · Research Platform</p>
+        </div>
+      </a>
+
+      <a class="works-grid-card" href="works/langdock.html">
+        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#301f22,#110a0b);">
+          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+        </div>
+        <div class="works-grid-card-meta">
+          <span class="works-grid-card-title">Langdock</span>
+          <p class="works-grid-card-desc">AI Workspace · Platform Redesign</p>
+        </div>
+      </a>
+
+      <a class="works-grid-card" href="works/twin.html">
+        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#1f2b26,#0a100d);">
+          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+        </div>
+        <div class="works-grid-card-meta">
+          <span class="works-grid-card-title">Twin</span>
+          <p class="works-grid-card-desc">Agent Platform · Automation UX</p>
+        </div>
+      </a>
+
+      <a class="works-grid-card" href="works/marketer.html">
+        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#2b2a1e,#0f0e09);">
+          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+        </div>
+        <div class="works-grid-card-meta">
+          <span class="works-grid-card-title">Marketer</span>
+          <p class="works-grid-card-desc">AI Marketing · Campaign Platform</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
 
 <!-- ========================= DESIGN SYSTEM ========================= -->
 <section id="design-system">
