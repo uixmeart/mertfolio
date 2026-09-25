@@ -309,7 +309,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: url('hero-showcase.webp') center center / cover no-repeat;
+      background: url('hero-portrait.webp') 53% center / cover no-repeat;
       z-index: 0;
     }
     #hero::after {
@@ -662,136 +662,119 @@
     /* ===== ABOUT ===== */
     #about { padding: 120px 0; background: var(--card); }
 
-    .about-inner {
+    .about-grid {
       display: grid;
       grid-template-columns: 1fr 1.1fr;
-      gap: 80px;
-      align-items: center;
+      gap: 0 24px;
     }
 
-    /* About left — image with floating badges */
-    .about-img-wrap {
-      position: relative;
-    }
-    .about-img-wrap img {
-      width: 100%;
-      border-radius: 24px;
+    /* Top row — index label + statement */
+    .about-label { font-size: 15px; line-height: 1.3; }
+    .about-label-index {
       display: block;
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .about-label strong { display: block; font-weight: 600; color: var(--text); }
+    .about-label span:last-child { color: var(--text-muted); }
+
+    .about-title {
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 500;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .about-title em { font-style: normal; color: var(--text-muted); }
+
+    .about-divider {
+      grid-column: 2;
+      height: 1px;
+      background: var(--border);
+      margin: 56px 0 24px;
+    }
+
+    /* Bottom row — photo + details */
+    .about-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      aspect-ratio: 5 / 6;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      aspect-ratio: 3 / 4;
+      display: block;
       transition: transform .6s cubic-bezier(.25,.46,.45,.94);
     }
-    .about-img-wrap:hover img {
-      transform: scale(1.03);
-    }
+    .about-photo:hover img { transform: scale(1.03); }
 
-    .about-badge {
-      position: absolute;
-      background: var(--card);
-      border-radius: 16px;
-      padding: 14px 20px;
-      box-shadow: 0 12px 40px rgba(0,0,0,.1);
+    .about-details {
       display: flex;
-      align-items: center;
-      gap: 12px;
-      z-index: 2;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 40px;
     }
-    .about-badge-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: rgba(177,240,147,0.15);
-      color: #B1F093;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      flex-shrink: 0;
-    }
-    .about-badge-text strong {
-      display: block;
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .about-badge-text span {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-    }
-
-    .about-badge-top {
-      top: 20px;
-      left: -20px;
-      animation: badgeFloat 3.5s ease-in-out infinite;
-    }
-    .about-badge-bottom {
-      bottom: 30px;
-      right: -20px;
-      animation: badgeFloat 4s ease-in-out infinite .5s;
-    }
-    @keyframes badgeFloat {
-      0%, 100% { transform: translateY(0); }
-      50%      { transform: translateY(-8px); }
-    }
-
-    /* About right — content */
-    .about-title {
-      font-size: clamp(30px, 4.5vw, 44px);
-      font-weight: 400;
-      letter-spacing: -.03em;
-      line-height: 1.15;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
-    .about-title em {
-      font-style: normal;
-      color: #B1F093;
-    }
+    .about-intro { font-size: 15px; line-height: 1.4; margin-bottom: 20px; }
+    .about-intro span { display: block; color: var(--text-muted); }
+    .about-intro strong { display: block; font-weight: 500; color: var(--text); }
 
     .about-bio {
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.75;
       color: var(--text-muted);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
+      max-width: 560px;
     }
     .about-bio strong { color: var(--text); font-weight: 600; }
 
     .about-stats {
-      display: flex;
-      gap: 16px;
-      margin-top: 32px;
-      margin-bottom: 36px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
     }
     .about-stat {
-      flex: 1;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px 16px;
-      text-align: center;
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      padding: 14px 16px 16px;
+      min-height: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
+    .about-stat-icon { font-size: 14px; color: var(--text-muted); line-height: 1; }
+    .about-stat-row { display: flex; align-items: flex-end; gap: 10px; }
     .about-stat-num {
-      font-size: clamp(24px, 3vw, 32px);
-      font-weight: 700;
+      display: flex;
+      align-items: flex-start;
+      font-size: clamp(44px, 5vw, 64px);
+      font-weight: 500;
+      letter-spacing: -.04em;
+      line-height: .85;
       color: var(--text);
+    }
+    .about-stat-num sup {
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-right: 4px;
       line-height: 1;
-      margin-bottom: 4px;
     }
     .about-stat-lbl {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      font-size: 11px;
+      line-height: 1.3;
       color: var(--text-muted);
+      padding-bottom: 2px;
     }
 
     .about-footer {
       display: flex;
       align-items: center;
-      gap: 24px;
+      flex-wrap: wrap;
+      gap: 12px 24px;
+      margin-top: 16px;
     }
     .about-cta {
       display: inline-flex;
@@ -810,19 +793,13 @@
       transform: translateY(-3px) scale(1.04);
       box-shadow: 0 8px 30px rgba(177,240,147,.35);
     }
-
-    .about-signature {
-      display: flex;
-      flex-direction: column;
-    }
-    .about-signature strong {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .about-signature span {
-      font-size: 12px;
-      color: var(--text-muted);
+    .about-edu { display: flex; gap: 20px; }
+    .about-edu div { font-size: 13px; line-height: 1.35; }
+    .about-edu strong { display: block; font-weight: 600; color: var(--text); }
+    .about-edu span { color: var(--text-muted); font-size: 12px; }
+    @media (max-width: 600px) {
+      .about-stats { grid-template-columns: 1fr; }
+      .about-stat  { min-height: 110px; }
     }
 
     /* ===== WORKS STRIP ===== */
@@ -967,6 +944,8 @@
       gap: 32px 24px;
     }
     .works-grid-card { display: block; }
+    .works-grid-card--featured { grid-column: 1 / -1; }
+    .works-grid-card--featured .works-grid-card-media { aspect-ratio: 21 / 9; }
     .works-grid-card-media {
       position: relative;
       aspect-ratio: 21 / 10;
@@ -978,6 +957,13 @@
       transition: transform .4s cubic-bezier(.16,1,.3,1);
     }
     .works-grid-card:hover .works-grid-card-media { transform: translateY(-4px); }
+    .works-grid-card-media img.wgs-cover {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
     .works-grid-card-media img.wgs-mark {
       width: 32px;
       height: 32px;
@@ -2734,9 +2720,10 @@
       .hero-bottom { flex-direction: column; align-items: flex-start; }
       .hero-desc { text-align: left; }
       .hero-slider { display: none; }
-      .about-inner  { grid-template-columns: 1fr; gap: 48px; }
-      .about-badge-top { left: 10px; }
-      .about-badge-bottom { right: 10px; }
+      .about-grid   { grid-template-columns: 1fr; }
+      .about-label  { margin-bottom: 20px; }
+      .about-divider { grid-column: 1; margin: 40px 0 24px; }
+      .about-photo  { margin-bottom: 32px; }
       .proj-grid    { grid-template-columns: repeat(2, 1fr); }
       .edu-grid     { grid-template-columns: 1fr; }
       .blog-grid    { grid-template-columns: repeat(2, 1fr); }
@@ -3134,63 +3121,66 @@
 <!-- ========================= ABOUT ========================= -->
 <section id="about">
   <div class="container">
-    <div class="about-inner">
+    <div class="about-grid">
 
-      <!-- Left — Image with badges -->
-      <div class="about-img-wrap reveal">
+      <!-- Top — label + statement -->
+      <div class="about-label reveal">
+        <span class="about-label-index">/ 01</span>
+        <strong>About</strong>
+        <span>Me</span>
+      </div>
+      <h2 class="about-title reveal d1">I didn't start out strong.<br><em>I had to build it.</em></h2>
+
+      <div class="about-divider"></div>
+
+      <!-- Bottom left — photo -->
+      <div class="about-photo reveal">
         <img src="about-photo.webp" alt="Halil Mert" />
-        <div class="about-badge about-badge-top">
-          <div class="about-badge-icon">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M8 5v3l2 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-          </div>
-          <div class="about-badge-text">
-            <strong>6+ Years</strong>
-            <span>In the field</span>
-          </div>
-        </div>
-        <div class="about-badge about-badge-bottom">
-          <div class="about-badge-icon" style="background:rgba(177,240,147,0.15);color:#B1F093;">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2l1.5 3.5L13 7l-3 2.5.5 3.5L8 11.5 5.5 13l.5-3.5L3 7l3.5-1.5L8 2z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-          </div>
-          <div class="about-badge-text">
-            <strong>M.Sc. HCI</strong>
-            <span>Research background</span>
-          </div>
-        </div>
       </div>
 
-      <!-- Right — Content -->
-      <div>
-        <p class="section-label reveal">About Me</p>
-        <h2 class="about-title reveal d1">I didn't start out strong.<br>I had to <em>build it.</em></h2>
-
-        <p class="about-bio reveal d2">
-          I'm a <strong>Product Designer</strong> based in Istanbul, Turkey, designing end-to-end product experiences across mobile and web — from consumer fintech and e-commerce to AI-driven tools. My approach blends <strong>HCI research</strong> with rapid experimentation: user interviews, usability testing, prototype validation, and iterating on real user behavior inform every decision I make.
-        </p>
-        <p class="about-bio reveal d3">
-          From discovery to delivery, I own the full process — user flows, wireframes, design systems, and high-fidelity UI, all in Figma. I specialize in making complex products feel effortless and simple. AI tools (Claude, Midjourney, Cursor) are a core part of how I explore, prototype, and iterate faster.
-        </p>
-
-        <div class="about-stats reveal d4">
-          <div class="about-stat">
-            <div class="about-stat-num">12+</div>
-            <div class="about-stat-lbl">Shipped Products</div>
-          </div>
-          <div class="about-stat">
-            <div class="about-stat-num">5</div>
-            <div class="about-stat-lbl">Industries · Fintech to AI</div>
-          </div>
-          <div class="about-stat">
-            <div class="about-stat-num">B.A.</div>
-            <div class="about-stat-lbl">Graphic Design</div>
-          </div>
+      <!-- Bottom right — bio, stats, CTA -->
+      <div class="about-details">
+        <div>
+          <p class="about-intro reveal d1"><span>Halil Mert</span><strong>Product Designer · Istanbul, Turkey</strong></p>
+          <p class="about-bio reveal d2">
+            I design end-to-end product experiences across mobile and web — from consumer fintech and e-commerce to AI-driven tools. My approach blends <strong>HCI research</strong> with rapid experimentation: user interviews, usability testing, prototype validation, and iterating on real user behavior inform every decision I make.
+          </p>
+          <p class="about-bio reveal d3">
+            From discovery to delivery, I own the full process — user flows, wireframes, design systems, and high-fidelity UI, all in Figma. I specialize in making complex products feel effortless and simple. AI tools (Claude, Midjourney, Cursor) are a core part of how I explore, prototype, and iterate faster.
+          </p>
         </div>
 
-        <div class="about-footer reveal d5">
-          <a href="#cta" class="about-cta">Get in Touch</a>
-          <div class="about-signature">
-            <strong>Halil Mert</strong>
-            <span>Product Designer</span>
+        <div class="reveal d4">
+          <div class="about-stats">
+            <div class="about-stat">
+              <span class="about-stat-icon">+</span>
+              <div class="about-stat-row">
+                <div class="about-stat-num"><sup>+</sup>6</div>
+                <div class="about-stat-lbl">Years<br>in the field</div>
+              </div>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-icon">+</span>
+              <div class="about-stat-row">
+                <div class="about-stat-num"><sup>+</sup>12</div>
+                <div class="about-stat-lbl">Shipped<br>products</div>
+              </div>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-icon">+</span>
+              <div class="about-stat-row">
+                <div class="about-stat-num">5</div>
+                <div class="about-stat-lbl">Industries<br>fintech to AI</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-footer">
+            <a href="#cta" class="about-cta">Get in Touch</a>
+            <div class="about-edu">
+              <div><strong>M.Sc. HCI</strong><span>Research background</span></div>
+              <div><strong>B.A.</strong><span>Graphic Design</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -3597,63 +3587,53 @@
     </div>
     <div class="works-grid">
 
-      <a class="works-grid-card" href="works/alpaca.html">
-        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#2a2f22,#101208);">
-          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+      <a class="works-grid-card works-grid-card--featured" href="works/silverpine.html">
+        <div class="works-grid-card-media">
+          <img class="wgs-cover" src="works/silverpine-cover.webp" alt="" loading="lazy" />
         </div>
         <div class="works-grid-card-meta">
-          <span class="works-grid-card-title">Alpaca AI</span>
-          <p class="works-grid-card-desc">AI Platform · Model Deployment</p>
+          <span class="works-grid-card-title">Silverpine</span>
+          <p class="works-grid-card-desc">AI Marketing · Campaign Platform</p>
         </div>
       </a>
 
-      <a class="works-grid-card" href="works/aster.html">
-        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#1c2430,#0a0d12);">
-          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+      <a class="works-grid-card" href="works/bloomcrest.html">
+        <div class="works-grid-card-media">
+          <img class="wgs-cover" src="works/bloomcrest-cover.webp" alt="" loading="lazy" />
         </div>
         <div class="works-grid-card-meta">
-          <span class="works-grid-card-title">Aster</span>
-          <p class="works-grid-card-desc">Modern CRM · Workflow UX</p>
-        </div>
-      </a>
-
-      <a class="works-grid-card" href="works/scout.html">
-        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#232030,#0c0a11);">
-          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
-        </div>
-        <div class="works-grid-card-meta">
-          <span class="works-grid-card-title">Scout Intelligence</span>
+          <span class="works-grid-card-title">Bloomcrest</span>
           <p class="works-grid-card-desc">Private Markets · Research Platform</p>
         </div>
       </a>
 
-      <a class="works-grid-card" href="works/langdock.html">
-        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#301f22,#110a0b);">
-          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
+      <a class="works-grid-card" href="works/aurelisse.html">
+        <div class="works-grid-card-media">
+          <img class="wgs-cover" src="works/aurelisse-cover.webp" alt="" loading="lazy" />
         </div>
         <div class="works-grid-card-meta">
-          <span class="works-grid-card-title">Langdock</span>
+          <span class="works-grid-card-title">Aurelisse</span>
+          <p class="works-grid-card-desc">Modern CRM · Workflow UX</p>
+        </div>
+      </a>
+
+      <a class="works-grid-card" href="works/fovrend.html">
+        <div class="works-grid-card-media">
+          <img class="wgs-cover" src="works/fovrend-cover.webp" alt="" loading="lazy" />
+        </div>
+        <div class="works-grid-card-meta">
+          <span class="works-grid-card-title">Fovrend</span>
+          <p class="works-grid-card-desc">AI Platform · Model Deployment</p>
+        </div>
+      </a>
+
+      <a class="works-grid-card" href="works/pera.html">
+        <div class="works-grid-card-media">
+          <img class="wgs-cover" src="works/pera-cover.webp" alt="" loading="lazy" />
+        </div>
+        <div class="works-grid-card-meta">
+          <span class="works-grid-card-title">Pera</span>
           <p class="works-grid-card-desc">AI Workspace · Platform Redesign</p>
-        </div>
-      </a>
-
-      <a class="works-grid-card" href="works/twin.html">
-        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#1f2b26,#0a100d);">
-          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
-        </div>
-        <div class="works-grid-card-meta">
-          <span class="works-grid-card-title">Twin</span>
-          <p class="works-grid-card-desc">Agent Platform · Automation UX</p>
-        </div>
-      </a>
-
-      <a class="works-grid-card" href="works/marketer.html">
-        <div class="works-grid-card-media" style="background:linear-gradient(160deg,#2b2a1e,#0f0e09);">
-          <img class="wgs-mark" src="m-icon-decorative.svg" alt="" />
-        </div>
-        <div class="works-grid-card-meta">
-          <span class="works-grid-card-title">Marketer</span>
-          <p class="works-grid-card-desc">AI Marketing · Campaign Platform</p>
         </div>
       </a>
 
